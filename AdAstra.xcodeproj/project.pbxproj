@@ -1,0 +1,563 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		B36145082D5D7DAA00DE6E6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B36144ED2D5D7DA800DE6E6F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B36144F42D5D7DA800DE6E6F;
+			remoteInfo = AdAstra;
+		};
+		B36145122D5D7DAA00DE6E6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B36144ED2D5D7DA800DE6E6F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B36144F42D5D7DA800DE6E6F;
+			remoteInfo = AdAstra;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B36144F52D5D7DA800DE6E6F /* AdAstra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdAstra.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B36145072D5D7DAA00DE6E6F /* AdAstraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdAstraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B36145112D5D7DAA00DE6E6F /* AdAstraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdAstraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		B36144F72D5D7DA800DE6E6F /* AdAstra */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AdAstra;
+			sourceTree = "<group>";
+		};
+		B361450A2D5D7DAA00DE6E6F /* AdAstraTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AdAstraTests;
+			sourceTree = "<group>";
+		};
+		B36145142D5D7DAA00DE6E6F /* AdAstraUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = AdAstraUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B36144F22D5D7DA800DE6E6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B36145042D5D7DAA00DE6E6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B361450E2D5D7DAA00DE6E6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B36144EC2D5D7DA800DE6E6F = {
+			isa = PBXGroup;
+			children = (
+				B36144F72D5D7DA800DE6E6F /* AdAstra */,
+				B361450A2D5D7DAA00DE6E6F /* AdAstraTests */,
+				B36145142D5D7DAA00DE6E6F /* AdAstraUITests */,
+				B36144F62D5D7DA800DE6E6F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B36144F62D5D7DA800DE6E6F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B36144F52D5D7DA800DE6E6F /* AdAstra.app */,
+				B36145072D5D7DAA00DE6E6F /* AdAstraTests.xctest */,
+				B36145112D5D7DAA00DE6E6F /* AdAstraUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B36144F42D5D7DA800DE6E6F /* AdAstra */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B361451B2D5D7DAA00DE6E6F /* Build configuration list for PBXNativeTarget "AdAstra" */;
+			buildPhases = (
+				B36144F12D5D7DA800DE6E6F /* Sources */,
+				B36144F22D5D7DA800DE6E6F /* Frameworks */,
+				B36144F32D5D7DA800DE6E6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				B36144F72D5D7DA800DE6E6F /* AdAstra */,
+			);
+			name = AdAstra;
+			packageProductDependencies = (
+			);
+			productName = AdAstra;
+			productReference = B36144F52D5D7DA800DE6E6F /* AdAstra.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B36145062D5D7DAA00DE6E6F /* AdAstraTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B361451E2D5D7DAA00DE6E6F /* Build configuration list for PBXNativeTarget "AdAstraTests" */;
+			buildPhases = (
+				B36145032D5D7DAA00DE6E6F /* Sources */,
+				B36145042D5D7DAA00DE6E6F /* Frameworks */,
+				B36145052D5D7DAA00DE6E6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B36145092D5D7DAA00DE6E6F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B361450A2D5D7DAA00DE6E6F /* AdAstraTests */,
+			);
+			name = AdAstraTests;
+			packageProductDependencies = (
+			);
+			productName = AdAstraTests;
+			productReference = B36145072D5D7DAA00DE6E6F /* AdAstraTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B36145102D5D7DAA00DE6E6F /* AdAstraUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B36145212D5D7DAA00DE6E6F /* Build configuration list for PBXNativeTarget "AdAstraUITests" */;
+			buildPhases = (
+				B361450D2D5D7DAA00DE6E6F /* Sources */,
+				B361450E2D5D7DAA00DE6E6F /* Frameworks */,
+				B361450F2D5D7DAA00DE6E6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B36145132D5D7DAA00DE6E6F /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				B36145142D5D7DAA00DE6E6F /* AdAstraUITests */,
+			);
+			name = AdAstraUITests;
+			packageProductDependencies = (
+			);
+			productName = AdAstraUITests;
+			productReference = B36145112D5D7DAA00DE6E6F /* AdAstraUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B36144ED2D5D7DA800DE6E6F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					B36144F42D5D7DA800DE6E6F = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					B36145062D5D7DAA00DE6E6F = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = B36144F42D5D7DA800DE6E6F;
+					};
+					B36145102D5D7DAA00DE6E6F = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = B36144F42D5D7DA800DE6E6F;
+					};
+				};
+			};
+			buildConfigurationList = B36144F02D5D7DA800DE6E6F /* Build configuration list for PBXProject "AdAstra" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B36144EC2D5D7DA800DE6E6F;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = B36144F62D5D7DA800DE6E6F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B36144F42D5D7DA800DE6E6F /* AdAstra */,
+				B36145062D5D7DAA00DE6E6F /* AdAstraTests */,
+				B36145102D5D7DAA00DE6E6F /* AdAstraUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B36144F32D5D7DA800DE6E6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B36145052D5D7DAA00DE6E6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B361450F2D5D7DAA00DE6E6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B36144F12D5D7DA800DE6E6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B36145032D5D7DAA00DE6E6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B361450D2D5D7DAA00DE6E6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B36145092D5D7DAA00DE6E6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B36144F42D5D7DA800DE6E6F /* AdAstra */;
+			targetProxy = B36145082D5D7DAA00DE6E6F /* PBXContainerItemProxy */;
+		};
+		B36145132D5D7DAA00DE6E6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B36144F42D5D7DA800DE6E6F /* AdAstra */;
+			targetProxy = B36145122D5D7DAA00DE6E6F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		B36145192D5D7DAA00DE6E6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B361451A2D5D7DAA00DE6E6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B361451C2D5D7DAA00DE6E6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AdAstra/Preview Content\"";
+				DEVELOPMENT_TEAM = 7U55BCTM6U;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yosda.AdAstra;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		B361451D2D5D7DAA00DE6E6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"AdAstra/Preview Content\"";
+				DEVELOPMENT_TEAM = 7U55BCTM6U;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yosda.AdAstra;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B361451F2D5D7DAA00DE6E6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7U55BCTM6U;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yosda.AdAstraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AdAstra.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AdAstra";
+			};
+			name = Debug;
+		};
+		B36145202D5D7DAA00DE6E6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7U55BCTM6U;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yosda.AdAstraTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AdAstra.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AdAstra";
+			};
+			name = Release;
+		};
+		B36145222D5D7DAA00DE6E6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7U55BCTM6U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yosda.AdAstraUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AdAstra;
+			};
+			name = Debug;
+		};
+		B36145232D5D7DAA00DE6E6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 7U55BCTM6U;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yosda.AdAstraUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AdAstra;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B36144F02D5D7DA800DE6E6F /* Build configuration list for PBXProject "AdAstra" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B36145192D5D7DAA00DE6E6F /* Debug */,
+				B361451A2D5D7DAA00DE6E6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B361451B2D5D7DAA00DE6E6F /* Build configuration list for PBXNativeTarget "AdAstra" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B361451C2D5D7DAA00DE6E6F /* Debug */,
+				B361451D2D5D7DAA00DE6E6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B361451E2D5D7DAA00DE6E6F /* Build configuration list for PBXNativeTarget "AdAstraTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B361451F2D5D7DAA00DE6E6F /* Debug */,
+				B36145202D5D7DAA00DE6E6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B36145212D5D7DAA00DE6E6F /* Build configuration list for PBXNativeTarget "AdAstraUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B36145222D5D7DAA00DE6E6F /* Debug */,
+				B36145232D5D7DAA00DE6E6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B36144ED2D5D7DA800DE6E6F /* Project object */;
+}
