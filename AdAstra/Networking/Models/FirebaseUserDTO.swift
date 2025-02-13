@@ -1,13 +1,13 @@
 //
-//  User.swift
+//  FirebaseUserDTO.swift
 //  AdAstra
 //
-//  Created by Gustavo Munhoz Correa on 12/02/25.
+//  Created by Gustavo Munhoz Correa on 13/02/25.
 //
 
-import UIKit
+import Foundation
 
-struct User {
+struct FirebaseUserDTO: Codable {
     let uid: String
     let name: String
     let course: String
@@ -18,5 +18,6 @@ struct User {
     let connectionPassword: String
     let connectionCount: Int
     let secretFact: String
-    let profilePicture: UIImage
+    
+    let profilePictureURL: URL?
 }
