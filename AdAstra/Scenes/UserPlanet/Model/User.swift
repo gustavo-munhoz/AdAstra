@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+/// This is just a placeholder to create the file references.
+struct User {
+    
+}

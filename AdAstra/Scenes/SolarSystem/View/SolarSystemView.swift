@@ -5,4 +5,15 @@
 //  Created by Gustavo Munhoz Correa on 12/02/25.
 //
 
-import Foundation
+import SwiftUI
+import SceneKit
+
+struct SolarSystemView: View {
+    var body: some View {
+        SceneView()
+    }
+}
+
+#Preview {
+    SolarSystemView()
+}
