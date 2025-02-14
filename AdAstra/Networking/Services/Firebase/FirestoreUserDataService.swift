@@ -16,27 +16,27 @@ class FirestoreUserDataService: UserDataService {
     
     private let db = Firestore.firestore()
     
-    func saveUser(_ user: FirebaseUserDTO) async throws {
+    func saveUser(_ user: UserDTO) async throws {
         try db
             .collection(FirestoreCollection.users.rawValue)
             .document(user.uid)
             .setData(from: user)
     }
     
-    func fetchUser(withUserID uid: String) async throws -> FirebaseUserDTO {
+    func fetchUser(withUserID uid: String) async throws -> UserDTO {
         try await db
             .collection(FirestoreCollection.users.rawValue)
             .document(uid)
-            .getDocument(as: FirebaseUserDTO.self)
+            .getDocument(as: UserDTO.self)
     }
     
-    func fetchAllUsers() async throws -> [FirebaseUserDTO] {
+    func fetchAllUsers() async throws -> [UserDTO] {
         try await db
             .collection(FirestoreCollection.users.rawValue)
             .getDocuments()
             .documents
             .compactMap { document in
-                try document.data(as: FirebaseUserDTO.self)
+                try document.data(as: UserDTO.self)
             }
     }
 }

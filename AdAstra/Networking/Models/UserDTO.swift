@@ -1,5 +1,5 @@
 //
-//  FirebaseUserDTO.swift
+//  UserDTO.swift
 //  AdAstra
 //
 //  Created by Gustavo Munhoz Correa on 13/02/25.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FirebaseUserDTO: Codable {
+struct UserDTO: Codable {
     let uid: String
     let name: String
     let course: String

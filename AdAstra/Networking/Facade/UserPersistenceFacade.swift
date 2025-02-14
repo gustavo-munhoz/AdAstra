@@ -39,7 +39,7 @@ class UserPersistenceFacade {
         }
     }
     
-    private func makeUser(from dto: FirebaseUserDTO, with image: UIImage) -> User {
+    private func makeUser(from dto: UserDTO, with image: UIImage) -> User {
         User(
             uid: dto.uid,
             name: dto.name,
@@ -55,7 +55,7 @@ class UserPersistenceFacade {
         )
     }
     
-    private func fetchUsersFromDataService() async -> [FirebaseUserDTO] {
+    private func fetchUsersFromDataService() async -> [UserDTO] {
         do {
             return try await dataService.fetchAllUsers()
         } catch {
