@@ -17,12 +17,12 @@ class StorageImageService: ImageService {
     
     let storage = Storage.storage()
     
-    func uploadImage(_ image: UIImage, forUserID uid: String) async throws -> URL {
+    func uploadImage(_ image: UIImage, forDocId docId: String) async throws -> URL {
         guard let imageData = image.jpegData(compressionQuality: 0.8) else {
             throw StorageError.invalidImageData
         }
         
-        let storageRef = getStorageReference(for: uid)
+        let storageRef = getStorageReference(for: docId)
         
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
@@ -35,8 +35,8 @@ class StorageImageService: ImageService {
         return try await storageRef.downloadURL()
     }
     
-    func fetchImage(forUserID uid: String) async throws -> UIImage {
-        let storageRef = getStorageReference(for: uid)
+    func fetchImage(forDocId docId: String) async throws -> UIImage {
+        let storageRef = getStorageReference(for: docId)
         
         let maxDownloadSize: Int64 = 1024 * 1024 * 5
         let data = try await storageRef.data(maxSize: maxDownloadSize)
@@ -48,11 +48,11 @@ class StorageImageService: ImageService {
         return image
     }
     
-    private func getStorageReference(for uid: String) -> StorageReference {
+    private func getStorageReference(for docId: String) -> StorageReference {
         storage
             .reference()
             .child("profile_pictures")
-            .child(uid)
+            .child(docId)
             .child("profile.jpg")
     }
 }

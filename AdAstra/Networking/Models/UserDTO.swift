@@ -8,7 +8,8 @@
 import Foundation
 
 struct UserDTO: Codable {
-    let uid: String
+    var docId: String?
+    
     let name: String
     let course: String
     let institution: String
@@ -20,4 +21,11 @@ struct UserDTO: Codable {
     let secretFact: String
     
     let profilePictureURL: URL?
+    let planet: PlanetDTO
+    
+    enum CodingKeys: String, CodingKey {
+        case name, course, institution, shift, interests, bio
+        case connectionPassword, connectionCount, secretFact
+        case profilePictureURL, planet
+    }
 }
