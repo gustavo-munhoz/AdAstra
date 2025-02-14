@@ -6,3 +6,41 @@
 //
 
 import Foundation
+
+class SignInViewModel: ObservableObject {
+    
+    @Published var userConnectionPassword: String = ""
+    @Published var isFetchingUser: Bool = false
+    @Published var foundUser: User?
+    @Published var errorMessage: String?
+    
+    func signIn() {
+        let facade = UserPersistenceFacade.firebase()
+        
+        Task {
+            await MainActor.run { isFetchingUser = true }
+            
+            do {
+                let user = try await facade.getUserFromConnectionPassword(
+                    userConnectionPassword
+                        .replacingOccurrences(of: " ", with: "")
+                        .lowercased()
+                )
+                
+                await MainActor.run {
+                    self.foundUser = user
+                    self.errorMessage = nil
+                }
+            } catch {
+                print(error.localizedDescription)
+                
+                await MainActor.run {
+                    self.foundUser = nil
+                    self.errorMessage = error.localizedDescription
+                }
+            }
+            
+            await MainActor.run { isFetchingUser = false }
+        }
+    }
+}
