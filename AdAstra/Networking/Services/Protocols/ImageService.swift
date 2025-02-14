@@ -8,6 +8,6 @@
 import UIKit
 
 protocol ImageService {
-    func uploadImage(_ image: UIImage, forUserID uid: String) async throws -> URL
-    func fetchImage(forUserID uid: String) async throws -> UIImage
+    func uploadImage(_ image: UIImage, forDocId docId: String) async throws -> URL
+    func fetchImage(forDocId docId: String) async throws -> UIImage
 }
