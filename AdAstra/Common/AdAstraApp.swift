@@ -26,7 +26,7 @@ struct AdAstraApp: App {
     
     var body: some Scene {
         WindowGroup {
-            UserPlanetView()
+            SignInView()
         }
     }
 }
