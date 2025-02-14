@@ -8,7 +8,6 @@
 import UIKit
 
 struct User {
-    let uid: String
     let name: String
     let course: String
     let institution: String
@@ -18,5 +17,7 @@ struct User {
     let connectionPassword: String
     let connectionCount: Int
     let secretFact: String
+
     let profilePicture: UIImage
+    let planet: Planet
 }
