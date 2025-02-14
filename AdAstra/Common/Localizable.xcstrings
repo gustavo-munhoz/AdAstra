@@ -1,7 +1,15 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Ad Astra" : {
 
+    },
+    "Enter your access code..." : {
+
+    },
+    "Sign In" : {
+
+    }
   },
   "version" : "1.0"
 }
