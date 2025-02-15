@@ -14,11 +14,15 @@ enum FirestoreCollection: String {
 
 enum FirestoreError: Error, LocalizedError {
     case userNotFound
+    case missingDocumentId
     
     var errorDescription: String? {
         switch self {
         case .userNotFound:
             return "User not found... try another code!"
+            
+        case .missingDocumentId:
+            return "DocumentID was not initialized."
         }
     }
 }
