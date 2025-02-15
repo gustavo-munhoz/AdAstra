@@ -7,7 +7,8 @@
 
 import UIKit
 
-struct User {
+struct User: Identifiable {
+    let id: String
     let name: String
     let course: String
     let institution: String
