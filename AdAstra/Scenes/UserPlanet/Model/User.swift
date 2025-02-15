@@ -14,9 +14,10 @@ struct User: Identifiable {
     let institution: String
     let shift: String
     let interests: Set<String>
-    let bio: String
+    let pronouns: String
     let connectionPassword: String
     let connectionCount: Int
+    let connectedUsers: [User]
     let secretFact: String
 
     let profilePicture: UIImage

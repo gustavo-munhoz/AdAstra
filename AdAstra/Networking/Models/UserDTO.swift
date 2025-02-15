@@ -15,17 +15,23 @@ struct UserDTO: Codable {
     let institution: String
     let shift: String
     let interests: Set<String>
-    let bio: String
+    let pronouns: String
     let connectionPassword: String
     let connectionCount: Int
+    let connectedUsers: [ConnectedUserDTO]
     let secretFact: String
     
     let profilePictureURL: URL?
     let planet: PlanetDTO
     
     enum CodingKeys: String, CodingKey {
-        case name, course, institution, shift, interests, bio
-        case connectionPassword, connectionCount, secretFact
+        case name, course, institution, shift, interests, pronouns
+        case connectionPassword, connectionCount, connectedUsers, secretFact
         case profilePictureURL, planet
     }
+}
+
+struct ConnectedUserDTO: Codable {
+    var name: String
+    var connectionPassword: String
 }
