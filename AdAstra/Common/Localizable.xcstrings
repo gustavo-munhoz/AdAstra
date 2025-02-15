@@ -1,0 +1,39 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%@" : {
+
+    },
+    "%lld" : {
+
+    },
+    "Ad Astra" : {
+
+    },
+    "Cancel" : {
+
+    },
+    "Confirm" : {
+
+    },
+    "Enter your access code..." : {
+
+    },
+    "Error!" : {
+
+    },
+    "OK" : {
+
+    },
+    "Sign In" : {
+
+    },
+    "Signing in..." : {
+
+    },
+    "This you?" : {
+
+    }
+  },
+  "version" : "1.0"
+}

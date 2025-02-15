@@ -16,15 +16,27 @@ class UserPersistenceFacade {
         self.imageService = imageService
     }
     
+    func getUserFromConnectionPassword(_ password: String) async throws -> User {
+        let dto = try await dataService.fetchUser(withConnectionPassword: password)
+        
+        guard let docId = dto.docId else {
+            throw FirestoreError.userNotFound
+        }
+        
+        let image = await fetchUserImageFromImageService(docId: docId)
+        
+        return makeUser(from: dto, with: image)
+    }
+    
     func getAllUsers() async -> [User] {
         let fetchedUsers = await fetchUsersFromDataService()
         
         return await withTaskGroup(of: User?.self) { group in
             for userDTO in fetchedUsers {
                 group.addTask { [weak self] in
-                    guard let self else { return nil }
+                    guard let self, let docId = userDTO.docId else { return nil }
                     
-                    let profileImage = await self.fetchUserImageFromImageService(uid: userDTO.uid)
+                    let profileImage = await self.fetchUserImageFromImageService(docId: docId)
                     
                     return makeUser(from: userDTO, with: profileImage)
                 }
@@ -39,9 +51,8 @@ class UserPersistenceFacade {
         }
     }
     
-    private func makeUser(from dto: FirebaseUserDTO, with image: UIImage) -> User {
+    private func makeUser(from dto: UserDTO, with image: UIImage) -> User {
         User(
-            uid: dto.uid,
             name: dto.name,
             course: dto.course,
             institution: dto.institution,
@@ -51,11 +62,12 @@ class UserPersistenceFacade {
             connectionPassword: dto.connectionPassword,
             connectionCount: dto.connectionCount,
             secretFact: dto.secretFact,
-            profilePicture: image
+            profilePicture: image,
+            planet: Planet(name: dto.planet.name)
         )
     }
     
-    private func fetchUsersFromDataService() async -> [FirebaseUserDTO] {
+    private func fetchUsersFromDataService() async -> [UserDTO] {
         do {
             return try await dataService.fetchAllUsers()
         } catch {
@@ -64,9 +76,9 @@ class UserPersistenceFacade {
         }
     }
     
-    private func fetchUserImageFromImageService(uid: String) async -> UIImage {
+    private func fetchUserImageFromImageService(docId: String) async -> UIImage {
         do {
-            return try await imageService.fetchImage(forUserID: uid)
+            return try await imageService.fetchImage(forDocId: docId)
         } catch {
             print(error.localizedDescription)
             return UIImage(systemName: "person.crop.circle") ?? UIImage()
