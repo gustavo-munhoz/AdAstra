@@ -20,12 +20,12 @@ class UserPersistenceFacade {
         let dto = try await dataService.fetchUser(withConnectionPassword: password)
         
         guard let docId = dto.docId else {
-            throw FirestoreError.userNotFound
+            throw FirestoreError.missingDocumentId
         }
         
         let image = await fetchUserImageFromImageService(docId: docId)
         
-        return makeUser(from: dto, with: image)
+        return try makeUser(from: dto, with: image)
     }
     
     func getAllUsers() async -> [User] {
@@ -38,7 +38,7 @@ class UserPersistenceFacade {
                     
                     let profileImage = await self.fetchUserImageFromImageService(docId: docId)
                     
-                    return makeUser(from: userDTO, with: profileImage)
+                    return try! makeUser(from: userDTO, with: profileImage)
                 }
             }
             
@@ -51,8 +51,13 @@ class UserPersistenceFacade {
         }
     }
     
-    private func makeUser(from dto: UserDTO, with image: UIImage) -> User {
-        User(
+    private func makeUser(from dto: UserDTO, with image: UIImage) throws -> User {
+        guard let id = dto.docId else {
+            throw FirestoreError.missingDocumentId
+        }
+        
+        return User(
+            id: id,
             name: dto.name,
             course: dto.course,
             institution: dto.institution,
