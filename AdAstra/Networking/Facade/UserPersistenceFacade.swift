@@ -57,6 +57,7 @@ class UserPersistenceFacade {
         }
         
         // TODO: Optimize this. Searching all connections for all users is not needed, only the one connected
+
 //        let connectedUsers = await withTaskGroup(of: User?.self) { group in
 //            for connectedDTO in dto.connectedUsers {
 //                group.addTask { [weak self] in
