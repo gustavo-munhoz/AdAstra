@@ -22,13 +22,14 @@ struct UserPlanetView: View {
                 HStack(spacing: 0){
                     Spacer()
                     ScrollSelectorView(value: $value)
-                    .frame(height: 450)
+                        .frame(height: 450)
                     UserCardView(data: "\(value)")
                     Spacer()
                 }
             .frame(maxHeight: .infinity)
 
         }
+        .sensoryFeedback(.impact, trigger: value)
         .frame(maxHeight: .infinity)
         .background(.black)
         .onAppear{

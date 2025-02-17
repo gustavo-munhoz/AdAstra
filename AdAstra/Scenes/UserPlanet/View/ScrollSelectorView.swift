@@ -8,19 +8,18 @@
 import SwiftUI
 
 struct ScrollSelectorView: View {
-    let scaleFactor = 0.45
-    let offsetValue = -40
+    let scaleFactor = 0.55
+    let offsetValue = -80
     @Binding var value: Int
 
     var body: some View {
-        HStack {
             ScrollView(.vertical) {
                 LazyVStack {
-                    ForEach(0..<10, id: \.self) { i in
+                    ForEach(1..<68, id: \.self) { i in
                         ZStack {
                             Circle()
                                 .fill(Color(hue: Double(i) / 10, saturation: 1, brightness: 1).gradient)
-                                .frame(height: 150)
+                                .frame(width: 150)
                                 .scaleEffect(scaleCalc(index: i))
                                 .offset(x: offsetCalc(index:i))
                                 .animation(.snappy, value: value)
@@ -32,8 +31,10 @@ struct ScrollSelectorView: View {
                         }
                     }
                 }
+                .frame(width: 400)
                 .scrollTargetLayout()
             }
+            .frame(width: 100)
             .scrollTargetBehavior(.viewAligned)
             .scrollPosition(id: .init(get: {
                 let position: Int = value
@@ -41,14 +42,12 @@ struct ScrollSelectorView: View {
             }, set: { newValue in
                 if let newValue { value = newValue }
             }))
+            .scrollIndicators(.hidden)
             .safeAreaPadding(150)
             .overlay(alignment: .center, content: {
                 Rectangle()
                     .frame(width: 100, height: 1, alignment: .center)
             })
-            
-            Spacer()
-        }
     }
     
     func scaleCalc(index: Int) -> Double {
