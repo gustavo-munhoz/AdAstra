@@ -9,32 +9,30 @@ import SwiftUI
 
 struct ScrollSelectorView: View {
     let scaleFactor = 0.55
-    let offsetValue = -80
+    let offsetValue = 80
     @Binding var value: Int
 
     var body: some View {
-            ScrollView(.vertical) {
-                LazyVStack {
+        ScrollView(.horizontal) {
+                LazyHStack {
                     ForEach(1..<68, id: \.self) { i in
-                        ZStack {
+                        ZStack(alignment: .center){
                             Circle()
                                 .fill(Color(hue: Double(i) / 10, saturation: 1, brightness: 1).gradient)
-                                .frame(width: 150)
+                                .frame(width: 150, height: 150)
                                 .scaleEffect(scaleCalc(index: i))
-                                .offset(x: offsetCalc(index:i))
+                                .offset(y: -offsetCalc(index:i))
                                 .animation(.snappy, value: value)
                             
                             Text("\(i)")
                                 .scaleEffect(scaleCalc(index: i))
-                                .offset(x: offsetCalc(index:i))
+                                .offset(y: -offsetCalc(index:i))
                                 .animation(.snappy, value: value)
                         }
                     }
                 }
-                .frame(width: 400)
                 .scrollTargetLayout()
             }
-            .frame(width: 100)
             .scrollTargetBehavior(.viewAligned)
             .scrollPosition(id: .init(get: {
                 let position: Int = value
@@ -43,10 +41,10 @@ struct ScrollSelectorView: View {
                 if let newValue { value = newValue }
             }))
             .scrollIndicators(.hidden)
-            .safeAreaPadding(150)
+            .safeAreaPadding(125)
             .overlay(alignment: .center, content: {
                 Rectangle()
-                    .frame(width: 100, height: 1, alignment: .center)
+                    .frame(width: 1, height: 100, alignment: .center)
             })
     }
     
@@ -57,7 +55,7 @@ struct ScrollSelectorView: View {
     
     func offsetCalc(index: Int) -> Double {
         let distance = abs(Double(index) - Double(value))
-        return -(1.0 - (distance * Double(offsetValue))) // Ensures it gets smaller the further it is
+        return (1.0 - (distance * Double(offsetValue))) // Ensures it gets smaller the further it is
     }
 }
 
