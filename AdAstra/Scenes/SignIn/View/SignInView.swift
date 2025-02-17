@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignInView: View {
     @StateObject private var viewModel = SignInViewModel()
+    @EnvironmentObject var session: SessionStore
     
     var body: some View {
         NavigationStack {
@@ -33,7 +34,7 @@ struct SignInView: View {
                                 .stroke(.indigo, lineWidth: 2)
                         }
                     
-                    Button(action: viewModel.signIn) {
+                    Button(action: viewModel.fetchUser) {
                         Group {
                             if viewModel.isFetchingUser {
                                 HStack {
@@ -96,9 +97,10 @@ struct SignInView: View {
                                 }
                                 .bold()
                                 .padding()
-                                .onTapGesture {
+                                .simultaneousGesture(TapGesture().onEnded {
+                                    viewModel.confirmSignIn(with: session)
                                     viewModel.foundUser = nil
-                                }
+                                })
                                 
                                 Button("Cancel") {
                                     viewModel.foundUser = nil
