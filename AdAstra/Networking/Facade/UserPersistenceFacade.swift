@@ -57,36 +57,37 @@ class UserPersistenceFacade {
         }
         
         // TODO: Optimize this. Searching all connections for all users is not needed, only the one connected
-        let connectedUsers = await withTaskGroup(of: User?.self) { group in
-            for connectedDTO in dto.connectedUsers {
-                group.addTask { [weak self] in
-                    guard let self = self else { return nil }
-                    
-                    do {
-                        let subDTO = try await self.dataService.fetchUser(
-                            withConnectionPassword: connectedDTO.connectionPassword
-                        )
-                                                
-                        guard let subDocId = subDTO.docId else { return nil }
-                        let subImage = await self.fetchUserImageFromImageService(docId: subDocId)
-                                                
-                        return try await self.makeUser(from: subDTO, with: subImage)
-                        
-                    } catch {
-                        print("Error fetching connected user: \(error)")
-                        return nil
-                    }
-                }
-            }
-                        
-            var results: [User] = []
-            for await maybeUser in group {
-                if let user = maybeUser {
-                    results.append(user)
-                }
-            }
-            return results
-        }
+
+//        let connectedUsers = await withTaskGroup(of: User?.self) { group in
+//            for connectedDTO in dto.connectedUsers {
+//                group.addTask { [weak self] in
+//                    guard let self = self else { return nil }
+//                    
+//                    do {
+//                        let subDTO = try await self.dataService.fetchUser(
+//                            withConnectionPassword: connectedDTO.connectionPassword
+//                        )
+//                                                
+//                        guard let subDocId = subDTO.docId else { return nil }
+//                        let subImage = await self.fetchUserImageFromImageService(docId: subDocId)
+//                                                
+//                        return try await self.makeUser(from: subDTO, with: subImage)
+//                        
+//                    } catch {
+//                        print("Error fetching connected user: \(error)")
+//                        return nil
+//                    }
+//                }
+//            }
+//                        
+//            var results: [User] = []
+//            for await maybeUser in group {
+//                if let user = maybeUser {
+//                    results.append(user)
+//                }
+//            }
+//            return results
+//        }
         
         return User(
             id: id,
@@ -98,7 +99,7 @@ class UserPersistenceFacade {
             pronouns: dto.pronouns,
             connectionPassword: dto.connectionPassword,
             connectionCount: dto.connectionCount,
-            connectedUsers: connectedUsers,
+            connectedUsers: [],
             secretFact: dto.secretFact,
             profilePicture: image,
             planet: Planet(name: dto.planet.name)

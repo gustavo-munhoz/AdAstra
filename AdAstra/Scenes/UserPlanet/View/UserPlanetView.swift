@@ -15,20 +15,23 @@ struct UserPlanetView: View {
         scene.rootNode.childNode(withName: "camera", recursively: false)
     }
     
-    @State private var value: Int = 0
+    @State private var value: Int = 1
     
     var body: some View {
         ZStack{
-                HStack(spacing: 0){
+                VStack(spacing: 0){
                     Spacer()
+                    withAnimation {
+                        UserCardView(data: "\(value)")
+                            .frame(height: 400)
+                    }
                     ScrollSelectorView(value: $value)
-                    .frame(height: 450)
-                    UserCardView(data: "\(value)")
                     Spacer()
                 }
             .frame(maxHeight: .infinity)
 
         }
+        .sensoryFeedback(.impact, trigger: value)
         .frame(maxHeight: .infinity)
         .background(.black)
         .onAppear{
