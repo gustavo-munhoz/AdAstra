@@ -6,13 +6,76 @@
 //
 
 import Foundation
+import UIKit
 
 class UsersGridViewModel: ObservableObject {
     
     @Published var users: [User] = []
     @Published var isFetchingUsers: Bool = false
     
-    init() {
+    init(mock: Bool = false) {
+        guard !mock else {
+            users = [
+                User(
+                    id: "teste",
+                    name: "teste",
+                    course: "teste",
+                    institution: "teste",
+                    shift: "teste",
+                    interests: ["teste"],
+                    pronouns: "teste",
+                    connectionPassword: "teste",
+                    connectionCount: 13,
+                    connectedUsers: [],
+                    secretFact: "teste",
+                    profilePicture: UIImage(),
+                    planet: Planet(name: "pika")
+                ), User(
+                    id: "teste2",
+                    name: "massa",
+                    course: "teste",
+                    institution: "teste",
+                    shift: "teste",
+                    interests: ["teste"],
+                    pronouns: "teste",
+                    connectionPassword: "teste",
+                    connectionCount: 13,
+                    connectedUsers: [],
+                    secretFact: "teste",
+                    profilePicture: UIImage(),
+                    planet: Planet(name: "pika")
+                ), User(
+                    id: "teste3",
+                    name: "carambolas",
+                    course: "teste",
+                    institution: "teste",
+                    shift: "teste",
+                    interests: ["teste"],
+                    pronouns: "teste",
+                    connectionPassword: "teste",
+                    connectionCount: 13,
+                    connectedUsers: [],
+                    secretFact: "teste",
+                    profilePicture: UIImage(),
+                    planet: Planet(name: "pika")
+                ), User(
+                    id: "teste4",
+                    name: "pirulitu",
+                    course: "teste",
+                    institution: "teste",
+                    shift: "teste",
+                    interests: ["teste"],
+                    pronouns: "teste",
+                    connectionPassword: "teste",
+                    connectionCount: 13,
+                    connectedUsers: [],
+                    secretFact: "teste",
+                    profilePicture: UIImage(),
+                    planet: Planet(name: "pika")
+                )]
+            return
+        }
+        
         let facade = UserPersistenceFacade.firebase()
         
         Task {

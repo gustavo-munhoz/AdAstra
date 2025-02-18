@@ -14,38 +14,36 @@ struct ScrollSelectorView: View {
 
     var body: some View {
         ScrollView(.horizontal) {
-                LazyHStack {
-                    ForEach(1..<68, id: \.self) { i in
-                        ZStack(alignment: .center){
-                            Circle()
-                                .fill(Color(hue: Double(i) / 10, saturation: 1, brightness: 1).gradient)
-                                .frame(width: 150, height: 150)
-                                .scaleEffect(scaleCalc(index: i))
-                                .offset(y: -offsetCalc(index:i))
-                                .animation(.snappy, value: value)
-                            
-                            Text("\(i)")
-                                .scaleEffect(scaleCalc(index: i))
-                                .offset(y: -offsetCalc(index:i))
-                                .animation(.snappy, value: value)
-                        }
+            LazyHStack {
+                ForEach(1..<68, id: \.self) { i in
+                    ZStack(alignment: .center){
+                        Circle()
+                            .fill(Color(hue: Double(i) / 10, saturation: 1, brightness: 1).gradient)
+                            .frame(width: 150, height: 150)
+                            .scaleEffect(scaleCalc(index: i))
+                            .offset(y: -offsetCalc(index:i))
+                            .animation(.snappy, value: value)
+                        
+                        Text("\(i)")
+                            .scaleEffect(scaleCalc(index: i))
+                            .offset(y: -offsetCalc(index:i))
+                            .animation(.snappy, value: value)
                     }
                 }
-                .scrollTargetLayout()
             }
-            .scrollTargetBehavior(.viewAligned)
-            .scrollPosition(id: .init(get: {
-                let position: Int = value
-                return position
-            }, set: { newValue in
-                if let newValue { value = newValue }
-            }))
-            .scrollIndicators(.hidden)
-            .safeAreaPadding(125)
-            .overlay(alignment: .center, content: {
-                Rectangle()
-                    .frame(width: 1, height: 100, alignment: .center)
-            })
+            .frame(height: 300)
+            .scrollTargetLayout()
+        }
+        .frame(height: 300)
+        .scrollTargetBehavior(.viewAligned)
+        .scrollPosition(id: .init(get: {
+            let position: Int = value
+            return position
+        }, set: { newValue in
+            if let newValue { value = newValue }
+        }))
+        .scrollIndicators(.hidden)
+        .safeAreaPadding(.horizontal, 125)
     }
     
     func scaleCalc(index: Int) -> Double {

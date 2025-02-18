@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 
 class SignInViewModel: ObservableObject {
     
@@ -28,15 +29,19 @@ class SignInViewModel: ObservableObject {
                 )
                 
                 await MainActor.run {
-                    self.foundUser = user
-                    self.errorMessage = nil
+                    withAnimation{
+                        self.foundUser = user
+                        self.errorMessage = nil
+                    }
                 }
             } catch {
                 print(error.localizedDescription)
                 
                 await MainActor.run {
-                    self.foundUser = nil
-                    self.errorMessage = error.localizedDescription
+                    withAnimation{
+                        self.foundUser = nil
+                        self.errorMessage = error.localizedDescription
+                    }
                 }
             }
             

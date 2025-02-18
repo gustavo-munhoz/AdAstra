@@ -8,30 +8,39 @@
 import SwiftUI
 
 struct SignInView: View {
-    @StateObject private var viewModel = SignInViewModel()
+    @StateObject var viewModel = SignInViewModel()
     
     var body: some View {
         NavigationStack {
             ZStack {
+                Image("bg")
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                
                 VStack(alignment: .center) {
-                    Text("Ad Astra")
-                        .font(.largeTitle)
-                        .fontWeight(.black)
-                        .fontWidth(.expanded)
+                    LogoView()
                     
                     Spacer()
-                        .frame(maxHeight: 350)
+                        .frame(maxHeight: 100)
                     
-                    TextField("Enter your access code...", text: $viewModel.userConnectionPassword)
-                        .frame(width: 300, height: 50)
-                        .foregroundStyle(.black)
+                    TextField("", text: $viewModel.userConnectionPassword, prompt: Text("Insira sua palavra-chave aqui!").foregroundStyle(Color(red: 0.8, green: 0.72, blue: 0.88)))
+                        .frame(width: 320, height: 60)
+                        .foregroundStyle(Color(red: 0.8, green: 0.72, blue: 0.88))
+                        .font(.system(size: 14))
+                        .fontWeight(.medium)
+                        .fontWidth(.expanded)
                         .padding(.vertical, 4)
                         .padding(.horizontal, 12)
                         .background {
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(.white)
-                                .stroke(.indigo, lineWidth: 2)
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(.textfield.opacity(0.1))
+                                .stroke(AngularGradient(colors: [.btf1, .btf2], center: UnitPoint(x: 0.5, y: 0.5), angle: Angle(degrees: 45)), lineWidth: 1)
                         }
+                        .multilineTextAlignment(.center)
+                    
+                    Spacer()
+                        .frame(maxHeight: 20)
                     
                     Button(action: viewModel.signIn) {
                         Group {
@@ -40,28 +49,34 @@ struct SignInView: View {
                                     ProgressView()
                                         .progressViewStyle(CircularProgressViewStyle())
                                     
-                                    Text("Signing in...")
+                                    Text("Entrando...")
+                                        .foregroundStyle(.white)
+                                        .font(.system(size: 14))
+                                        .fontWeight(.medium)
+                                        .fontWidth(.expanded)
                                 }
                             } else {
-                                Text("Sign In")
+                                Text("Entrar")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 14))
+                                    .fontWeight(.medium)
+                                    .fontWidth(.expanded)
                             }
                         }
-                        .frame(width: 300, height: 50)
+                        .frame(width: 180, height: 50)
                         .padding(.vertical, 4)
                         .padding(.horizontal, 12)
                     }
                     .background {
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(.white)
-                            .stroke(.indigo, lineWidth: 2)
+                        RoundedRectangle(cornerRadius: 128)
+                            .fill(LinearGradient(colors: [.btf1, .btf2], startPoint: .topLeading, endPoint: .bottomTrailing))
                     }
                     .disabled(
                         viewModel.isFetchingUser || viewModel.foundUser != nil
                     )
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
-                .background(Color.gray)
-                .blur(radius: viewModel.foundUser != nil ? 3 : 0)
+                .blur(radius: viewModel.foundUser != nil ? 5 : 0)
                 
                 .alert(
                     "Error!",
@@ -77,42 +92,11 @@ struct SignInView: View {
                 }
                 
                 if let user = viewModel.foundUser {
-                    ZStack {
-                        VStack(spacing: 16) {
-                            Text("This you?")
-                                .font(.title2)
-                                .bold()
-                            
-                            Image(uiImage: user.profilePicture)
-                                .resizable()
-                                .frame(width: 100, height: 100)
-                                .clipShape(Circle())
-                            
-                            Text("\(user.name)")
-                            
-                            HStack {
-                                NavigationLink("Confirm") {
-                                    UsersGridView()
-                                }
-                                .bold()
-                                .padding()
-                                .onTapGesture {
-                                    viewModel.foundUser = nil
-                                }
-                                
-                                Button("Cancel") {
-                                    viewModel.foundUser = nil
-                                }
-                                .padding()
-                            }
-                        }
-                        .padding()
-                        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
-                    }
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .background(.black.opacity(0.4))
+                    UserConfirmationView(user: user, viewModel: viewModel)
+                        .transition(.scale.combined(with: .blurReplace))
                 }
             }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
         }
     }
 }
