@@ -16,6 +16,20 @@ class UserPersistenceFacade {
         self.imageService = imageService
     }
     
+    func updateUser(_ userToWrite: User) async throws {
+        var pictureURL: URL? = nil
+        if userToWrite.profilePicture != .defaultUserImage() {
+            pictureURL = try await imageService.uploadImage(
+                userToWrite.profilePicture,
+                forDocId: userToWrite.id
+            )
+        }
+        
+        let dtoToWrite = UserDTO.mappedFrom(user: userToWrite, imageURL: pictureURL)
+        
+        try await dataService.updateUser(dtoToWrite)
+    }
+    
     func getUserFromConnectionPassword(_ password: String) async throws -> User {
         let dto = try await dataService.fetchUser(withConnectionPassword: password)
         
@@ -73,7 +87,7 @@ class UserPersistenceFacade {
             pronouns: dto.pronouns,
             connectionPassword: dto.connectionPassword,
             connectionCount: dto.connectionCount,
-            connectedUsers: [],
+            connectedUsers: dto.connectedUsers,
             secretFact: dto.secretFact,
             profilePicture: image,
             planet: Planet(name: dto.planet.name)
@@ -94,7 +108,7 @@ class UserPersistenceFacade {
             return try await imageService.fetchImage(forDocId: docId)
         } catch {
             print(error.localizedDescription)
-            return UIImage(systemName: "person.crop.circle") ?? UIImage()
+            return .defaultUserImage()
         }
     }
 }
