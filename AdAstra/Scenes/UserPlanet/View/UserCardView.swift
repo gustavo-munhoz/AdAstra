@@ -153,7 +153,7 @@ struct UserCardView: View {
             
             Spacer()
         }
-        .frame(width: 300, height: 500)
+        .frame(width: 300, height: 450)
         .padding(20)
         .cornerRadius(20)
         .background(

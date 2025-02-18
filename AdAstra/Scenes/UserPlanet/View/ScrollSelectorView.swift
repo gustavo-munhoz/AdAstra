@@ -51,7 +51,7 @@ struct ScrollSelectorView: View {
                 }
             }
             .offset(y: -30)
-            .frame(height: 200)
+            .frame(height: 230)
             .scrollTargetLayout()
 //            .border(.red, width: 10)
             .padding(.top, 24)
