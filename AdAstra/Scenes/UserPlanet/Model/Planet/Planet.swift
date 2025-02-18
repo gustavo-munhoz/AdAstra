@@ -13,22 +13,6 @@ struct Planet {
     let textureName: TextureName
 }
 
-enum GradientName: String, CaseIterable, InitializableByString {
-    case turquoise
-    case green
-    case yellow
-    case red
-    case pink
-    case purple
-    case blue
-    case black
-    case white
-}
-
-enum TextureName: String, CaseIterable, InitializableByString {
-    case rectangles, circles, triangles
-}
-
 extension Planet {
     static var mock: Planet {
         Planet(

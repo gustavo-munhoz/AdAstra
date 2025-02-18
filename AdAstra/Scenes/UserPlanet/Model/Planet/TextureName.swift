@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+enum TextureName: String, CaseIterable, InitializableByString {
+    case rectangles, circles, triangles
+}
