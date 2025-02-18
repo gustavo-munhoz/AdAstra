@@ -31,10 +31,21 @@ class FirestoreUserDataService: UserDataService {
     
     private let db = Firestore.firestore()
     
-    func saveUser(_ user: UserDTO) async throws {
+    func registerNewUser(_ user: UserDTO) async throws {
         try db
             .collection(FirestoreCollection.users.rawValue)
             .document()
+            .setData(from: user)
+    }
+    
+    func updateUser(_ user: UserDTO) async throws {
+        guard let docId = user.docId else {
+            throw FirestoreError.missingDocumentId
+        }
+        
+        try db
+            .collection(FirestoreCollection.users.rawValue)
+            .document(docId)
             .setData(from: user)
     }
     
