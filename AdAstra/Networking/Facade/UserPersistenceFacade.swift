@@ -39,7 +39,7 @@ class UserPersistenceFacade {
         
         let image = await fetchUserImageFromImageService(docId: docId)
         
-        return try await makeUser(from: dto, with: image)
+        return try dto.mappedToUser(withImage: image)
     }
     
     func getAllUsers(sortedBy sortingFunction: ((User, User) throws -> Bool)? = nil) async -> [User] {
@@ -52,7 +52,7 @@ class UserPersistenceFacade {
                     
                     let profileImage = await self.fetchUserImageFromImageService(docId: docId)
                     
-                    return try! await makeUser(from: userDTO, with: profileImage)
+                    return try! userDTO.mappedToUser(withImage: profileImage)
                 }
             }
             
@@ -70,28 +70,6 @@ class UserPersistenceFacade {
                 return users
             }
         }
-    }
-    
-    private func makeUser(from dto: UserDTO, with image: UIImage) async throws -> User {
-        guard let id = dto.docId else {
-            throw FirestoreError.missingDocumentId
-        }
-        
-        return User(
-            id: id,
-            name: dto.name,
-            course: dto.course,
-            institution: dto.institution,
-            shift: dto.shift,
-            interests: dto.interests,
-            pronouns: dto.pronouns,
-            connectionPassword: dto.connectionPassword,
-            connectionCount: dto.connectionCount,
-            connectedUsers: dto.connectedUsers,
-            secretFact: dto.secretFact,
-            profilePicture: image,
-            planet: Planet(name: dto.planet.name)
-        )
     }
     
     private func fetchUsersFromDataService() async -> [UserDTO] {
