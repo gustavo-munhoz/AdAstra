@@ -81,7 +81,9 @@ class UsersGridViewModel: ObservableObject {
         Task {
             await MainActor.run { isFetchingUsers = true }
             
-            let fetchedUsers = await facade.getAllUsers()
+            let fetchedUsers = await facade.getAllUsers(sortedBy: {
+                $0.name < $1.name
+            })
             
             await MainActor.run {
                 users = fetchedUsers
@@ -89,5 +91,9 @@ class UsersGridViewModel: ObservableObject {
             
             await MainActor.run { isFetchingUsers = false }
         }
+    }
+    
+    @MainActor func signOut(with session: SessionStore) {
+        session.signOut()
     }
 }

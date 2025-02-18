@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SignInView: View {
     @StateObject var viewModel = SignInViewModel()
+    @EnvironmentObject var session: SessionStore
     
     var body: some View {
         NavigationStack {
@@ -42,7 +43,7 @@ struct SignInView: View {
                     Spacer()
                         .frame(maxHeight: 20)
                     
-                    Button(action: viewModel.signIn) {
+                    Button(action: viewModel.fetchUser) {
                         Group {
                             if viewModel.isFetchingUser {
                                 HStack {

@@ -15,7 +15,7 @@ class SignInViewModel: ObservableObject {
     @Published var foundUser: User?
     @Published var errorMessage: String?
     
-    func signIn() {
+    func fetchUser() {
         let facade = UserPersistenceFacade.firebase()
         
         Task {
@@ -24,7 +24,6 @@ class SignInViewModel: ObservableObject {
             do {
                 let user = try await facade.getUserFromConnectionPassword(
                     userConnectionPassword
-                        .replacingOccurrences(of: " ", with: "")
                         .lowercased()
                 )
                 
@@ -47,5 +46,14 @@ class SignInViewModel: ObservableObject {
             
             await MainActor.run { isFetchingUser = false }
         }
+    }
+    
+    @MainActor func confirmSignIn(with session: SessionStore) {
+        guard let foundUser else {
+            print("foundUser missing in SignInViewModel")
+            return
+        }
+        
+        session.signIn(user: foundUser)
     }
 }

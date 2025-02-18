@@ -10,7 +10,8 @@ import SwiftUI
 struct UsersGridView: View {
     
     @StateObject private var viewModel = UsersGridViewModel(mock: true)
-    
+    @EnvironmentObject var session: SessionStore  
+  
     private let columns: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -41,6 +42,11 @@ struct UsersGridView: View {
                             }
                         }
                     }
+                }
+            }
+            .toolbar {
+                Button("Sign out") {
+                    viewModel.signOut(with: session)
                 }
             }
         }

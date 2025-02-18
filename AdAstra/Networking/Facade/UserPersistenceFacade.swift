@@ -28,7 +28,7 @@ class UserPersistenceFacade {
         return try await makeUser(from: dto, with: image)
     }
     
-    func getAllUsers() async -> [User] {
+    func getAllUsers(sortedBy sortingFunction: ((User, User) throws -> Bool)? = nil) async -> [User] {
         let fetchedUsers = await fetchUsersFromDataService()
         
         return await withTaskGroup(of: User?.self) { group in
@@ -47,7 +47,14 @@ class UserPersistenceFacade {
                 if let user { users.append(user) }
             }
             
-            return users
+            guard let sortingFunction else { return users }
+            
+            do {
+                return try users.sorted(by: sortingFunction)
+            } catch {
+                print(error.localizedDescription)
+                return users
+            }
         }
     }
     
@@ -55,39 +62,6 @@ class UserPersistenceFacade {
         guard let id = dto.docId else {
             throw FirestoreError.missingDocumentId
         }
-        
-        // TODO: Optimize this. Searching all connections for all users is not needed, only the one connected
-
-//        let connectedUsers = await withTaskGroup(of: User?.self) { group in
-//            for connectedDTO in dto.connectedUsers {
-//                group.addTask { [weak self] in
-//                    guard let self = self else { return nil }
-//                    
-//                    do {
-//                        let subDTO = try await self.dataService.fetchUser(
-//                            withConnectionPassword: connectedDTO.connectionPassword
-//                        )
-//                                                
-//                        guard let subDocId = subDTO.docId else { return nil }
-//                        let subImage = await self.fetchUserImageFromImageService(docId: subDocId)
-//                                                
-//                        return try await self.makeUser(from: subDTO, with: subImage)
-//                        
-//                    } catch {
-//                        print("Error fetching connected user: \(error)")
-//                        return nil
-//                    }
-//                }
-//            }
-//                        
-//            var results: [User] = []
-//            for await maybeUser in group {
-//                if let user = maybeUser {
-//                    results.append(user)
-//                }
-//            }
-//            return results
-//        }
         
         return User(
             id: id,
