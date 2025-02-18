@@ -54,3 +54,7 @@ struct ScenePlanetView: UIViewRepresentable {
         return newScene
     }
 }
+
+#Preview{
+    UserPlanetView()
+}
