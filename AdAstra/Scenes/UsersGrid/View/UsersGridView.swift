@@ -9,9 +9,9 @@ import SwiftUI
 
 struct UsersGridView: View {
     
-    @StateObject private var viewModel = UsersGridViewModel()
-    @EnvironmentObject var session: SessionStore
-    
+    @StateObject private var viewModel = UsersGridViewModel(mock: true)
+    @EnvironmentObject var session: SessionStore  
+  
     private let columns: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible()),
@@ -20,7 +20,7 @@ struct UsersGridView: View {
     ]
     
     var body: some View {
-        VStack {
+        VStack(alignment: .center){
             Group {
                 if viewModel.isFetchingUsers {
                     ProgressView()
@@ -28,11 +28,16 @@ struct UsersGridView: View {
                 } else {
                     LazyVGrid(columns: columns, spacing: 12) {
                         ForEach(viewModel.users) { user in
-                            NavigationLink(destination: { UserPlanetView() }) {
-                                VStack {
-                                    Circle()
-                                    
-                                    Text(user.name)
+                            ViewThatFits(in: .horizontal){
+                                NavigationLink(destination: { UserPlanetView() }) {
+                                    VStack {
+                                        Circle()
+                                            .frame(width: 80)
+                                        Text(user.name)
+                                            .lineLimit(1)
+                                            .minimumScaleFactor(0.5)
+                                            .frame(width: 80)
+                                    }
                                 }
                             }
                         }
