@@ -28,8 +28,8 @@ struct UserPlanetView: View {
                     Spacer()
                     withAnimation {
                         UserCardView(data: "\(value)")
-                            .frame(height: 400)
-                            .offset(y: 60)
+                            .frame(height: 300)
+                            .offset(y: 50)
                     }
                     ScrollSelectorView(value: $value)
                         .padding(.top, -50)

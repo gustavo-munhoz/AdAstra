@@ -10,6 +10,7 @@ import SwiftUI
 struct SignInView: View {
     @StateObject var viewModel = SignInViewModel()
     @EnvironmentObject var session: SessionStore
+    @FocusState private var isLabelFocused: Bool
     
     var body: some View {
         NavigationStack {
@@ -26,6 +27,7 @@ struct SignInView: View {
                         .frame(maxHeight: 100)
                     
                     TextField("", text: $viewModel.userConnectionPassword, prompt: Text("Insira sua palavra-chave aqui!").foregroundStyle(Color(red: 0.8, green: 0.72, blue: 0.88)))
+                        .focused($isLabelFocused)
                         .frame(width: 320, height: 60)
                         .foregroundStyle(Color(red: 0.8, green: 0.72, blue: 0.88))
                         .font(.system(size: 14))
@@ -50,7 +52,10 @@ struct SignInView: View {
                     Spacer()
                         .frame(maxHeight: 20)
                     
-                    Button(action: viewModel.fetchUser) {
+                    Button {
+                        isLabelFocused = false
+                        viewModel.fetchUser()
+                    } label: {
                         Group {
                             if viewModel.isFetchingUser {
                                 HStack {

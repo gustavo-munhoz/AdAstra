@@ -42,38 +42,49 @@ struct UserConfirmationView: View {
                 .frame(maxHeight: 64)
             
             VStack(spacing: 20){
-                NavigationLink("Sou eu") {
+                
+                NavigationLink {
                     UsersGridView()
-                }
-                .frame(width: 270, height: 60)
-                .foregroundStyle(.white)
-                .font(.system(size: 14))
-                .fontWeight(.medium)
-                .fontWidth(.expanded)
-                .background {
-                    RoundedRectangle(cornerRadius: 128)
-                        .fill(LinearGradient(colors: [.btf1, .btf2], startPoint: .topLeading, endPoint: .bottomTrailing))
-                }
-                .onTapGesture {
-                    withAnimation{
-                        viewModel.foundUser = nil
+                } label: {
+                    Text("Sou eu")
+                    .frame(width: 270, height: 60)
+                    .foregroundStyle(.white)
+                    .font(.system(size: 14))
+                    .fontWeight(.medium)
+                    .fontWidth(.expanded)
+                    .background {
+                        RoundedRectangle(cornerRadius: 128)
+                            .fill(
+                                LinearGradient(
+                                    colors: [.btf1, .btf2],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                )
+                            )
                     }
+                    .simultaneousGesture(TapGesture().onEnded({
+                        withAnimation{
+                            viewModel.foundUser = nil
+                        }
+                    }))
                 }
                 
-                Button("Cancel") {
+                Button {
                     withAnimation{
                         viewModel.foundUser = nil
                     }
-                }
-                .frame(width: 270, height: 60)
-                .foregroundStyle(.white)
-                .font(.system(size: 14))
-                .fontWeight(.medium)
-                .fontWidth(.expanded)
-                .background {
-                    RoundedRectangle(cornerRadius: 128)
-                        .fill(.textfield.opacity(0.1))
-                        .stroke(LinearGradient(colors: [.btf1, .btf2], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1)
+                } label: {
+                    Text("Cancelar")
+                        .frame(width: 270, height: 60)
+                        .foregroundStyle(.white)
+                        .font(.system(size: 14))
+                        .fontWeight(.medium)
+                        .fontWidth(.expanded)
+                        .background {
+                            RoundedRectangle(cornerRadius: 128)
+                                .fill(.textfield.opacity(0.1))
+                                .stroke(LinearGradient(colors: [.btf1, .btf2], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1)
+                        }
                 }
             }
         }
