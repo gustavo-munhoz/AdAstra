@@ -23,10 +23,24 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 struct AdAstraApp: App {
     
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+    @StateObject private var session = SessionStore()
     
     var body: some Scene {
         WindowGroup {
-            SolarSystemView()
+            Group {
+                if session.isLoadingCurrentUser {
+                    ProgressView()
+                    
+                } else if session.isSignedIn {
+                    NavigationStack {
+                        UsersGridView()
+                    }
+                    
+                } else {
+                    SignInView()
+                }
+            }
+            .environmentObject(session)
         }
     }
 }
