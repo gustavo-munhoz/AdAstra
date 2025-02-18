@@ -9,6 +9,8 @@ import Foundation
 
 @MainActor final class SessionStore: ObservableObject {
     
+    private let facade: UserPersistenceFacade = .firebase()
+    
     @Published var currentUser: User? {
         didSet {
             UserDefaults.standard.set(
@@ -32,13 +34,20 @@ import Foundation
         Task {
             await MainActor.run { isLoadingCurrentUser = true }
             
-            let facade = UserPersistenceFacade.firebase()
             let user = try? await facade.getUserFromConnectionPassword(connectionPassword)
             
             self.currentUser = user
             
             await MainActor.run { isLoadingCurrentUser = false }
         }
+    }
+    
+    func registerUserConnection(with user: User) {
+        guard let currentUser, currentUser.canConnect(to: user) else { return }
+        
+        self.currentUser = currentUser.addingConnection(with: user)
+        
+        Task { try await facade.updateUser(self.currentUser!) }
     }
     
     func signIn(user: User) {

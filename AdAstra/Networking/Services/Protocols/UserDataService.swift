@@ -8,7 +8,8 @@
 import Foundation
 
 protocol UserDataService {
-    func saveUser(_ user: UserDTO) async throws
+    func registerNewUser(_ user: UserDTO) async throws
+    func updateUser(_ user: UserDTO) async throws
     func fetchAllUsers() async throws -> [UserDTO]
     func fetchUser(withConnectionPassword password: String) async throws -> UserDTO
 }

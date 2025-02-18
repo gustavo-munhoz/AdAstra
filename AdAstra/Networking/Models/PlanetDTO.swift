@@ -9,4 +9,10 @@ import Foundation
 
 struct PlanetDTO: Codable {
     let name: String
+    
+    static func mappedFrom(planet: Planet) -> PlanetDTO {
+        PlanetDTO(
+            name: planet.name
+        )
+    }
 }

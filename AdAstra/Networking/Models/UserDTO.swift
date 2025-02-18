@@ -18,7 +18,7 @@ struct UserDTO: Codable {
     let pronouns: String
     let connectionPassword: String
     let connectionCount: Int
-    let connectedUsers: [ConnectedUserDTO]
+    let connectedUsers: [UserSummary]
     let secretFact: String
     
     let profilePictureURL: URL?
@@ -29,9 +29,22 @@ struct UserDTO: Codable {
         case connectionPassword, connectionCount, connectedUsers, secretFact
         case profilePictureURL, planet
     }
-}
-
-struct ConnectedUserDTO: Codable {
-    var name: String
-    var connectionPassword: String
+    
+    static func mappedFrom(user: User, imageURL: URL?) -> UserDTO {
+        UserDTO(
+            docId: user.id,
+            name: user.name,
+            course: user.course,
+            institution: user.institution,
+            shift: user.shift,
+            interests: user.interests,
+            pronouns: user.pronouns,
+            connectionPassword: user.connectionPassword,
+            connectionCount: user.connectionCount,
+            connectedUsers: user.connectedUsers,
+            secretFact: user.secretFact,
+            profilePictureURL: imageURL,
+            planet: .mappedFrom(planet: user.planet)
+        )
+    }
 }
