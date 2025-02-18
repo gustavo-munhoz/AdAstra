@@ -18,16 +18,16 @@ class UsersGridViewModel: ObservableObject {
             users = [
                 User(
                     id: "teste",
-                    name: "teste",
-                    course: "teste",
-                    institution: "teste",
-                    shift: "teste",
-                    interests: ["teste"],
-                    pronouns: "teste",
+                    name: "Afonsinho",
+                    course: "Ciência da Computação",
+                    institution: "PUC-PR",
+                    shift: "Tarde",
+                    interests: ["musica", "jogos", "minecraft"],
+                    pronouns: "Ele/Dele",
                     connectionPassword: "teste",
                     connectionCount: 13,
                     connectedUsers: [],
-                    secretFact: "teste",
+                    secretFact: "EU SOU GAY!",
                     profilePicture: UIImage(),
                     planet: Planet(name: "pika")
                 ), User(

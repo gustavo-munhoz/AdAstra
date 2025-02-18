@@ -36,7 +36,14 @@ struct SignInView: View {
                         .background {
                             RoundedRectangle(cornerRadius: 20)
                                 .fill(.textfield.opacity(0.1))
-                                .stroke(AngularGradient(colors: [.btf1, .btf2], center: UnitPoint(x: 0.5, y: 0.5), angle: Angle(degrees: 45)), lineWidth: 1)
+                                .stroke(
+                                    LinearGradient(
+                                        colors: [.btf1, .btf2],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    ),
+                                    lineWidth: 1
+                                )
                         }
                         .multilineTextAlignment(.center)
                     

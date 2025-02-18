@@ -20,19 +20,24 @@ struct UserPlanetView: View {
     var body: some View {
         NavigationStack{
             ZStack{
-                    VStack(spacing: 0){
-                        Spacer()
-                        withAnimation {
-                            UserCardView(data: "\(value)")
-                                .frame(height: 400)
-                        }
-                        ScrollSelectorView(value: $value)
+                Image("bg")
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+                VStack(spacing: 0){
+                    Spacer()
+                    withAnimation {
+                        UserCardView(data: "\(value)")
+                            .frame(height: 400)
+                            .offset(y: 60)
                     }
-                .frame(maxHeight: .infinity)
-
+                    ScrollSelectorView(value: $value)
+                        .padding(.top, -50)
+                }
+                .padding(.top, 150)
             }
             .sensoryFeedback(.impact, trigger: value)
-            .frame(maxHeight: .infinity)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.black)
             .onAppear{
                 scene.rootNode.addChildNode(SCNNode(geometry: SCNSphere(radius: 50)))

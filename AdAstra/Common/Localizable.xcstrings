@@ -1,40 +1,83 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "" : {
+
+    },
+    "*" : {
+
+    },
     "%@" : {
 
     },
-    "%lld" : {
+    "%@ | %@" : {
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "%1$@ | %2$@"
+          }
+        }
+      }
+    },
+    "⭐" : {
 
     },
-    "Ad Astra" : {
+    "💛️" : {
+
+    },
+    "📚" : {
+
+    },
+    "🔒 Clique aqui para liberar a curiosidade." : {
+
+    },
+    "🤝" : {
+
+    },
+    "ad" : {
+
+    },
+    "astra" : {
 
     },
     "Cancel" : {
 
     },
-    "Confirm" : {
+    "Conexão feita" : {
 
     },
-    "Enter your access code..." : {
+    "Curiosidade" : {
+
+    },
+    "É você?" : {
+
+    },
+    "Entrando..." : {
+
+    },
+    "Entrar" : {
 
     },
     "Error!" : {
 
     },
-    "OK" : {
+    "Formação" : {
 
     },
-    "Sign In" : {
+    "Insira sua palavra-chave aqui!" : {
+
+    },
+    "Interesses" : {
+
+    },
+    "OK" : {
 
     },
     "Sign out" : {
 
     },
-    "Signing in..." : {
-
-    },
-    "This you?" : {
+    "Sou eu" : {
 
     }
   },
