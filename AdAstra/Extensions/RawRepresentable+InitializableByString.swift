@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+protocol InitializableByString: RawRepresentable, CaseIterable where RawValue == String {
+    static func fromString(_ string: String) -> Self?
+}
+
+extension InitializableByString {
+    static func fromString(_ string: String) -> Self? {
+        Self.allCases.first {
+            $0.rawValue.caseInsensitiveCompare(string) == .orderedSame
+        }
+    }
+}
