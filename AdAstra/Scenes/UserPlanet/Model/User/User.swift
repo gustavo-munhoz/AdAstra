@@ -10,14 +10,20 @@ import UIKit
 struct UserSummary: Codable {
     let name: String
     let connectionPassword: String
+    let shift: String
+    let role: String
 }
 
 struct User: Identifiable, Equatable {
+    
+    // MARK: - Attributes
     let id: String
     let name: String
+    let age: Int
     let course: String
     let institution: String
-    let shift: String
+    let shift: Shift
+    let role: Role
     let interests: Set<String>
     let pronouns: String
     let connectionPassword: String
@@ -28,6 +34,7 @@ struct User: Identifiable, Equatable {
     let profilePicture: UIImage
     let planet: Planet
     
+    // MARK: - Methods
     static func == (lhs: User, rhs: User) -> Bool {
         lhs.id == rhs.id
         && lhs.name == rhs.name
@@ -37,17 +44,19 @@ struct User: Identifiable, Equatable {
     func summary() -> UserSummary {
         UserSummary(
             name: name,
-            connectionPassword: connectionPassword
+            connectionPassword: connectionPassword,
+            shift: shift.rawValue,
+            role: role.rawValue
         )
     }
     
     func canConnect(to user: User) -> Bool {
         guard user != self else { return false }
         
-        return !connectedUsers.contains(where: {
+        return !connectedUsers.contains {
             $0.name == user.name
             && $0.connectionPassword == user.connectionPassword
-        })
+        }
     }
     
     func addingConnection(with user: User) -> User {
@@ -57,9 +66,11 @@ struct User: Identifiable, Equatable {
         return User(
             id: id,
             name: name,
+            age: age,
             course: course,
             institution: institution,
             shift: shift,
+            role: role,
             interests: interests,
             pronouns: pronouns,
             connectionPassword: connectionPassword,
@@ -68,6 +79,28 @@ struct User: Identifiable, Equatable {
             secretFact: secretFact,
             profilePicture: profilePicture,
             planet: planet
+        )
+    }
+}
+
+extension User {
+    static var mock: User {
+        User(
+            id: UUID().uuidString,
+            name: "user-\(Int.random(in: 0..<100))",
+            age: Int.random(in: 18..<100),
+            course: "test",
+            institution: "test",
+            shift: .afternoon,
+            role: .mentor,
+            interests: ["test"],
+            pronouns: "test",
+            connectionPassword: "test",
+            connectionCount: Int.random(in: 0..<100),
+            connectedUsers: [],
+            secretFact: "test",
+            profilePicture: .defaultUserImage(),
+            planet: .mock
         )
     }
 }

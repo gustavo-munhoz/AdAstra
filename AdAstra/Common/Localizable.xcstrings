@@ -38,6 +38,17 @@
     "ad" : {
 
     },
+    "afternoon" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Afternoon"
+          }
+        }
+      }
+    },
     "astra" : {
 
     },
@@ -71,6 +82,39 @@
     "Interesses" : {
 
     },
+    "mentor" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentor"
+          }
+        }
+      }
+    },
+    "mentorJr" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jr. Mentor"
+          }
+        }
+      }
+    },
+    "morning" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Morning"
+          }
+        }
+      }
+    },
     "OK" : {
 
     },
@@ -79,6 +123,17 @@
     },
     "Sou eu" : {
 
+    },
+    "student" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Student"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

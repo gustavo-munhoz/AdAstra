@@ -14,65 +14,8 @@ class UsersGridViewModel: ObservableObject {
     @Published var isFetchingUsers: Bool = false
     
     init(mock: Bool = false) {
-        guard !mock else {
-            users = [
-                User(
-                    id: "teste",
-                    name: "Afonsinho",
-                    course: "Ciência da Computação",
-                    institution: "PUC-PR",
-                    shift: "Tarde",
-                    interests: ["musica", "jogos", "minecraft"],
-                    pronouns: "Ele/Dele",
-                    connectionPassword: "teste",
-                    connectionCount: 13,
-                    connectedUsers: [],
-                    secretFact: "EU SOU GAY!",
-                    profilePicture: UIImage(),
-                    planet: Planet(name: "pika")
-                ), User(
-                    id: "teste2",
-                    name: "massa",
-                    course: "teste",
-                    institution: "teste",
-                    shift: "teste",
-                    interests: ["teste"],
-                    pronouns: "teste",
-                    connectionPassword: "teste",
-                    connectionCount: 13,
-                    connectedUsers: [],
-                    secretFact: "teste",
-                    profilePicture: UIImage(),
-                    planet: Planet(name: "pika")
-                ), User(
-                    id: "teste3",
-                    name: "carambolas",
-                    course: "teste",
-                    institution: "teste",
-                    shift: "teste",
-                    interests: ["teste"],
-                    pronouns: "teste",
-                    connectionPassword: "teste",
-                    connectionCount: 13,
-                    connectedUsers: [],
-                    secretFact: "teste",
-                    profilePicture: UIImage(),
-                    planet: Planet(name: "pika")
-                ), User(
-                    id: "teste4",
-                    name: "pirulitu",
-                    course: "teste",
-                    institution: "teste",
-                    shift: "teste",
-                    interests: ["teste"],
-                    pronouns: "teste",
-                    connectionPassword: "teste",
-                    connectionCount: 13,
-                    connectedUsers: [],
-                    secretFact: "teste",
-                    profilePicture: UIImage(),
-                    planet: Planet(name: "pika")
-                )]
+        if mock {
+            users = [.mock, .mock, .mock, .mock]
             return
         }
         
