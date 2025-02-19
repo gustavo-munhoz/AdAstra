@@ -9,7 +9,9 @@ import SwiftUI
 
 struct UserConfirmationView: View {
     var user: User
-    var viewModel: SignInViewModel
+    
+    var onUserConfirmed: () -> Void
+    var onCancelled: () -> Void
     
     var body: some View {
         VStack{
@@ -41,36 +43,36 @@ struct UserConfirmationView: View {
             Spacer()
                 .frame(maxHeight: 64)
             
-            VStack(spacing: 20){                
+            VStack(spacing: 20){
                 NavigationLink {
                     UsersListView()
                 } label: {
                     Text("Sou eu")
-                    .frame(width: 270, height: 60)
-                    .foregroundStyle(.white)
-                    .font(.system(size: 14))
-                    .fontWeight(.medium)
-                    .fontWidth(.expanded)
-                    .background {
-                        RoundedRectangle(cornerRadius: 128)
-                            .fill(
-                                LinearGradient(
-                                    colors: [.btf1, .btf2],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
+                        .frame(width: 270, height: 60)
+                        .foregroundStyle(.white)
+                        .font(.system(size: 14))
+                        .fontWeight(.medium)
+                        .fontWidth(.expanded)
+                        .background {
+                            RoundedRectangle(cornerRadius: 128)
+                                .fill(
+                                    LinearGradient(
+                                        colors: [.btf1, .btf2],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    )
                                 )
-                            )
-                    }
-                    .simultaneousGesture(TapGesture().onEnded({
-                        withAnimation{
-                            viewModel.foundUser = nil
                         }
-                    }))
+                        .simultaneousGesture(TapGesture().onEnded({
+                            withAnimation {
+                                onUserConfirmed()
+                            }
+                        }))
                 }
                 
                 Button {
-                    withAnimation{
-                        viewModel.foundUser = nil
+                    withAnimation {
+                        onCancelled()
                     }
                 } label: {
                     Text("Cancelar")
@@ -82,7 +84,14 @@ struct UserConfirmationView: View {
                         .background {
                             RoundedRectangle(cornerRadius: 128)
                                 .fill(.textfield.opacity(0.1))
-                                .stroke(LinearGradient(colors: [.btf1, .btf2], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1)
+                                .stroke(
+                                    LinearGradient(
+                                        colors: [.btf1, .btf2],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    ),
+                                    lineWidth: 1
+                                )
                         }
                 }
             }
@@ -91,7 +100,14 @@ struct UserConfirmationView: View {
         .background {
             RoundedRectangle(cornerRadius: 20)
                 .fill(.dp.opacity(0.85))
-                .stroke(LinearGradient(colors: [.btf1, .btf2], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1)
+                .stroke(
+                    LinearGradient(
+                        colors: [.btf1, .btf2],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    lineWidth: 1
+                )
                 .shadow(radius: 20.0)
         }
     }
