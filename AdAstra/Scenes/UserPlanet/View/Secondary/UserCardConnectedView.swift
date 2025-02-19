@@ -1,5 +1,5 @@
 //
-//  UserCardView.swift
+//  UserCardConnectedView.swift
 //  AdAstra
 //
 //  Created by Afonso Rekbaim on 13/02/25.
@@ -7,28 +7,37 @@
 
 import SwiftUI
 
-struct UserCardView: View {
-    @StateObject private var viewModel = UsersGridViewModel(mock: true)
+struct UserCardConnectedView: View {
+    @State var user: User
+    
     @State var rotationAnimation = 0.0
     @State var scaleAnimation = 1.0
     
-    @State var start: UnitPoint = .topLeading
-    @State var end: UnitPoint = .bottomTrailing
-    
-    @State var isFlipped: Bool = false
-    
-    @State var userConnected: Bool = false
+//    @State var start: UnitPoint = .topLeading
+//    @State var end: UnitPoint = .bottomTrailing
+//    
+//    @State var isFlipped: Bool = false
+//    
+//    @State var userConnected: Bool = false
     
     var body: some View {
-        ZStack {
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(.p2.opacity(0.8))
-                    .stroke(LinearGradient(colors: [.btf1, .btf2], startPoint: start, endPoint: end), lineWidth: 1)
-                    .shadow(radius: 10)
-            if isFlipped{
+//        ZStack {
+//            RoundedRectangle(cornerRadius: 20)
+//                .fill(.p2.opacity(0.8))
+//                .stroke(
+//                    LinearGradient(
+//                        colors: [.btf1, .btf2],
+//                        startPoint: start,
+//                        endPoint: end
+//                    ),
+//                    lineWidth: 1
+//                )
+//                .shadow(radius: 10)
+//            
+//            if isFlipped{
                 VStack{
                     HStack{
-                        Text(viewModel.users[0].name)
+                        Text(user.name)
                             .foregroundStyle(.white)
                             .font(.system(size: 24))
                             .fontWeight(.semibold)
@@ -61,10 +70,10 @@ struct UserCardView: View {
                     //Tags
                     ScrollView(.horizontal){
                         HStack(spacing: 8){
-                            ChipTextView(text: viewModel.users[0].pronouns)
-                            ChipTextView(text: "20 anos") //viewModel.users[0].age
-                            ChipTextView(text: "mentoria jr.") //viewModel.users[0].role
-                            ChipTextView(text: viewModel.users[0].shift.localized)
+                            ChipTextView(text: user.pronouns)
+                            ChipTextView(text: "20 anos") //user.age
+                            ChipTextView(text: "mentoria jr.") //user.role
+                            ChipTextView(text: user.shift.localized)
                         }
                     }
                     .scrollIndicators(.hidden)
@@ -133,7 +142,7 @@ struct UserCardView: View {
                         }
                         
                         HStack{
-                            Text("\(viewModel.users[0].course) | \(viewModel.users[0].institution)")
+                            Text("\(user.course) | \(user.institution)")
                                 .foregroundStyle(.white)
                                 .font(.system(size: 14))
                                 .fontWeight(.regular)
@@ -183,40 +192,41 @@ struct UserCardView: View {
                 }
                 .frame(width: 300, height: 450)
                 .scaleEffect(x: -1.0)
-            } else{
-                ConnectCard(userConnected: $userConnected)
-                    .frame(width: 300, height: 450)
-            }
-        }
-        .frame(width: 350, height: 500)
-        .rotation3DEffect(Angle(degrees: isFlipped ? 180 : 0), axis: (x: 0.0, y: 1.0, z: 0.0))
-        .scaleEffect(scaleAnimation)
-        .onChange(of: userConnected) {
-            rotate()
-            scale()
-        }
-        .padding(20)
-        .cornerRadius(20)
+//                
+//            } else {
+//                UserCardNotConnectedView(user: user)
+//                    .frame(width: 300, height: 450)
+//            }
+//        }
+//        .frame(width: 350, height: 500)
+//        .rotation3DEffect(Angle(degrees: isFlipped ? 180 : 0), axis: (x: 0.0, y: 1.0, z: 0.0))
+//        .scaleEffect(scaleAnimation)
+//        .onChange(of: userConnected) {
+//            rotate()
+//            scale()
+//        }
+//        .padding(20)
+//        .cornerRadius(20)
     }
     
-    func rotate(){
-        withAnimation(.linear(duration: 0.5)){
-            isFlipped.toggle()
-        }
-    }
-    
-    func scale(){
-        withAnimation(.easeInOut(duration: 0.2)){
-            scaleAnimation = 0.5
-        }
-        withAnimation(.easeInOut(duration: 0.2).delay(0.2)){
-            scaleAnimation = 1.0
-        }
-    }
+//    func rotate(){
+//        withAnimation(.linear(duration: 0.5)){
+//            isFlipped.toggle()
+//        }
+//    }
+//    
+//    func scale(){
+//        withAnimation(.easeInOut(duration: 0.2)){
+//            scaleAnimation = 0.5
+//        }
+//        withAnimation(.easeInOut(duration: 0.2).delay(0.2)){
+//            scaleAnimation = 1.0
+//        }
+//    }
     
     func interests() -> String {
         var interests = ""
-        for interest in viewModel.users[0].interests{
+        for interest in user.interests{
             interests+="\(interest), "
         }
         
@@ -226,6 +236,6 @@ struct UserCardView: View {
     }
 }
 
-#Preview {
-    UserCardView()
-}
+//#Preview {
+//    UserCardConnectedView(user: .mock)
+//}

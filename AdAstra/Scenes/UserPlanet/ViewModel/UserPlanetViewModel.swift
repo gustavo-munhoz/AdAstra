@@ -13,15 +13,14 @@ enum UserConnectionError: Error {
 
 class UserPlanetViewModel: ObservableObject {
     
-    let user: User
-    
+    @Published var user: User
     @Published var keywordInput: String = ""
     
     init(user: User) {
         self.user = user
     }
     
-    func connectToUser(_ user: User, session: SessionStore) throws(UserConnectionError) {
+    func connectToUser(session: SessionStore) throws(UserConnectionError) {
         guard keywordInput.isEqualIgnoringCaseAndWhitespace(user.connectionPassword) else {
             throw .incorrectKeyword
         }

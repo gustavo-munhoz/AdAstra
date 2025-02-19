@@ -13,13 +13,13 @@ struct ScrollSelectorView: View {
     let offsetValue = 40
     var value: Binding<Int>
                           
-    var planetViews : [TDPlanetView]
+    var planetViews: [TDPlanetView]
     
-    init(value: Binding<Int>) {
+    init(value: Binding<Int>, numberOfUsers: Int) {
         self.value = value
         self.planetViews = []
         
-        for _ in 1..<68 {
+        for _ in 0..<numberOfUsers {
             planetViews.append(TDPlanetView())
         }
     }
@@ -27,7 +27,7 @@ struct ScrollSelectorView: View {
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack {
-                ForEach(1..<68, id: \.self) { i in
+                ForEach(0..<planetViews.count, id: \.self) { i in
                     ZStack(alignment: .center){
                         Circle()
                             .frame(width: 120, height: 120)
@@ -37,6 +37,7 @@ struct ScrollSelectorView: View {
                             .animation(.default, value: value.wrappedValue)
                             .foregroundStyle(opacityCalc(index: i))
                             .blur(radius: 20)
+                        
                         planetViews[i]
                             .frame(width: 150, height: 180)
                             .scaleEffect(scaleCalc(index: i))

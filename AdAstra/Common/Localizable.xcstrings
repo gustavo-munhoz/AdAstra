@@ -55,7 +55,10 @@
     "Cancelar" : {
 
     },
-    "Conecta pai" : {
+    "Conectando..." : {
+
+    },
+    "Conectar-se" : {
 
     },
     "Conexão feita" : {
@@ -77,6 +80,9 @@
 
     },
     "Formação" : {
+
+    },
+    "Insira a palavra-chave aqui" : {
 
     },
     "Insira sua palavra-chave aqui!" : {
