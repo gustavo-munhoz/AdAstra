@@ -8,79 +8,111 @@
 import SwiftUI
 
 struct ConnectCard: View {
+    //Super machista opressor
+    //Parabéns, você achou o comentário perdido. Tome água
     @StateObject private var viewModel = UsersGridViewModel(mock: true)
     
     @State var start: UnitPoint = .topLeading
     @State var end: UnitPoint = .bottomTrailing
     
+    @State var placeholderText = ""
+    
     @Binding var userConnected: Bool
+    
+    @FocusState private var isLabelFocused: Bool
     
     var body: some View {
         ZStack {
             VStack{
-                HStack{
-                    Text(viewModel.users[0].name)
-                        .foregroundStyle(.white)
-                        .font(.system(size: 24))
-                        .fontWeight(.semibold)
-                        .fontWidth(.expanded)
-                    Spacer()
-                    
-                    HStack(spacing: 4){
-                        Text("🤝")
-                            .font(.system(size: 16))
-                        
-                        /// If connectedUser.conections have this.user blablabla
-                        Text("Conexão feita")
-                            .foregroundStyle(.white)
-                            .font(.system(size: 11))
-                            .fontWeight(.medium)
-                            .fontWidth(.expanded)
-                        ///----------------------------------------
-                    }
-                    .frame(width: 131, height: 31)
-                    .background{
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(.sp)
-                    }
-                }
-                .multilineTextAlignment(.leading)
                 
                 Spacer()
                     .frame(maxHeight: 12)
                 
-                //Tags
-                ScrollView(.horizontal){
-                    HStack(spacing: 8){
-                        ChipTextView(text: viewModel.users[0].pronouns)
-                        ChipTextView(text: "20 anos") //viewModel.users[0].age
-                        ChipTextView(text: "mentoria jr.") //viewModel.users[0].role
-                        ChipTextView(text: viewModel.users[0].shift.localized)
+                Image(uiImage: viewModel.users[0].profilePicture)
+                    .resizable()
+                    .frame(width: 132, height: 132)
+                    .clipShape(Circle())
+                    .background {
+                        Circle()
+                            .stroke(Color(.sp), lineWidth: 4)
                     }
-                }
-                .scrollIndicators(.hidden)
-
                 
-                VStack(spacing: 8){
-                    HStack(spacing: 4){
-                        Text("💛️")
-                            .font(.system(size: 12))
-                        
-                        Text("Interesses")
-                            .foregroundStyle(.logo)
-                            .font(.system(size: 12))
-                            .fontWeight(.medium)
-                            .fontWidth(.expanded)
-                        
-                        Spacer()
-                    }
+                Text("\(viewModel.users[0].name)")
+                    .foregroundStyle(.white)
+                    .font(.system(size: 24))
+                    .fontWeight(.semibold)
+                    .fontWidth(.expanded)
+                
+                HStack{
+                    ChipTextView(text: viewModel.users[0].pronouns)
+                    ChipTextView(text: viewModel.users[0].age.formatted())
                 }
                 
-                Button{
+                Spacer()
+                    .frame(maxHeight: 64)
+                
+                TextField("", text: $placeholderText, prompt: Text("Insira a palavra-chave aqui").foregroundStyle(Color(red: 0.8, green: 0.72, blue: 0.88)))
+                    .focused($isLabelFocused)
+                    .frame(width: 300, height: 50)
+                    .foregroundStyle(Color(red: 0.8, green: 0.72, blue: 0.88))
+                    .font(.system(size: 14))
+                    .fontWeight(.medium)
+                    .fontWidth(.expanded)
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 12)
+                    .background {
+                        RoundedRectangle(cornerRadius: 20)
+                            .fill(.textfield.opacity(0.1))
+                            .stroke(
+                                LinearGradient(
+                                    colors: [.btf1, .btf2],
+                                    startPoint: .topLeading,
+                                    endPoint: .bottomTrailing
+                                ),
+                                lineWidth: 1
+                            )
+                    }
+                    .multilineTextAlignment(.center)
+                
+                Spacer()
+                    .frame(maxHeight: 20)
+                
+                Button {
+                    isLabelFocused = false
+                    //viewModel.makeconnection()
                     userConnected.toggle()
-                }label: {
-                    Text("Conecta pai")
+                } label: {
+                    Group {
+                        if false { //isConnectingUser
+                            HStack {
+                                ProgressView()
+                                    .progressViewStyle(CircularProgressViewStyle())
+                                
+                                Text("Conectando...")
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 14))
+                                    .fontWeight(.medium)
+                                    .fontWidth(.expanded)
+                            }
+                        } else {
+                            Text("Conectar-se")
+                                .foregroundStyle(.white)
+                                .font(.system(size: 14))
+                                .fontWeight(.medium)
+                                .fontWidth(.expanded)
+                        }
+                    }
+                    .frame(width: 180, height: 50)
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 12)
                 }
+                .background {
+                    RoundedRectangle(cornerRadius: 128)
+                        .fill(LinearGradient(colors: [.btf1, .btf2], startPoint: .topLeading, endPoint: .bottomTrailing))
+                }
+                .disabled(
+                    placeholderText == ""
+                )
                 
                 Spacer()
             }
@@ -90,4 +122,8 @@ struct ConnectCard: View {
         .padding(20)
         .cornerRadius(20)
     }
+}
+
+#Preview {
+    UserCardView()
 }
