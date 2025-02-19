@@ -10,7 +10,6 @@
 		B361453E2D5D816A00DE6E6F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = B361453D2D5D816A00DE6E6F /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		B36145402D5D816A00DE6E6F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B361453F2D5D816A00DE6E6F /* FirebaseFirestore */; };
 		B36145422D5D816A00DE6E6F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B36145412D5D816A00DE6E6F /* FirebaseStorage */; };
-		E2C8020A2D6607FB00AEE7E6 /* ConnectCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C802092D6607FB00AEE7E6 /* ConnectCard.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +33,6 @@
 		B36144F52D5D7DA800DE6E6F /* AdAstra.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdAstra.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B36145072D5D7DAA00DE6E6F /* AdAstraTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdAstraTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B36145112D5D7DAA00DE6E6F /* AdAstraUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AdAstraUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E2C802092D6607FB00AEE7E6 /* ConnectCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectCard.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -86,7 +84,6 @@
 		B36144EC2D5D7DA800DE6E6F = {
 			isa = PBXGroup;
 			children = (
-				E2C802092D6607FB00AEE7E6 /* ConnectCard.swift */,
 				B36144F72D5D7DA800DE6E6F /* AdAstra */,
 				B361450A2D5D7DAA00DE6E6F /* AdAstraTests */,
 				B36145142D5D7DAA00DE6E6F /* AdAstraUITests */,
@@ -230,7 +227,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2F20E5D2D65318C004A57D1 /* blyat-suka.py in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -255,7 +251,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E2C8020A2D6607FB00AEE7E6 /* ConnectCard.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

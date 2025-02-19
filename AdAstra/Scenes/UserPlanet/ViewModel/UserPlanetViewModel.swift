@@ -7,7 +7,25 @@
 
 import Foundation
 
-/// This is just a placeholder to create the file references.
-struct UserPlanetViewModel {
+enum UserConnectionError: Error {
+    case incorrectKeyword
+}
+
+class UserPlanetViewModel: ObservableObject {
     
+    let user: User
+    
+    @Published var keywordInput: String = ""
+    
+    init(user: User) {
+        self.user = user
+    }
+    
+    func connectToUser(_ user: User, session: SessionStore) throws(UserConnectionError) {
+        guard keywordInput.isEqualIgnoringCaseAndWhitespace(user.connectionPassword) else {
+            throw .incorrectKeyword
+        }
+        
+        Task { await session.registerUserConnection(with: user) }
+    }
 }
