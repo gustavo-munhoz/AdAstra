@@ -64,7 +64,7 @@ struct UserCardView: View {
                             ChipTextView(text: viewModel.users[0].pronouns)
                             ChipTextView(text: "20 anos") //viewModel.users[0].age
                             ChipTextView(text: "mentoria jr.") //viewModel.users[0].role
-                            ChipTextView(text: viewModel.users[0].shift)
+                            ChipTextView(text: viewModel.users[0].shift.localized)
                         }
                     }
                     .scrollIndicators(.hidden)
