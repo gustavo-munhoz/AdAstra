@@ -50,6 +50,10 @@ struct User: Identifiable, Equatable {
         )
     }
     
+    func isConnected(to user: User) -> Bool {
+        !canConnect(to: user)
+    }
+    
     func canConnect(to user: User) -> Bool {
         guard user != self else { return false }
         
