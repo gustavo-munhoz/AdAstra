@@ -27,7 +27,7 @@ struct UserPlanetView: View {
                 VStack(spacing: 0){
                     Spacer()
                     withAnimation {
-                        UserCardView(data: "\(value)")
+                        UserCardView()
                             .frame(height: 300)
                             .offset(y: 50)
                     }
