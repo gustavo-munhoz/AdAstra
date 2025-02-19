@@ -8,48 +8,36 @@
 import SwiftUI
 
 struct UsersGridView: View {
+        
+    let users: [User]
     
-    @StateObject private var viewModel = UsersGridViewModel()
-    @EnvironmentObject var session: SessionStore
-  
     private let columns: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible()),
-//        GridItem(.flexible())
+        //        GridItem(.flexible())
     ]
     
     var body: some View {
-        VStack(alignment: .center) {
-            Group {
-                if viewModel.isFetchingUsers {
-                    ProgressView()
-                    
-                } else {
-                    LazyVGrid(columns: columns, spacing: 12) {
-                        ForEach(
-                            Array(viewModel.users.enumerated()), id: \.element.id
-                        ) { index, user in
-                            NavigationLink(
-                                destination: {
-                                    UserPlanetContainerView(
-                                        users: viewModel.users,
-                                        initialIndex: index
-                                    )
-                            }) {
-                                VStack {
-                                    Circle()
-                                        .frame(width: 80, height: 80)
-                                    
-                                    Text(user.name)
-                                        .lineLimit(1)
-                                        .minimumScaleFactor(0.5)
-                                        .frame(width: 80)
-                                }
-                            }
+        LazyVGrid(columns: columns, spacing: 12) {
+            ForEach(Array(users.enumerated()), id: \.element.id) { index, user in
+                NavigationLink(
+                    destination: {
+                        UserPlanetContainerView(
+                            users: users,
+                            initialIndex: index
+                        )
+                    }) {
+                        VStack {
+                            Circle()
+                                .frame(width: 80, height: 80)
+                            
+                            Text(user.name)
+                                .lineLimit(1)
+                                .minimumScaleFactor(0.5)
+                                .frame(width: 80)
                         }
                     }
-                }
             }
         }
         .navigationBarBackButtonHidden()
@@ -58,5 +46,5 @@ struct UsersGridView: View {
 }
 
 #Preview {
-//    UsersGridView(viewModel: UsersGridViewModel(mock: false))
+    //    UsersGridView(viewModel: UsersListViewModel(mock: false))
 }
