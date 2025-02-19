@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		B361453E2D5D816A00DE6E6F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = B361453D2D5D816A00DE6E6F /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		B36145402D5D816A00DE6E6F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B361453F2D5D816A00DE6E6F /* FirebaseFirestore */; };
-		B36145422D5D816A00DE6E6F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B36145412D5D816A00DE6E6F /* FirebaseStorage */; }
+		B36145422D5D816A00DE6E6F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B36145412D5D816A00DE6E6F /* FirebaseStorage */; };
 		E2C8020A2D6607FB00AEE7E6 /* ConnectCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C802092D6607FB00AEE7E6 /* ConnectCard.swift */; };
 /* End PBXBuildFile section */
 

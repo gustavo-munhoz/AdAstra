@@ -18,6 +18,7 @@ struct UserPlanetView: View {
     @State private var value: Int = 1
     
     var body: some View {
+<<<<<<< Updated upstream
         NavigationStack{
             ZStack{
                 Image("bg")
@@ -33,6 +34,17 @@ struct UserPlanetView: View {
                     }
                     ScrollSelectorView(value: $value)
                         .padding(.top, -50)
+=======
+        ZStack{
+                VStack(spacing: 0){
+                    Spacer()
+                    withAnimation {
+                        UserCardView(data: "\(value)")
+                            .frame(height: 400)
+                    }
+                    ScrollSelectorView(value: $value)
+                    Spacer()
+>>>>>>> Stashed changes
                 }
                 .padding(.top, 150)
             }
