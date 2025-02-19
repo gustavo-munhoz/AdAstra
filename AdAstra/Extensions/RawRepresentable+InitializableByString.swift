@@ -14,7 +14,7 @@ protocol InitializableByString: RawRepresentable, CaseIterable where RawValue ==
 extension InitializableByString {
     static func fromString(_ string: String) -> Self? {
         Self.allCases.first {
-            $0.rawValue.caseInsensitiveCompare(string) == .orderedSame
+            $0.rawValue.isEqualIgnoringCaseAndWhitespace(string)
         }
     }
 }
