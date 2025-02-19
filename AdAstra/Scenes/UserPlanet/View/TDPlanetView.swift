@@ -20,7 +20,7 @@ struct TDPlanetView : View, Identifiable {
     @State private var angle : Float = 0
     
     init() {
-        self.myView = ScenePlanetView()
+        self.myView = ScenePlanetView(angle: SCNQuaternion())
         guard let scene = self.myView.getScene() else {
             fatalError("unabled to get scene info")
         }

@@ -9,18 +9,19 @@ import SwiftUI
 
 struct UsersGridView: View {
     
-    @StateObject private var viewModel = UsersGridViewModel(mock: true)
-    @EnvironmentObject var session: SessionStore  
+//    @StateObject private var viewModel = UsersGridViewModel(mock: false)
+    @EnvironmentObject var viewModel : UsersGridViewModel
+    @EnvironmentObject var session: SessionStore
   
     private let columns: [GridItem] = [
         GridItem(.flexible()),
         GridItem(.flexible()),
         GridItem(.flexible()),
-        GridItem(.flexible())
+//        GridItem(.flexible())
     ]
     
     var body: some View {
-        VStack(alignment: .center){
+        VStack(alignment: .center) {
             Group {
                 if viewModel.isFetchingUsers {
                     ProgressView()
@@ -29,7 +30,10 @@ struct UsersGridView: View {
                     LazyVGrid(columns: columns, spacing: 12) {
                         ForEach(viewModel.users) { user in
                             ViewThatFits(in: .horizontal){
-                                NavigationLink(destination: { UserPlanetView() }) {
+                                NavigationLink(destination: {
+                                    UserPlanetView(user: user, viewModel: viewModel)
+                            })
+                                {
                                     VStack {
                                         Circle()
                                             .frame(width: 80)
@@ -44,11 +48,6 @@ struct UsersGridView: View {
                     }
                 }
             }
-            .toolbar {
-                Button("Sign out") {
-                    viewModel.signOut(with: session)
-                }
-            }
         }
         .navigationBarBackButtonHidden()
         .padding()
@@ -56,5 +55,5 @@ struct UsersGridView: View {
 }
 
 #Preview {
-    UsersGridView()
+//    UsersGridView(viewModel: UsersGridViewModel(mock: false))
 }

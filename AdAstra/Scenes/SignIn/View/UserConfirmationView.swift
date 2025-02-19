@@ -41,10 +41,9 @@ struct UserConfirmationView: View {
             Spacer()
                 .frame(maxHeight: 64)
             
-            VStack(spacing: 20){
-                
+            VStack(spacing: 20){                
                 NavigationLink {
-                    UsersGridView()
+                    UsersListView()
                 } label: {
                     Text("Sou eu")
                     .frame(width: 270, height: 60)

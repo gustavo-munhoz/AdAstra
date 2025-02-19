@@ -33,7 +33,8 @@ struct AdAstraApp: App {
                     
                 } else if session.isSignedIn {
                     NavigationStack {
-                        UsersGridView()
+//                        UsersGridView()
+                        UsersListView()
                     }
                     
                 } else {

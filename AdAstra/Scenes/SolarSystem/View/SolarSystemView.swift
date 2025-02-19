@@ -20,9 +20,9 @@ struct SolarSystemView: View {
     var body: some View {
         ScrollView(.vertical){
             LazyVGrid(columns: layout){
-                ForEach(1..<68) { _ in
+                ForEach(1..<68) { i in
                     NavigationLink {
-                        UserPlanetView()
+//                        UserPlanetView(user: User)
                     } label: {
                         ZStack{
                             Rectangle()
