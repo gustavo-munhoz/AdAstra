@@ -9,13 +9,19 @@ import SwiftUI
 import SceneKit
 
 struct UserPlanetView: View {
-    var scene = SCNScene()
+    var user : User!
+    var viewModel : UsersGridViewModel!
     
-    var cameraNode: SCNNode? {
-        scene.rootNode.childNode(withName: "camera", recursively: false)
-    }
+//    var cameraNode: SCNNode? {
+//        scene.rootNode.childNode(withName: "camera", recursively: false)
+//    }
     
     @State private var value: Int = 1
+    
+    init(user: User, viewModel: UsersGridViewModel) {
+        self.user = user
+        self.viewModel = viewModel
+    }
     
     var body: some View {
 <<<<<<< Updated upstream
@@ -51,14 +57,22 @@ struct UserPlanetView: View {
             .sensoryFeedback(.impact, trigger: value)
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.black)
-            .onAppear{
-                scene.rootNode.addChildNode(SCNNode(geometry: SCNSphere(radius: 50)))
-                scene.background.contents = UIColor.black
+        }
+        .onAppear() {
+            for i in 0..<viewModel.users.count {
+                if self.user.name == viewModel.users[i].name {
+                    print("achei!")
+                    print(value)
+                    break
+                }
+                value += 1
+                print(self.value)
+                print("não é esse")
             }
         }
     }
 }
 
 #Preview {
-    UserPlanetView()
+    UserPlanetView(user: User(id: "Bruh", name: "pirulitu", course: "Brush", institution: "Brush", shift: "Brush", interests: [], pronouns: "Brush", connectionPassword: "Brush", connectionCount: 0, connectedUsers: [], secretFact: "Bruh", profilePicture: UIImage(systemName: "person.circle")!, planet: Planet(name: "Bruh")), viewModel: UsersGridViewModel(mock: true))
 }

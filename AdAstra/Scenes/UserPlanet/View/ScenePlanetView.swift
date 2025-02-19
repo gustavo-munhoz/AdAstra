@@ -14,8 +14,8 @@ struct ScenePlanetView: UIViewRepresentable {
     
     var scene : SCNScene!
 
-    init() {
-        scene = makeScene()
+    init(angle: SCNQuaternion) {
+        scene = makeScene(angle: angle)
     }
     
     func updateUIView(_ uiView: UIViewType, context: Context) {
@@ -34,7 +34,7 @@ struct ScenePlanetView: UIViewRepresentable {
         return scene
     }
     
-    func makeScene() -> SCNScene {
+    func makeScene(angle: SCNQuaternion) -> SCNScene {
         let light = SCNLight()
         let lightNode = SCNNode()
         
@@ -46,6 +46,7 @@ struct ScenePlanetView: UIViewRepresentable {
         let planetNode = SCNNode(geometry: SCNSphere(radius: 2))
         planetNode.name = "planet"
         planetNode.geometry?.firstMaterial?.diffuse.contents = UIImage(named: "planet")
+//        planetNode.rotation = angle
         
         newScene.rootNode.addChildNode(planetNode)
         newScene.rootNode.addChildNode(lightNode)

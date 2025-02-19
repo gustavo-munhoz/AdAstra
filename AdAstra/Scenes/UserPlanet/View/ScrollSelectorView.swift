@@ -137,6 +137,6 @@ struct ScrollSelectorView: View {
     }
 }
 
-#Preview {
-    UserPlanetView()
-}
+//#Preview {
+//    UserPlanetView()
+//}

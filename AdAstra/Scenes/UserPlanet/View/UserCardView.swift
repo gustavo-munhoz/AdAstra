@@ -238,5 +238,5 @@ struct UserCardView: View {
 }
 
 #Preview {
-    UserPlanetView()
+    UserCardView(data: "hej")
 }
