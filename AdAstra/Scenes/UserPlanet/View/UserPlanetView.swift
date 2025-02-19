@@ -24,7 +24,6 @@ struct UserPlanetView: View {
     }
     
     var body: some View {
-<<<<<<< Updated upstream
         NavigationStack{
             ZStack{
                 Image("bg")
@@ -40,17 +39,6 @@ struct UserPlanetView: View {
                     }
                     ScrollSelectorView(value: $value)
                         .padding(.top, -50)
-=======
-        ZStack{
-                VStack(spacing: 0){
-                    Spacer()
-                    withAnimation {
-                        UserCardView(data: "\(value)")
-                            .frame(height: 400)
-                    }
-                    ScrollSelectorView(value: $value)
-                    Spacer()
->>>>>>> Stashed changes
                 }
                 .padding(.top, 150)
             }
@@ -74,5 +62,5 @@ struct UserPlanetView: View {
 }
 
 #Preview {
-    UserPlanetView(user: User(id: "Bruh", name: "pirulitu", course: "Brush", institution: "Brush", shift: "Brush", interests: [], pronouns: "Brush", connectionPassword: "Brush", connectionCount: 0, connectedUsers: [], secretFact: "Bruh", profilePicture: UIImage(systemName: "person.circle")!, planet: Planet(name: "Bruh")), viewModel: UsersGridViewModel(mock: true))
+//    UserPlanetView(user: User(id: "Bruh", name: "pirulitu", course: "Brush", institution: "Brush", shift: "Brush", interests: [], pronouns: "Brush", connectionPassword: "Brush", connectionCount: 0, connectedUsers: [], secretFact: "Bruh", profilePicture: UIImage(systemName: "person.circle")!, planet: Planet(name: "Bruh")), viewModel: UsersGridViewModel(mock: true))
 }

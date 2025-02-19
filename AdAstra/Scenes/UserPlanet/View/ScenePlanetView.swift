@@ -57,5 +57,5 @@ struct ScenePlanetView: UIViewRepresentable {
 }
 
 #Preview{
-    UserPlanetView()
+//    UserPlanetView()
 }

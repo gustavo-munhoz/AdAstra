@@ -188,7 +188,6 @@ struct UserCardView: View {
                     .frame(width: 300, height: 450)
             }
         }
-<<<<<<< Updated upstream
         .frame(width: 350, height: 500)
         .rotation3DEffect(Angle(degrees: isFlipped ? 180 : 0), axis: (x: 0.0, y: 1.0, z: 0.0))
         .scaleEffect(scaleAnimation)
@@ -224,19 +223,9 @@ struct UserCardView: View {
         interests.removeLast(2)
         
         return interests
-=======
-        .frame(width: 300, height: 400)
-        .padding()
-        .background(Color(white: 255/255, opacity: 0.8))
-        .cornerRadius(20)
-        .overlay(
-            RoundedRectangle(cornerRadius: 20)
-                .stroke(.white, lineWidth: 2)
-        )
->>>>>>> Stashed changes
     }
 }
 
 #Preview {
-    UserCardView(data: "hej")
+    UserCardView()
 }
