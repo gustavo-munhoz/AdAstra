@@ -52,7 +52,10 @@
     "astra" : {
 
     },
-    "Cancel" : {
+    "Cancelar" : {
+
+    },
+    "Conecta pai" : {
 
     },
     "Conexão feita" : {
@@ -80,6 +83,9 @@
 
     },
     "Interesses" : {
+
+    },
+    "Loading..." : {
 
     },
     "mentor" : {
