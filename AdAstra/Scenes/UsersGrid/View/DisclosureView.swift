@@ -9,22 +9,15 @@ import SwiftUI
 
 struct DisclosureView: View {
     
-//    @StateObject var viewModel: UsersGridViewModel
-    @EnvironmentObject var viewModel : UsersGridViewModel
-    let title : String
-    
-//    init(_ title: String, viewModel: UsersGridViewModel) {
-//        self.title = title
-//        self.viewModel = viewModel
-//    }
+    let title: String
+    let users: [User]
     
     var body: some View {
         DisclosureGroup {
-            UsersGridView()
+            UsersGridView(users: users)
         } label: {
             ZStack {
                 Text(title)
-                
             }
         }
         .accentColor(.white)
@@ -35,7 +28,14 @@ struct DisclosureView: View {
         .background {
             RoundedRectangle(cornerRadius: 20)
                 .fill(.textfield.opacity(0.3))
-                .stroke(LinearGradient(colors: [.btf1, .btf2], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1)
+                .stroke(
+                    LinearGradient(
+                        colors: [.btf1, .btf2],
+                        startPoint: .topLeading,
+                        endPoint: .bottomTrailing
+                    ),
+                    lineWidth: 1
+                )
                 .shadow(radius: 20.0)
         }
         .padding(.horizontal)
@@ -43,5 +43,5 @@ struct DisclosureView: View {
 }
 
 #Preview {
-//    DisclosureView(viewModel: UsersGridViewModel(mock: true), title: "test")
+//    DisclosureView(viewModel: UsersListViewModel(mock: true), title: "test")
 }
