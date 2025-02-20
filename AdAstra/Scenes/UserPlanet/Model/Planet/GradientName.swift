@@ -8,13 +8,13 @@
 import Foundation
 
 enum GradientName: String, CaseIterable, InitializableByString {
-    case turquoise
-    case green
-    case yellow
-    case red
-    case pink
-    case purple
-    case blue
-    case black
-    case white
+    case turquoise = "planetTurquoise"
+    case green = "planetGreen"
+    case yellow = "planetYellow"
+    case red = "planetRed"
+    case pink = "planetPink"
+    case purple = "planetPurple"
+    case blue = "planetBlue"
+    case black = "planetBlack"
+    case white = "planetWhite"
 }

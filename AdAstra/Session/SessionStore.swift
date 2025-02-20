@@ -32,13 +32,19 @@ import Foundation
         ) else { return }
         
         Task {
-            await MainActor.run { isLoadingCurrentUser = true }
-            
-            let user = try? await facade.getUserFromConnectionPassword(connectionPassword)
-            
-            self.currentUser = user
-            
-            await MainActor.run { isLoadingCurrentUser = false }
+            do {
+                await MainActor.run { isLoadingCurrentUser = true }
+                
+                let user = try await facade.getUserFromConnectionPassword(connectionPassword)
+                
+                self.currentUser = user
+                
+                await MainActor.run { isLoadingCurrentUser = false }
+                
+            } catch {
+                print(error.localizedDescription)
+                self.currentUser = nil
+            }
         }
     }
     

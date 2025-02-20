@@ -53,6 +53,6 @@ class StorageImageService: ImageService {
             .reference()
             .child("profile_pictures")
             .child(docId)
-            .child("profile.jpg")
+            .child("profile.jpeg")
     }
 }

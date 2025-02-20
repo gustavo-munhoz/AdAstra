@@ -7,9 +7,18 @@
 
 import Foundation
 
-enum PlanetMappingError: Error {
+enum PlanetMappingError: Error, LocalizedError {
     case invalidGradientName
     case invalidTextureName
+    
+    var errorDescription: String? {
+        switch self {
+            case .invalidGradientName:
+            return "Invalid planet gradient name"
+        case .invalidTextureName:
+            return "Invalid planet texture name"
+        }
+    }
 }
 
 struct PlanetDTO: Codable {

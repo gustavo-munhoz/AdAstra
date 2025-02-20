@@ -37,6 +37,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		B340E0442D676FCC000B59FA /* scripts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = scripts;
+			sourceTree = "<group>";
+		};
 		B36144F72D5D7DA800DE6E6F /* AdAstra */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = AdAstra;
@@ -91,6 +96,7 @@
 				B36145142D5D7DAA00DE6E6F /* AdAstraUITests */,
 				E2B5F8D82D6791DE005309C5 /* Frameworks */,
 				B36144F62D5D7DA800DE6E6F /* Products */,
+				B340E0442D676FCC000B59FA /* scripts */,
 			);
 			sourceTree = "<group>";
 		};
@@ -439,6 +445,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/scripts/.venv/lib/python3.13/site-packages/google/_upb",
+					"$(PROJECT_DIR)/scripts/.venv/lib/python3.13/site-packages/cryptography/hazmat/bindings",
+				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yosda.AdAstra;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -469,6 +480,11 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/scripts/.venv/lib/python3.13/site-packages/google/_upb",
+					"$(PROJECT_DIR)/scripts/.venv/lib/python3.13/site-packages/cryptography/hazmat/bindings",
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.yosda.AdAstra;

@@ -7,10 +7,21 @@
 
 import UIKit
 
-enum UserMappingError: Error {
+enum UserMappingError: Error, LocalizedError {
     case invalidShift
     case invalidRole
     case invalidPlanet
+    
+    var errorDescription: String? {
+        switch self {
+        case .invalidShift:
+            return "Invalid user shift"
+        case .invalidRole:
+            return "Invalid user role"
+        case .invalidPlanet:
+            return "Invalid user planet"
+        }
+    }
 }
 
 struct UserDTO: Codable {
@@ -20,7 +31,6 @@ struct UserDTO: Codable {
     let name: String
     let age: Int
     let course: String
-    let institution: String
     let shift: String
     let role: String
     let interests: Set<String>
@@ -29,14 +39,12 @@ struct UserDTO: Codable {
     let connectionCount: Int
     let connectedUsers: [UserSummary]
     let secretFact: String
-    
-    let profilePictureURL: URL?
     let planet: PlanetDTO
     
     enum CodingKeys: String, CodingKey {
-        case name, age, course, institution, shift, role, interests, pronouns
-        case connectionPassword, connectionCount, connectedUsers, secretFact
-        case profilePictureURL, planet
+        case name, age, course, shift, role, interests
+        case pronouns, connectionPassword, connectionCount
+        case connectedUsers, secretFact, planet
     }
     
     // MARK: - Mapping Methods
@@ -63,7 +71,6 @@ struct UserDTO: Codable {
             name: name,
             age: age,
             course: course,
-            institution: institution,
             shift: userShift,
             role: userRole,
             interests: interests,
@@ -77,13 +84,12 @@ struct UserDTO: Codable {
         )
     }
     
-    static func mappedFrom(user: User, imageURL: URL?) -> UserDTO {
+    static func mappedFrom(user: User) -> UserDTO {
         UserDTO(
             docId: user.id,
             name: user.name,
             age: user.age,
-            course: user.course,
-            institution: user.institution,
+            course: user.course,            
             shift: user.shift.rawValue,
             role: user.role.rawValue,
             interests: user.interests,
@@ -92,7 +98,6 @@ struct UserDTO: Codable {
             connectionCount: user.connectionCount,
             connectedUsers: user.connectedUsers,
             secretFact: user.secretFact,
-            profilePictureURL: imageURL,
             planet: .mappedFrom(planet: user.planet)
         )
     }
