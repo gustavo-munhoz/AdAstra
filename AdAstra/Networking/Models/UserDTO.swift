@@ -29,14 +29,12 @@ struct UserDTO: Codable {
     let connectionCount: Int
     let connectedUsers: [UserSummary]
     let secretFact: String
-    
-    let profilePictureURL: URL?
     let planet: PlanetDTO
     
     enum CodingKeys: String, CodingKey {
-        case name, age, course, institution, shift, role, interests, pronouns
-        case connectionPassword, connectionCount, connectedUsers, secretFact
-        case profilePictureURL, planet
+        case name, age, course, institution, shift, role, interests
+        case pronouns, connectionPassword, connectionCount
+        case connectedUsers, secretFact, planet
     }
     
     // MARK: - Mapping Methods
@@ -92,7 +90,6 @@ struct UserDTO: Codable {
             connectionCount: user.connectionCount,
             connectedUsers: user.connectedUsers,
             secretFact: user.secretFact,
-            profilePictureURL: imageURL,
             planet: .mappedFrom(planet: user.planet)
         )
     }
