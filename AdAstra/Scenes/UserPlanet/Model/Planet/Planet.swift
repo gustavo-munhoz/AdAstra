@@ -17,8 +17,8 @@ extension Planet {
     static var mock: Planet {
         Planet(
             name: "test-\(Int.random(in: 0..<100))",
-            gradientName: .white,
-            textureName: .rectangles
+            gradientName: GradientName.allCases.randomElement()!,
+            textureName: TextureName.allCases.randomElement()!
         )
     }
 }

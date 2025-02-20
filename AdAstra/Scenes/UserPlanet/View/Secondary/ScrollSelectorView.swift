@@ -13,21 +13,20 @@ struct ScrollSelectorView: View {
     let offsetValue = 40
     var value: Binding<Int>
                           
-    var planetViews: [TDPlanetView]
+//    var planetViews: [TDPlanetView]
+    var numUsers : Int
+    var users : [User]
     
-    init(value: Binding<Int>, numberOfUsers: Int) {
+    init(value: Binding<Int>, numberOfUsers: Int, users: [User]) {
         self.value = value
-        self.planetViews = []
-        
-        for _ in 0..<numberOfUsers {
-            planetViews.append(TDPlanetView())
-        }
+        self.numUsers = numberOfUsers
+        self.users = users
     }
 
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack {
-                ForEach(0..<planetViews.count, id: \.self) { i in
+                ForEach(0..<numUsers, id: \.self) { i in
                     ZStack(alignment: .center){
                         Circle()
                             .frame(width: 120, height: 120)
@@ -35,10 +34,10 @@ struct ScrollSelectorView: View {
                             .scaleEffect(scaleCalc(index: i))
                             .offset(y: -offsetCalc(index:i))
                             .animation(.default, value: value.wrappedValue)
-                            .foregroundStyle(opacityCalc(index: i))
+                            .foregroundStyle(opacityCalc(index: i, gradient: users[i].planet.gradientName))
                             .blur(radius: 20)
                         
-                        planetViews[i]
+                        TDPlanetView(users[i])
                             .frame(width: 150, height: 180)
                             .scaleEffect(scaleCalc(index: i))
                             .offset(y: -offsetCalc(index:i))
@@ -87,8 +86,8 @@ struct ScrollSelectorView: View {
         return (1.5 - (distance * Double(offsetValue))) // Ensures it gets smaller the further it is
     }
     
-    func opacityCalc(index: Int) -> Color {
-        return index == value.wrappedValue ? Color.white : Color.white.opacity(0.4) // Ensures it gets smaller the further it is
+    func opacityCalc(index: Int, gradient: GradientName) -> Color {
+        return index == value.wrappedValue ? Color(uiColor: UIColor(named: gradient.rawValue)!) : Color(uiColor: UIColor(named: gradient.rawValue)!).opacity(0.4) // Ensures it gets smaller the further it is
     }
 }
 

@@ -36,7 +36,8 @@ struct UserPlanetContainerView: View {
                     
                     ScrollSelectorView(
                         value: $selectedIndex,
-                        numberOfUsers: users.count
+                        numberOfUsers: users.count,
+                        users: users
                     )
                     .padding(.top, -200)
                 }
