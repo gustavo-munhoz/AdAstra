@@ -20,6 +20,7 @@ sheets_creds = service_account.Credentials.from_service_account_file(
 
 sheets_service = build('sheets', 'v4', credentials=sheets_creds)
 
+
 def fetch_sheet_data(spreadsheet_id: str, range_name: str):
     """Lê os dados da planilha e retorna uma lista de linhas (lista de listas)."""
     result = sheets_service.spreadsheets().values().get(
@@ -27,6 +28,7 @@ def fetch_sheet_data(spreadsheet_id: str, range_name: str):
     ).execute()
     values = result.get('values', [])
     return values
+
 
 def add_user_to_firestore(user_data: dict):
     """

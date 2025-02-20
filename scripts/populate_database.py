@@ -2,10 +2,10 @@
 
 import csv
 from firebase_client import fetch_sheet_data, add_user_to_firestore
-from mapping import map_gradient_name, map_texture_name
+from mapping import map_gradient_name, map_texture_name, map_shift_name
 
-SPREADSHEET_ID = '1LFtRnYaITaICjULZewEhB4DEv6EBMHGewfjIqCtFbDY'
-RANGE_NAME = 'Sheet1!A1:Z100'
+SPREADSHEET_ID = '1wBv5_KGGOy_fpbPI5Z6jMFfo8GlIDupWtpdD_WDAaZo'
+RANGE_NAME = 'Respostas!A1:Z100'
 
 def map_row_to_user(row, headers: list) -> dict:
     """
@@ -15,13 +15,13 @@ def map_row_to_user(row, headers: list) -> dict:
     
     name = data.get("Como você gostaria de ser chamado na Academy?", "").strip()
     pronouns = data.get("Quais são seus pronomes?", "").strip()
-    shift = data.get("Qual turno você está?", "").strip()
     age = int(data.get("Qual sua idade?", "0").strip())
-    geometric_shape = data.get("Se você fosse uma forma geométrica, qual seria?", "").strip()
-    
+
+    shift_pt = data.get("Qual turno você está?", "").strip()
+    texture_pt = data.get("Se você fosse uma forma geométrica, qual seria?", "").strip()
     gradient_pt = data.get("Qual dessas cores você prefere?", "").strip()
-    texture_pt = data.get("Nome da textura", "").strip()
-    
+
+    shift_en = map_shift_name(shift_pt)
     gradient_en = map_gradient_name(gradient_pt)
     texture_en = map_texture_name(texture_pt)
     
@@ -44,7 +44,7 @@ def map_row_to_user(row, headers: list) -> dict:
         "name": name,
         "age": age,
         "course": course,
-        "shift": shift,
+        "shift": shift_en,
         "role": role,
         "interests": list(interests),
         "pronouns": pronouns,
@@ -56,6 +56,7 @@ def map_row_to_user(row, headers: list) -> dict:
     }
     
     return user_data
+
 
 def main():
     sheet_values = fetch_sheet_data(SPREADSHEET_ID, RANGE_NAME)
@@ -74,6 +75,7 @@ def main():
             print(f"User '{user_data['name']}' added with docId: {doc_id}")
         except Exception as e:
             print(f"Error processing row {row}: {e}")
+
 
 if __name__ == "__main__":
     main()
