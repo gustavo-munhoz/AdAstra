@@ -52,22 +52,19 @@ struct UserPlanetView: View {
                     .shadow(radius: 10)
                 
                 Group {
-                    UserCardConnectedView(user: viewModel.user)
-                        .frame(height: 300)
-
-//                    if isUserConnected {
-//                        UserCardConnectedView(user: viewModel.user)
-//                            .frame(height: 300)
-//                            .offset(y: 50)
-//                        
-//                    } else {
-//                        UserCardNotConnectedView(
-//                            user: viewModel.user,
-//                            keywordInput: $viewModel.keywordInput,
-//                            onConnectPressed: connectToUser
-//                        )
-//                        .frame(width: 300, height: 450)
-//                    }
+                    if isUserConnected {
+                        UserCardConnectedView(user: viewModel.user)
+                            .frame(height: 300)
+                            .offset(y: 50)
+                        
+                    } else {
+                        UserCardNotConnectedView(
+                            user: viewModel.user,
+                            keywordInput: $viewModel.keywordInput,
+                            onConnectPressed: connectToUser
+                        )
+                        .frame(width: 300, height: 450)
+                    }
                 }
             }
             .frame(width: 350, height: 500)
