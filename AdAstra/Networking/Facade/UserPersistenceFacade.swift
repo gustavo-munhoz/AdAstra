@@ -17,15 +17,14 @@ class UserPersistenceFacade {
     }
     
     func updateUser(_ userToWrite: User) async throws {
-        var pictureURL: URL? = nil
         if userToWrite.profilePicture != .defaultUserImage() {
-            pictureURL = try await imageService.uploadImage(
+            try await imageService.uploadImage(
                 userToWrite.profilePicture,
                 forDocId: userToWrite.id
             )
         }
         
-        let dtoToWrite = UserDTO.mappedFrom(user: userToWrite, imageURL: pictureURL)
+        let dtoToWrite = UserDTO.mappedFrom(user: userToWrite)
         
         try await dataService.updateUser(dtoToWrite)
     }
