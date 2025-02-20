@@ -16,6 +16,9 @@ struct UserPlanetContainerView: View {
         self.users = users
         self.title = title
         self._selectedIndex = State(initialValue: initialIndex)
+        
+        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
     }
     
     var body: some View {
