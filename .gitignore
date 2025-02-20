@@ -1,2 +1,7 @@
-**/xcuserdata/
+g**/xcuserdata/
 xcuserdata/
+
+scripts/__pycache__/
+scripts/.idea/
+scripts/serviceAccountKey.json
+scripts/.venv/
