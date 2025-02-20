@@ -21,7 +21,6 @@ struct User: Identifiable, Equatable {
     let name: String
     let age: Int
     let course: String
-    let institution: String
     let shift: Shift
     let role: Role
     let interests: Set<String>
@@ -72,7 +71,6 @@ struct User: Identifiable, Equatable {
             name: name,
             age: age,
             course: course,
-            institution: institution,
             shift: shift,
             role: role,
             interests: interests,
@@ -93,8 +91,7 @@ extension User {
             id: UUID().uuidString,
             name: "user-\(Int.random(in: 0..<100))",
             age: Int.random(in: 18..<100),
-            course: "test",
-            institution: "test",
+            course: "test",            
             shift: .afternoon,
             role: .mentor,
             interests: ["test"],

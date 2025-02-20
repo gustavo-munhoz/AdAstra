@@ -118,7 +118,7 @@ struct UserCardConnectedView: View {
                         }
                         
                         HStack{
-                            Text("\(user.course) | \(user.institution)")
+                            Text(user.course)
                                 .foregroundStyle(.white)
                                 .font(.system(size: 14))
                                 .fontWeight(.regular)
