@@ -41,6 +41,9 @@ struct AdAstraApp: App {
                     SignInView()
                 }
             }
+            .onTapGesture(count: 3) {
+                print("Feito por Gustavinhos e Cia.")
+            }
             .environmentObject(session)
         }
     }

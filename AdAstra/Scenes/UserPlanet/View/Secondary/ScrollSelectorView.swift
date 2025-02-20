@@ -56,7 +56,7 @@ struct ScrollSelectorView: View {
 //            .border(.red, width: 10)
             .padding(.top, 24)
         }
-        .offset(y: 60)
+        .offset(y: 0)
         .scrollTargetBehavior(.viewAligned)
         .scrollPosition(id: .init(get: {
             let position: Int = value.wrappedValue
