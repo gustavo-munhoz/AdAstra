@@ -10,7 +10,9 @@ import SceneKit
 
 struct ScrollSelectorView: View {
     let scaleFactor = 0.25
+    let scaleFactorImage = 0.15
     let offsetValue = 40
+    let offsetValueImage = 10
     var value: Binding<Int>
                           
 //    var planetViews: [TDPlanetView]
@@ -43,10 +45,17 @@ struct ScrollSelectorView: View {
                             .offset(y: -offsetCalc(index:i))
                             .animation(.default, value: value.wrappedValue)
                         
-//                        Text("\(i)")
-//                            .scaleEffect(scaleCalc(index: i))
-//                            .offset(y: -offsetCalc(index:i))
-//                            .animation(.snappy, value: value.wrappedValue)
+                        Image(uiImage: users[i].profilePicture)
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                            .clipShape(Circle())
+                            .background {
+                                Circle()
+                                    .stroke(Color(.sp), lineWidth: 1)
+                            }
+                            .scaleEffect(scaleCalcImage(index: i))
+                            .offset(y: -offsetCalc(index:i) + 50)
+                            .animation(.default, value: value.wrappedValue)
                     }
                 }
             }
@@ -80,10 +89,23 @@ struct ScrollSelectorView: View {
         }
         return scaleFinal // Ensures it gets smaller the further it is
     }
+    func scaleCalcImage(index: Int) -> Double {
+        let distance = abs(Double(index) - Double(value.wrappedValue))
+        var scaleFinal = 1.0 - (distance * scaleFactorImage)
+        if scaleFinal < 0.35 {
+            scaleFinal = 0.35
+        }
+        return scaleFinal // Ensures it gets smaller the further it is
+    }
     
     func offsetCalc(index: Int) -> Double {
         let distance = abs(Double(index) - Double(value.wrappedValue))
-        return (1.5 - (distance * Double(offsetValue))) // Ensures it gets smaller the further it is
+        return (0.8 - (distance * Double(offsetValue))) // Ensures it gets smaller the further it is
+    }
+    
+    func offsetCalcImage(index: Int) -> Double {
+        let distance = abs(Double(index) - Double(value.wrappedValue))
+        return (1.5 - (distance * Double(offsetValueImage))) // Ensures it gets smaller the further it is
     }
     
     func opacityCalc(index: Int, gradient: GradientName) -> Color {
