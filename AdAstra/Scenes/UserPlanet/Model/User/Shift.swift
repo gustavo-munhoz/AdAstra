@@ -8,7 +8,7 @@
 import Foundation
 
 enum Shift: String, CaseIterable, InitializableByString {
-    case morning, afternoon
+    case morning, afternoon, integral
     
     var localized: String {
         NSLocalizedString(rawValue, comment: "")
