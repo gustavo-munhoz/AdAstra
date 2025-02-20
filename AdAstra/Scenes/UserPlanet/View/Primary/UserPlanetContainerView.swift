@@ -39,7 +39,7 @@ struct UserPlanetContainerView: View {
                         numberOfUsers: users.count,
                         users: users
                     )
-                    .padding(.top, -200)
+                    .padding(.top, -150)
                 }
             }
         }

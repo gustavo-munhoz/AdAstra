@@ -38,55 +38,57 @@ struct UserPlanetView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            
-            Spacer()
-            
-            withAnimation {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 20)
-                        .fill(.p2.opacity(0.8))
-                        .stroke(
-                            LinearGradient(
-                                colors: [.btf1, .btf2],
-                                startPoint: start,
-                                endPoint: end
-                            ),
-                            lineWidth: 1
-                        )
-                        .shadow(radius: 10)
-                    
-                    Group {
-                        if isUserConnected {
-                            UserCardConnectedView(user: viewModel.user)
-                                .frame(height: 300)
-                                .offset(y: 50)
-                            
-                        } else {
-                            UserCardNotConnectedView(
-                                user: viewModel.user,
-                                keywordInput: $viewModel.keywordInput,
-                                onConnectPressed: connectToUser
-                            )
-                            .frame(width: 300, height: 450)
-                        }
-                    }
+            ZStack {
+                RoundedRectangle(cornerRadius: 20)
+                    .fill(.p2.opacity(0.8))
+                    .stroke(
+                        LinearGradient(
+                            colors: [.btf1, .btf2],
+                            startPoint: start,
+                            endPoint: end
+                        ),
+                        lineWidth: 1
+                    )
+                    .shadow(radius: 10)
+                
+                Group {
+                    UserCardConnectedView(user: viewModel.user)
+                        .frame(height: 300)
+
+//                    if isUserConnected {
+//                        UserCardConnectedView(user: viewModel.user)
+//                            .frame(height: 300)
+//                            .offset(y: 50)
+//                        
+//                    } else {
+//                        UserCardNotConnectedView(
+//                            user: viewModel.user,
+//                            keywordInput: $viewModel.keywordInput,
+//                            onConnectPressed: connectToUser
+//                        )
+//                        .frame(width: 300, height: 450)
+//                    }
                 }
-                .frame(width: 350, height: 500)
-                .rotation3DEffect(
-                    Angle(degrees: isCardFlipped ? 180 : 0),
-                    axis: (x: 0.0, y: 1.0, z: 0.0)
-                )
-                .scaleEffect(scaleAnimation)
-                .onChange(of: isUserConnected) {
-                    rotate()
-                    scale()
-                }
-                .padding(20)
-                .cornerRadius(20)
-                .onAppear {
+            }
+            .frame(width: 350, height: 500)
+            .rotation3DEffect(
+                Angle(degrees: isCardFlipped ? 180 : 0),
+                axis: (x: 0.0, y: 1.0, z: 0.0)
+            )
+            .scaleEffect(scaleAnimation)
+            .onChange(of: isUserConnected) {
+                rotate()
+                scale()
+            }
+            .padding(20)
+            .cornerRadius(20)
+            .onAppear {
+                withAnimation {
                     isCardFlipped = isUserConnected
                 }
             }
+            
+            Spacer()
         }
         .padding(.top, 150)
     }

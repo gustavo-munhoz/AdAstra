@@ -43,24 +43,6 @@ struct UserCardConnectedView: View {
                             .fontWeight(.semibold)
                             .fontWidth(.expanded)
                         Spacer()
-                        
-                        HStack(spacing: 4){
-                            Text("🤝")
-                                .font(.system(size: 16))
-                            
-                            /// If connectedUser.conections have this.user blablabla
-                            Text("Conexão feita")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 11))
-                                .fontWeight(.medium)
-                                .fontWidth(.expanded)
-                            ///----------------------------------------
-                        }
-                        .frame(width: 131, height: 31)
-                        .background{
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(.sp)
-                        }
                     }
                     .multilineTextAlignment(.leading)
                     
@@ -71,8 +53,8 @@ struct UserCardConnectedView: View {
                     ScrollView(.horizontal){
                         HStack(spacing: 8){
                             ChipTextView(text: user.pronouns)
-                            ChipTextView(text: "20 anos") //user.age
-                            ChipTextView(text: "mentoria jr.") //user.role
+                            ChipTextView(text: "\(user.age) anos") //user.age
+                            ChipTextView(text: user.role.localized) //user.role
                             ChipTextView(text: user.shift.localized)
                         }
                     }
@@ -95,33 +77,27 @@ struct UserCardConnectedView: View {
                             Spacer()
                         }
                         
-                        Button{
-                            //
+                        HStack{
+                            Text(user.secretFact)
+                                .foregroundStyle(.white)
+                                .font(.system(size: 14))
+                                .fontWeight(.regular)
+                            Spacer()
                         }
-                        label: {
-                            ZStack{
-                                RoundedRectangle(cornerRadius: 12)
-                                    .fill(.dp)
-                                    .frame(height: 85, alignment: .center)
-                                    .frame(maxWidth: .infinity)
-                                
-                                Text("🔒 Clique aqui para liberar a curiosidade.")
-                                    .foregroundStyle(.logo)
-                                    .font(.system(size: 10))
-                                    .fontWeight(.semibold)
-                                    .fontWidth(.expanded)
-                            }
-                        }
-                        .rotationEffect(Angle(degrees: rotationAnimation))
-                        .onAppear{
-                            withAnimation(.easeIn(duration: 0.2).repeatCount(4, autoreverses: true)){
-                                rotationAnimation = 2.0
-                            }
-                            withAnimation(.easeIn(duration: 0.2).delay(0.87)){
-                                rotationAnimation = 0.0
-                            }
-                        }
-                        
+                        .frame(maxWidth: .infinity)
+                        .padding(12)
+                        .background(
+                            RoundedRectangle(cornerRadius: 20)
+                                .fill(.dp.opacity(0.1))
+                                .stroke(
+                                    LinearGradient(
+                                        colors: [.btf1, .btf2],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
+                                    ),
+                                    lineWidth: 1
+                                )
+                        )
                     }
                     
                     Spacer()
@@ -236,6 +212,6 @@ struct UserCardConnectedView: View {
     }
 }
 
-//#Preview {
-//    UserCardConnectedView(user: .mock)
-//}
+#Preview {
+    UserCardConnectedView(user: .mock)
+}
