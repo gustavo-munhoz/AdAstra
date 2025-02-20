@@ -1,18 +1,19 @@
 # firebase_client.py
 
 import firebase_admin
+import os
 from firebase_admin import credentials, firestore
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
 # Configuração do Firebase Admin
-FIREBASE_CRED_PATH = 'serviceAccountKey.json'
+FIREBASE_CRED_PATH = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
 cred = credentials.Certificate(FIREBASE_CRED_PATH)
 firebase_admin.initialize_app(cred)
 db = firestore.client()
 
 # Configuração da Google Sheets API
-SERVICE_ACCOUNT_FILE = 'serviceAccountKey.json'
+SERVICE_ACCOUNT_FILE = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets.readonly']
 sheets_creds = service_account.Credentials.from_service_account_file(
     SERVICE_ACCOUNT_FILE, scopes=SCOPES

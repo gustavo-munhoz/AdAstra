@@ -6,15 +6,15 @@ def map_gradient_name(gradient_pt: str) -> str:
     Ajuste o mapeamento conforme necessário.
     """
     mapping = {
-        "turquesa": "turquoise",
-        "verde": "green",
-        "vermelho": "red",
-        "amarelo": "yellow",
-        "rosa": "pink",
-        "roxo": "purple",
-        "azul": "blue",
-        "preto": "black",
-        "branco": "white"
+        "turquesa": "planetTurquoise",
+        "verde": "planetGreen",
+        "vermelho": "planetRed",
+        "amarelo": "planetYellow",
+        "rosa": "planetPink",
+        "roxo": "planetPurple",
+        "azul": "planetBlue",
+        "preto": "planetBlack",
+        "branco": "planetWhite"
     }
     
     return mapping.get(gradient_pt.lower(), gradient_pt)
