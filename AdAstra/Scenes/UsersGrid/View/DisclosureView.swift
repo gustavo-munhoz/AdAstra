@@ -14,7 +14,7 @@ struct DisclosureView: View {
     
     var body: some View {
         DisclosureGroup {
-            UsersGridView(users: users)
+            UsersGridView(users: users, title: title)
         } label: {
             ZStack {
                 Text(title)

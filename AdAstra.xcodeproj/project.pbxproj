@@ -10,6 +10,7 @@
 		B361453E2D5D816A00DE6E6F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = B361453D2D5D816A00DE6E6F /* FirebaseAnalyticsWithoutAdIdSupport */; };
 		B36145402D5D816A00DE6E6F /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = B361453F2D5D816A00DE6E6F /* FirebaseFirestore */; };
 		B36145422D5D816A00DE6E6F /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = B36145412D5D816A00DE6E6F /* FirebaseStorage */; };
+		E2B5F8DA2D6791DE005309C5 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = E2B5F8D92D6791DE005309C5 /* Pow */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B361453E2D5D816A00DE6E6F /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				E2B5F8DA2D6791DE005309C5 /* Pow in Frameworks */,
 				B36145402D5D816A00DE6E6F /* FirebaseFirestore in Frameworks */,
 				B36145422D5D816A00DE6E6F /* FirebaseStorage in Frameworks */,
 			);
@@ -87,6 +89,7 @@
 				B36144F72D5D7DA800DE6E6F /* AdAstra */,
 				B361450A2D5D7DAA00DE6E6F /* AdAstraTests */,
 				B36145142D5D7DAA00DE6E6F /* AdAstraUITests */,
+				E2B5F8D82D6791DE005309C5 /* Frameworks */,
 				B36144F62D5D7DA800DE6E6F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -99,6 +102,13 @@
 				B36145112D5D7DAA00DE6E6F /* AdAstraUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		E2B5F8D82D6791DE005309C5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +134,7 @@
 				B361453D2D5D816A00DE6E6F /* FirebaseAnalyticsWithoutAdIdSupport */,
 				B361453F2D5D816A00DE6E6F /* FirebaseFirestore */,
 				B36145412D5D816A00DE6E6F /* FirebaseStorage */,
+				E2B5F8D92D6791DE005309C5 /* Pow */,
 			);
 			productName = AdAstra;
 			productReference = B36144F52D5D7DA800DE6E6F /* AdAstra.app */;
@@ -209,6 +220,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				B361453C2D5D816A00DE6E6F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				E2B5F8D72D679134005309C5 /* XCRemoteSwiftPackageReference "Pow" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = B36144F62D5D7DA800DE6E6F /* Products */;
@@ -421,7 +433,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -451,7 +463,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -587,6 +599,14 @@
 				minimumVersion = 11.8.1;
 			};
 		};
+		E2B5F8D72D679134005309C5 /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmergeTools/Pow";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.5;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -604,6 +624,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = B361453C2D5D816A00DE6E6F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
+		};
+		E2B5F8D92D6791DE005309C5 /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E2B5F8D72D679134005309C5 /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

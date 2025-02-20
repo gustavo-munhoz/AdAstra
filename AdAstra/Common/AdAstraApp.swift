@@ -25,24 +25,36 @@ struct AdAstraApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
     @StateObject private var session = SessionStore()
     
+    @State var easterEgg: Bool = false
+    
     var body: some Scene {
         WindowGroup {
             Group {
-                if session.isLoadingCurrentUser {
-                    ProgressView()
-                    
-                } else if session.isSignedIn {
-                    NavigationStack {
-//                        UsersGridView()
-                        UsersListView()
+                ZStack{
+                    if session.isLoadingCurrentUser {
+                        ProgressView()
+                        
+                    } else if session.isSignedIn {
+                        NavigationStack {
+    //                        UsersGridView()
+                            UsersListView()
+                        }
+                        
+                    } else {
+                        SignInView()
                     }
                     
-                } else {
-                    SignInView()
+                    EasterEggView(easterEgg: $easterEgg)
+                        .transition(.scale.combined(with: .blurReplace))
+                        .opacity(easterEgg ? 1.0 : 0.0)
                 }
             }
-            .onTapGesture(count: 3) {
+            .sensoryFeedback(.impact, trigger: easterEgg)
+            .onTapGesture(count: 4) {
                 print("Feito por Gustavinhos e Cia.")
+                withAnimation{
+                    easterEgg = true
+                }
             }
             .environmentObject(session)
         }
