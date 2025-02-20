@@ -19,8 +19,8 @@ struct TDPlanetView : View, Identifiable {
     private let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
     @State private var angle : Float = 0
     
-    init() {
-        self.myView = ScenePlanetView(angle: SCNQuaternion())
+    init(_ user : User) {
+        self.myView = ScenePlanetView(user.planet.textureName, user.planet.gradientName)
         guard let scene = self.myView.getScene() else {
             fatalError("unabled to get scene info")
         }
@@ -32,12 +32,15 @@ struct TDPlanetView : View, Identifiable {
     var body : some View {
         myView
             .onReceive(timer) { _ in
-                angle += 0.01
+                angle += 0.1
+                self.planetNode.rotation = SCNQuaternion(x: 0, y: angle/8, z: 0, w: angle/8)
+            }
+            .onChange(of: self.planetNode) { oldValue, newValue in
                 self.planetNode.rotation = SCNQuaternion(x: 0, y: angle/8, z: 0, w: angle/8)
             }
     }
 }
 
 #Preview {
-    TDPlanetView()
+    TDPlanetView(User.mock)
 }

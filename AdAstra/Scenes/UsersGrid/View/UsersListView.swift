@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UsersListView: View {
     
-    @StateObject private var viewModel = UsersListViewModel()
+    @StateObject private var viewModel = UsersListViewModel(mock: true)
     @EnvironmentObject var session: SessionStore
     
     var body: some View {
