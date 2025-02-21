@@ -8,7 +8,7 @@
 import Foundation
 
 enum Role: String, CaseIterable, InitializableByString {
-    case student, mentorJr, mentor
+    case student, jrMentor, mentor
     
     var localized: String {
         NSLocalizedString(rawValue, comment: "")
