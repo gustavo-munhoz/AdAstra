@@ -42,17 +42,6 @@ struct AdAstraApp: App {
                     } else {
                         SignInView()
                     }
-                    
-                    EasterEggView(easterEgg: $easterEgg)
-                        .transition(.scale.combined(with: .blurReplace))
-                        .opacity(easterEgg ? 1.0 : 0.0)
-                }
-            }
-            .sensoryFeedback(.impact, trigger: easterEgg)
-            .onTapGesture(count: 4) {
-                print("Feito por Gustavinhos e Cia.")
-                withAnimation{
-                    easterEgg = true
                 }
             }
             .environmentObject(session)
