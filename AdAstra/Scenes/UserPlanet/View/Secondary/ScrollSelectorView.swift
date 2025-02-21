@@ -14,16 +14,18 @@ struct ScrollSelectorView: View {
     let offsetValue = 40
     let offsetValueImage = 10
     var value: Binding<Int>
-    var numUsers : Int
+    var numUsers : Int {
+        users.count
+    }
+    
     var users : [User]
     
     let planetStore: PlanetViewModelStore
     
     @EnvironmentObject var session: SessionStore
     
-    init(value: Binding<Int>, numberOfUsers: Int, users: [User], planetStore: PlanetViewModelStore) {
+    init(value: Binding<Int>, users: [User], planetStore: PlanetViewModelStore) {
         self.value = value
-        self.numUsers = numberOfUsers
         self.users = users
         self.planetStore = planetStore
     }
@@ -35,20 +37,24 @@ struct ScrollSelectorView: View {
                     ZStack {
                         VStack(spacing: 0) {
                             ZStack {
-                                Circle()
-                                    .frame(width: 120, height: 120)
-                                    .border(.red)
-                                    .foregroundStyle(
-                                        opacityCalc(
-                                            index: i,
-                                            gradient: users[i].planet.gradientName
+                                let isPlanetRevealedBinding = createPlanetBinding(for: users[i])
+                                
+                                if isPlanetRevealedBinding.wrappedValue {
+                                    Circle()
+                                        .frame(width: 120, height: 120)
+                                        .border(.red)
+                                        .foregroundStyle(
+                                            opacityCalc(
+                                                index: i,
+                                                gradient: users[i].planet.gradientName
+                                            )
                                         )
-                                    )
-                                    .blur(radius: 20)
+                                        .blur(radius: 20)
+                                }
                                 
                                 TDPlanetView(
                                     user: users[i],
-                                    isPlanetRevealed: createPlanetBinding(for: users[i]),
+                                    isPlanetRevealed: isPlanetRevealedBinding,
                                     viewModelStore: planetStore
                                 )
                                     .frame(width: 150, height: 180)
