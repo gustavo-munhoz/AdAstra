@@ -7,6 +7,7 @@ from mapping import map_gradient_name, map_texture_name, map_shift_name
 SPREADSHEET_ID = '1wBv5_KGGOy_fpbPI5Z6jMFfo8GlIDupWtpdD_WDAaZo'
 RANGE_NAME = 'Respostas!A1:Z100'
 
+
 def map_row_to_user(row, headers: list) -> dict:
     """
     Mapeia uma linha do CSV (ou da planilha) para o dicionário do usuário.
@@ -15,7 +16,12 @@ def map_row_to_user(row, headers: list) -> dict:
     
     name = data.get("Como você gostaria de ser chamado na Academy?", "").strip()
     pronouns = data.get("Quais são seus pronomes?", "").strip()
-    age = int(data.get("Qual sua idade?", "0").strip())
+
+    age_str = data.get("Qual sua idade?", "0").strip()
+    if age_str == "??":
+        age_str = "0"
+
+    age = int(age_str)
 
     shift_pt = data.get("Qual turno você está?", "").strip()
     texture_pt = data.get("Se você fosse uma forma geométrica, qual seria?", "").strip()

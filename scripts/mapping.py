@@ -27,7 +27,7 @@ def map_texture_name(texture_pt: str) -> str:
     mapping = {
         "triângulo": "triangles",
         "círculo": "circles",
-        "retângulo": "rectangles",
+        "quadrado": "rectangles",
     }
 
     return mapping.get(texture_pt.lower(), texture_pt)

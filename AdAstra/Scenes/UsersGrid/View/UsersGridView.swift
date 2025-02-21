@@ -26,12 +26,20 @@ struct UsersGridView: View {
             ForEach(Array(users.enumerated()), id: \.element.id) { index, user in
                 NavigationLink(
                     destination: {
-                        UserPlanetContainerView(
-                            users: users,
-                            title: title,
-                            initialIndex: index
-                        )
-                        .navigationTransition(.zoom(sourceID: users[index].id, in: userDetailsNamespace))
+                        if #available(iOS 18.0, *) {
+                            UserPlanetContainerView(
+                                users: users,
+                                title: title,
+                                initialIndex: index
+                            )
+                            .navigationTransition(.zoom(sourceID: users[index].id, in: userDetailsNamespace))
+                        } else {
+                            UserPlanetContainerView(
+                                users: users,
+                                title: title,
+                                initialIndex: index
+                            )
+                        }
                     }) {
                         VStack {
                             ZStack(alignment: .center){
@@ -41,9 +49,14 @@ struct UsersGridView: View {
                                     .foregroundStyle(Color(user.planet.gradientName.rawValue))
                                     .blur(radius: 15)
                                 
-                                TDPlanetView(user)
-                                    .frame(width: 80, height: 80)
-                                    .matchedTransitionSource(id: users[index].id, in: userDetailsNamespace)
+                                if #available(iOS 18.0, *) {
+                                    TDPlanetView(user)
+                                        .frame(width: 80, height: 80)
+                                        .matchedTransitionSource(id: users[index].id, in: userDetailsNamespace)
+                                } else {
+                                    TDPlanetView(user)
+                                        .frame(width: 80, height: 80)
+                                }
                                 
                                 Image(uiImage: user.profilePicture)
                                     .resizable()
