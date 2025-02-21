@@ -44,8 +44,7 @@ struct UserPlanetContainerView: View {
                         .id(users[selectedIndex].id)
                     
                     ScrollSelectorView(
-                        value: $selectedIndex,
-                        numberOfUsers: users.count,
+                        value: $selectedIndex,                        
                         users: users,
                         planetStore: planetStore
                     )

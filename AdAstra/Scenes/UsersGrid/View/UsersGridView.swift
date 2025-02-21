@@ -27,9 +27,7 @@ struct UsersGridView: View {
     
     var body: some View {
         LazyVGrid(columns: columns, spacing: 12) {
-            ForEach(Array(users.enumerated()), id: \.element.id) {
-                index,
-                user in
+            ForEach(Array(users.enumerated()), id: \.element.id) { index, user in
                 NavigationLink(
                     destination: {
                         if #available(iOS 18.0, *) {
@@ -49,18 +47,22 @@ struct UsersGridView: View {
                             )
                         }
                     }) {
+                        let isPlanetRevealedBinding = createPlanetBinding(for: user)
+                        
                         VStack {
-                            ZStack(alignment: .center){
-                                Circle()
-                                    .frame(width: 50, height: 50)
-                                    .border(.red)
-                                    .foregroundStyle(Color(user.planet.gradientName.rawValue))
-                                    .blur(radius: 15)
+                            ZStack(alignment: .center) {
+                                if isPlanetRevealedBinding.wrappedValue {
+                                    Circle()
+                                        .frame(width: 50, height: 50)
+                                        .border(.red)
+                                        .foregroundStyle(Color(user.planet.gradientName.rawValue))
+                                        .blur(radius: 15)
+                                }
                                 
                                 if #available(iOS 18.0, *) {
                                     TDPlanetView(
                                         user: user,
-                                        isPlanetRevealed: createPlanetBinding(for: user),
+                                        isPlanetRevealed: isPlanetRevealedBinding,
                                         viewModelStore: planetStore
                                     )
                                         .frame(width: 80, height: 80)
@@ -68,10 +70,10 @@ struct UsersGridView: View {
                                 } else {
                                     TDPlanetView(
                                         user: user,
-                                        isPlanetRevealed: createPlanetBinding(for: user),
+                                        isPlanetRevealed: isPlanetRevealedBinding,
                                         viewModelStore: planetStore
                                     )
-                                        .frame(width: 80, height: 80)
+                                    .frame(width: 80, height: 80)
                                 }
                                 
                                 Image(uiImage: user.profilePicture)
@@ -112,8 +114,4 @@ struct UsersGridView: View {
             return
         }
     }
-}
-
-#Preview {
-    //    UsersGridView(viewModel: UsersListViewModel(mock: false))
 }
