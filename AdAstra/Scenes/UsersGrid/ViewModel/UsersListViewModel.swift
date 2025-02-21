@@ -26,7 +26,7 @@ class UsersListViewModel: ObservableObject {
     }
     
     var mentors: [User] {
-        users.filterByRoles(.mentor, .mentorJr)
+        users.filterByRoles(.mentor, .jrMentor)
     }
     
     init(mock: Bool = false) {
