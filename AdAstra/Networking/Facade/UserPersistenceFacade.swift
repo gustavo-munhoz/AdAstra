@@ -30,7 +30,9 @@ class UserPersistenceFacade {
     }
     
     func getUserFromConnectionPassword(_ password: String) async throws -> User {
-        let dto = try await dataService.fetchUser(withConnectionPassword: password)
+        let sanitizedInput = password.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        let dto = try await dataService.fetchUser(withConnectionPassword: sanitizedInput)
         
         guard let docId = dto.docId else {
             throw FirestoreError.missingDocumentId
