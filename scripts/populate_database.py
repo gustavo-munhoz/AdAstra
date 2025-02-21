@@ -29,9 +29,9 @@ def map_row_to_user(row, headers: list) -> dict:
     interests_raw = data.get("Quais são seus interesses?", "")
     interests = {i.strip() for i in interests_raw.split(',') if i.strip()}
     secret_fact = data.get("Compartilhe um fato curioso seu.", "").strip()
-    connection_password = data.get("Escolha uma palavra-chave", "").strip()
+    connection_password = data.get("Escolha uma palavra-chave", "").strip().lower()
     
-    role = "student"
+    role = "jrMentor"
     connection_count = 0
 
     planet = {
@@ -59,10 +59,16 @@ def map_row_to_user(row, headers: list) -> dict:
 
 
 def main():
+    print("Connecting to Google Sheets...")
     sheet_values = fetch_sheet_data(SPREADSHEET_ID, RANGE_NAME)
+
+    print("Connected to Google Sheets!")
+
     if not sheet_values:
-        print("Nenhum dado encontrado na planilha.")
+        print("No data found inside the sheet.")
         return
+
+    print("Reading data...")
 
     headers = sheet_values[0]
     rows = sheet_values[1:]
@@ -75,6 +81,8 @@ def main():
             print(f"User '{user_data['name']}' added with docId: {doc_id}")
         except Exception as e:
             print(f"Error processing row {row}: {e}")
+
+    print("Done!")
 
 
 if __name__ == "__main__":

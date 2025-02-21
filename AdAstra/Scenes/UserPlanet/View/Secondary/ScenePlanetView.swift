@@ -8,24 +8,18 @@
 import SceneKit
 import SwiftUI
 
-extension UIImage {
+class SceneHolder {
+    let scene: SCNScene
     
-    func tint(with color: UIColor) -> UIImage
-    {
-       UIGraphicsBeginImageContext(self.size)
-       guard let context = UIGraphicsGetCurrentContext() else { return self }
-        context.setBlendMode(.multiply)
-
-       let rect = CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height)
-       context.clip(to: rect, mask: self.cgImage!)
-        color.setFill()
-       context.fill(rect)
-
-       // create UIImage
-       guard let newImage = UIGraphicsGetImageFromCurrentImageContext() else { return self }
-       UIGraphicsEndImageContext()
-
-       return newImage
+    init(texture: TextureName, gradient: GradientName) {
+        if let cached = SceneCache.scene(for: texture, gradient: gradient) {
+            self.scene = cached
+            return
+        }
+        
+        let newScene = ScenePlanetView.makeScene(texture, gradient)
+        SceneCache.store(scene: newScene, for: texture, gradient: gradient)
+        self.scene = newScene
     }
 }
 
@@ -33,53 +27,102 @@ struct ScenePlanetView: UIViewRepresentable {
     typealias UIViewType = SCNView
     typealias Context = UIViewRepresentableContext<ScenePlanetView>
     
-    var scene : SCNScene!
+    let texture: TextureName
+    let gradient: GradientName
+    private let holder: SceneHolder
 
     init(_ texture: TextureName, _ gradient: GradientName) {
-        scene = makeScene(texture, gradient)
+        self.texture = texture
+        self.gradient = gradient
+        self.holder = SceneHolder(texture: texture, gradient: gradient)
     }
     
-    func updateUIView(_ uiView: UIViewType, context: Context) {
-        uiView.scene = scene
-    }
     func makeUIView(context: Context) -> UIViewType {
         let view = SCNView()
         view.backgroundColor = UIColor.clear
         view.allowsCameraControl = false
         view.autoenablesDefaultLighting = false
-        view.scene = scene
+        view.scene = holder.scene
+        
         return view
     }
     
-    func getScene() -> SCNScene! {
-        return scene
+    func updateUIView(_ uiView: UIViewType, context: Context) {
+        uiView.scene = holder.scene
     }
     
-    func makeScene(_ texture: TextureName, _ gradient: GradientName) -> SCNScene {
-        let light = SCNLight()
-        let lightNode = SCNNode()
+    func getScene() -> SCNScene! {
+        return holder.scene
+    }
+    
+    static func makeScene(_ texture: TextureName, _ gradient: GradientName) -> SCNScene {
+        let scene = SCNScene()
+        scene.background.contents = UIColor.clear
         
-        light.type = .directional
-        lightNode.light = light
-        lightNode.rotation = SCNQuaternion(x: -0.5, y: 1, z: 0, w: 1)
+        let planetNode = createPlanetNode(texture: texture, gradient: gradient)
+        let lightNode = createLightNode()
+        let cameraNode = createCameraNode()
         
-        let newScene = SCNScene()
-        let planetNode = SCNNode(geometry: SCNSphere(radius: 2))
-        planetNode.name = "planet"
+        scene.rootNode.addChildNode(planetNode)
+        scene.rootNode.addChildNode(lightNode)
+        scene.rootNode.addChildNode(cameraNode)
         
-        let image = UIImage(named: texture.rawValue)
-        let newImage = image?.tint(with: UIColor(named: gradient.rawValue)!)
-
-        planetNode.geometry?.firstMaterial?.diffuse.contents = newImage
-        
-        newScene.rootNode.addChildNode(planetNode)
-        newScene.rootNode.addChildNode(lightNode)
-        newScene.background.contents = UIColor(.clear)
-        
-        return newScene
+        return scene
     }
 }
 
-#Preview{
-    TDPlanetView(User.mock)
+// MARK: - Helper Methods
+extension ScenePlanetView {
+    private static func getTintedImage(for texture: TextureName, gradient: GradientName) -> UIImage {
+        if let cachedImage = ImageCache.image(for: texture, gradient: gradient) {
+            return cachedImage
+        }
+        
+        guard let image = UIImage(named: texture.rawValue),
+              let tinted = image.tintedWithGradient(gradientColors: gradient.gradientColors)
+        else {
+            return UIImage()
+        }
+        
+        ImageCache.store(image: tinted, for: texture, gradient: gradient)
+        
+        return tinted
+    }
+    
+    private static func createPlanetNode(texture: TextureName, gradient: GradientName) -> SCNNode {
+        let sphere = SCNSphere(radius: 2)
+        sphere.segmentCount = 48
+        
+        let planetNode = SCNNode(geometry: sphere)
+        planetNode.name = "planet"
+        planetNode.scale = SCNVector3(1, 1, 1)
+        
+        let tintedImage = getTintedImage(for: texture, gradient: gradient)
+        
+        sphere.firstMaterial?.diffuse.contents = tintedImage
+        
+        return planetNode
+    }
+    
+    private static func createLightNode() -> SCNNode {
+        let light = SCNLight()
+        light.type = .directional
+        
+        let lightNode = SCNNode()
+        lightNode.light = light
+        lightNode.rotation = SCNQuaternion(x: -0.5, y: 1, z: 0, w: 1)
+        
+        return lightNode
+    }
+    
+    private static func createCameraNode() -> SCNNode {
+        let camera = SCNCamera()
+        camera.fieldOfView = 60
+        
+        let cameraNode = SCNNode()
+        cameraNode.camera = camera
+        cameraNode.position = SCNVector3(x: 0, y: 0, z: 5.5)
+        
+        return cameraNode
+    }
 }

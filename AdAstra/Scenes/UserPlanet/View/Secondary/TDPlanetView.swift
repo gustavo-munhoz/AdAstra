@@ -9,37 +9,45 @@ import SwiftUI
 import SceneKit
 
 
-struct TDPlanetView : View, Identifiable {
+struct TDPlanetView: View, Identifiable {
     var id: UUID = UUID()
     
-    private var planetScene : SCNScene!
-    private var planetNode : SCNNode!
-    private var myView : ScenePlanetView
+    private var planetScene: SCNScene!
+    private var planetNode: SCNNode!
+    private var myView: ScenePlanetView
     
-    private let timer = Timer.publish(every: 0.01, on: .main, in: .common).autoconnect()
-    @State private var angle : Float = 0
-    
-    init(_ user : User) {
+    init(_ user: User) {
         self.myView = ScenePlanetView(user.planet.textureName, user.planet.gradientName)
         guard let scene = self.myView.getScene() else {
-            fatalError("unabled to get scene info")
+            fatalError("Unable to get scene info")
         }
         
         self.planetScene = scene
-        self.planetNode = self.planetScene.rootNode.childNode(withName: "planet", recursively: false)
+        guard let node = self.planetScene.rootNode.childNode(withName: "planet", recursively: false) else {
+            fatalError("Unable to get planet node")
+        }
+        
+        self.planetNode = node
+        self.planetNode.removeAllActions()
+        
+        let rotateAction = SCNAction.repeatForever(
+            SCNAction
+                .rotateBy(
+                    x: 0,
+                    y: CGFloat.pi * 2,
+                    z: 0,
+                    duration: Double.random(in: 7...12)
+                )
+        )
+        
+        self.planetNode.runAction(rotateAction)
     }
     
-    var body : some View {
+    var body: some View {
         myView
-            .onReceive(timer) { _ in
-                angle += 0.1
-                self.planetNode.rotation = SCNQuaternion(x: 0, y: angle/8, z: 0, w: angle/8)
-            }
-            .onChange(of: self.planetNode) { oldValue, newValue in
-                self.planetNode.rotation = SCNQuaternion(x: 0, y: angle/8, z: 0, w: angle/8)
-            }
     }
 }
+
 
 #Preview {
     TDPlanetView(User.mock)
