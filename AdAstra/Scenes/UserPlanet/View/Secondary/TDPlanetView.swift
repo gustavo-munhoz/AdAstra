@@ -8,47 +8,39 @@
 import SwiftUI
 import SceneKit
 
-
 struct TDPlanetView: View, Identifiable {
     var id: UUID = UUID()
     
-    private var planetScene: SCNScene!
-    private var planetNode: SCNNode!
-    private var myView: ScenePlanetView
-    
-    init(_ user: User) {
-        self.myView = ScenePlanetView(user.planet.textureName, user.planet.gradientName)
-        guard let scene = self.myView.getScene() else {
-            fatalError("Unable to get scene info")
-        }
-        
-        self.planetScene = scene
-        guard let node = self.planetScene.rootNode.childNode(withName: "planet", recursively: false) else {
-            fatalError("Unable to get planet node")
-        }
-        
-        self.planetNode = node
-        self.planetNode.removeAllActions()
-        
-        let rotateAction = SCNAction.repeatForever(
-            SCNAction
-                .rotateBy(
-                    x: 0,
-                    y: CGFloat.pi * 2,
-                    z: 0,
-                    duration: Double.random(in: 7...12)
-                )
-        )
-        
-        self.planetNode.runAction(rotateAction)
+    @ObservedObject var viewModel: PlanetViewModel
+    @Binding var isPlanetRevealed: Bool
+
+    init(
+        user: User,
+        isPlanetRevealed: Binding<Bool>,
+        viewModelStore: PlanetViewModelStore
+    ) {
+        self._isPlanetRevealed = isPlanetRevealed
+        self.viewModel = viewModelStore.model(for: user)
     }
     
     var body: some View {
-        myView
+        ScenePlanetView(sceneHolder: viewModel.sceneHolder)
+            .aspectRatio(1, contentMode: .fit)
+            .clipShape(Circle())
+            .overlay(
+                GeometryReader { geo in
+                    if !isPlanetRevealed {
+                        let diameter = min(geo.size.width, geo.size.height) * 0.68
+                        
+                        Circle()
+                            .fill(Color.black.opacity(0.8))
+                            .frame(width: diameter, height: diameter)
+                            .position(x: geo.size.width / 2, y: geo.size.height / 2)
+                            .transition(.opacity)
+                    }
+                }
+                    .animation(.easeInOut, value: isPlanetRevealed)
+            )
     }
 }
 
-
-#Preview {
-    TDPlanetView(User.mock)
-}

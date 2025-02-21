@@ -21,23 +21,31 @@ struct UsersGridView: View {
     @State var angle = 0.0
     @Namespace private var userDetailsNamespace
         
+    @EnvironmentObject var session: SessionStore
+    
+    @StateObject private var planetStore = PlanetViewModelStore()
+    
     var body: some View {
         LazyVGrid(columns: columns, spacing: 12) {
-            ForEach(Array(users.enumerated()), id: \.element.id) { index, user in
+            ForEach(Array(users.enumerated()), id: \.element.id) {
+                index,
+                user in
                 NavigationLink(
                     destination: {
                         if #available(iOS 18.0, *) {
                             UserPlanetContainerView(
                                 users: users,
                                 title: title,
-                                initialIndex: index
+                                initialIndex: index,
+                                planetStore: planetStore
                             )
                             .navigationTransition(.zoom(sourceID: users[index].id, in: userDetailsNamespace))
                         } else {
                             UserPlanetContainerView(
                                 users: users,
                                 title: title,
-                                initialIndex: index
+                                initialIndex: index,
+                                planetStore: planetStore
                             )
                         }
                     }) {
@@ -50,11 +58,19 @@ struct UsersGridView: View {
                                     .blur(radius: 15)
                                 
                                 if #available(iOS 18.0, *) {
-                                    TDPlanetView(user)
+                                    TDPlanetView(
+                                        user: user,
+                                        isPlanetRevealed: createPlanetBinding(for: user),
+                                        viewModelStore: planetStore
+                                    )
                                         .frame(width: 80, height: 80)
                                         .matchedTransitionSource(id: users[index].id, in: userDetailsNamespace)
                                 } else {
-                                    TDPlanetView(user)
+                                    TDPlanetView(
+                                        user: user,
+                                        isPlanetRevealed: createPlanetBinding(for: user),
+                                        viewModelStore: planetStore
+                                    )
                                         .frame(width: 80, height: 80)
                                 }
                                 
@@ -87,6 +103,14 @@ struct UsersGridView: View {
         }
         .navigationBarBackButtonHidden()
         .padding()
+    }
+    
+    private func createPlanetBinding(for user: User) -> Binding<Bool> {
+        Binding(get: {
+            session.currentUser?.isConnected(to: user) ?? false
+        }) { _ in
+            return
+        }
     }
 }
 

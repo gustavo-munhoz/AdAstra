@@ -17,10 +17,15 @@ struct ScrollSelectorView: View {
     var numUsers : Int
     var users : [User]
     
-    init(value: Binding<Int>, numberOfUsers: Int, users: [User]) {
+    let planetStore: PlanetViewModelStore
+    
+    @EnvironmentObject var session: SessionStore
+    
+    init(value: Binding<Int>, numberOfUsers: Int, users: [User], planetStore: PlanetViewModelStore) {
         self.value = value
         self.numUsers = numberOfUsers
         self.users = users
+        self.planetStore = planetStore
     }
 
     var body: some View {
@@ -41,7 +46,11 @@ struct ScrollSelectorView: View {
                                     )
                                     .blur(radius: 20)
                                 
-                                TDPlanetView(users[i])
+                                TDPlanetView(
+                                    user: users[i],
+                                    isPlanetRevealed: createPlanetBinding(for: users[i]),
+                                    viewModelStore: planetStore
+                                )
                                     .frame(width: 150, height: 180)
                                 
                                 Image(uiImage: users[i].profilePicture)
@@ -83,6 +92,14 @@ struct ScrollSelectorView: View {
         }))
         .scrollIndicators(.hidden)
         .safeAreaPadding(125)
+    }
+    
+    private func createPlanetBinding(for user: User) -> Binding<Bool> {
+        Binding(get: {
+            session.currentUser?.isConnected(to: user) ?? false
+        }) { _ in
+            return
+        }
     }
     
     func scaleCalc(index: Int) -> Double {

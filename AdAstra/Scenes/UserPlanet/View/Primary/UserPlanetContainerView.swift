@@ -13,10 +13,13 @@ struct UserPlanetContainerView: View {
     @State private var selectedIndex: Int = 0
     @Environment(\.dismiss) private var dismiss
     
-    init(users: [User], title: String, initialIndex: Int = 0) {
+    let planetStore: PlanetViewModelStore
+    
+    init(users: [User], title: String, initialIndex: Int = 0, planetStore: PlanetViewModelStore) {
         self.users = users
         self.title = title
         self._selectedIndex = State(initialValue: initialIndex)
+        self.planetStore = planetStore
         
         UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor.white]
         UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor.white]
@@ -43,7 +46,8 @@ struct UserPlanetContainerView: View {
                     ScrollSelectorView(
                         value: $selectedIndex,
                         numberOfUsers: users.count,
-                        users: users
+                        users: users,
+                        planetStore: planetStore
                     )
                     .padding(.top, -150)
                 }

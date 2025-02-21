@@ -27,14 +27,10 @@ struct ScenePlanetView: UIViewRepresentable {
     typealias UIViewType = SCNView
     typealias Context = UIViewRepresentableContext<ScenePlanetView>
     
-    let texture: TextureName
-    let gradient: GradientName
     private let holder: SceneHolder
-
-    init(_ texture: TextureName, _ gradient: GradientName) {
-        self.texture = texture
-        self.gradient = gradient
-        self.holder = SceneHolder(texture: texture, gradient: gradient)
+    
+    init(sceneHolder: SceneHolder) {
+        self.holder = sceneHolder
     }
     
     func makeUIView(context: Context) -> UIViewType {
