@@ -22,31 +22,29 @@ struct UserPlanetContainerView: View {
     }
     
     var body: some View {
-        NavigationStack{
-            ZStack {
-                Image("bg")
-                    .resizable()
-                    .edgesIgnoringSafeArea(.all)
-                    .frame(
-                        width: UIScreen.main.bounds.width,
-                        height: UIScreen.main.bounds.height
+        ZStack {
+            Image("bg")
+                .resizable()
+                .edgesIgnoringSafeArea(.all)
+                .frame(
+                    width: UIScreen.main.bounds.width,
+                    height: UIScreen.main.bounds.height
+                )
+            
+            VStack {
+                if users.isEmpty {
+                    ProgressView()
+                    
+                } else {
+                    UserPlanetView(user: users[selectedIndex])
+                        .id(users[selectedIndex].id)
+                    
+                    ScrollSelectorView(
+                        value: $selectedIndex,
+                        numberOfUsers: users.count,
+                        users: users
                     )
-                
-                VStack {
-                    if users.isEmpty {
-                        ProgressView()
-                        
-                    } else {
-                        UserPlanetView(user: users[selectedIndex])
-                            .id(users[selectedIndex].id)
-                        
-                        ScrollSelectorView(
-                            value: $selectedIndex,
-                            numberOfUsers: users.count,
-                            users: users
-                        )
-                        .padding(.top, -150)
-                    }
+                    .padding(.top, -150)
                 }
             }
         }
