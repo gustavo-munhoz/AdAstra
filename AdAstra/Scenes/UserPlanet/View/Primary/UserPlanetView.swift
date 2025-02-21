@@ -53,9 +53,12 @@ struct UserPlanetView: View {
                 
                 Group {
                     if isUserConnected {
-                        UserCardConnectedView(user: viewModel.user)
-                            .frame(height: 300)
-                            .offset(y: 50)
+                        VStack{
+                            UserCardConnectedView(user: viewModel.user)
+                                .frame(height: 450)
+                                .offset(y: 20)
+                            Spacer()
+                        }
                         
                     } else {
                         UserCardNotConnectedView(

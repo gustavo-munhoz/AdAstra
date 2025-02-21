@@ -11,6 +11,7 @@ struct UserPlanetContainerView: View {
     let users: [User]
     let title: String
     @State private var selectedIndex: Int = 0
+    @Environment(\.dismiss) private var dismiss
     
     init(users: [User], title: String, initialIndex: Int = 0) {
         self.users = users
@@ -48,9 +49,32 @@ struct UserPlanetContainerView: View {
                 }
             }
         }
+        .navigationBarBackButtonHidden(true)
         .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
         .sensoryFeedback(.impact, trigger: selectedIndex)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.black)
+        .toolbar {
+
+            // 2
+            ToolbarItem(placement: .navigationBarLeading) {
+
+                Button {
+                    // 3
+                    dismiss()
+
+                } label: {
+                    // 4
+                    HStack {
+
+                        Image(systemName: "chevron.backward")
+                            .foregroundStyle(.white)
+                        Text("Voltar")
+                            .foregroundStyle(.white)
+                    }
+                }
+            }
+        }
     }
 }
