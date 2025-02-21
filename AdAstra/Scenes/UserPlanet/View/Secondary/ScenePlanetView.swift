@@ -78,12 +78,11 @@ extension ScenePlanetView {
             return cachedImage
         }
         
-        guard let image = UIImage(named: texture.rawValue),
-              let gradientColor = UIColor(named: gradient.rawValue) else {
+        guard let image = UIImage(named: texture.rawValue) else {
             return UIImage()
         }
-        
-        let tinted = image.tinted(with: gradientColor)
+                
+        let tinted = image.tinted(withGradientColors: gradient.gradientColors)
         ImageCache.store(image: tinted, for: texture, gradient: gradient)
         
         return tinted
