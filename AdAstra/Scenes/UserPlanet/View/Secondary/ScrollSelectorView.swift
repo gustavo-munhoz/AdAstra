@@ -14,8 +14,6 @@ struct ScrollSelectorView: View {
     let offsetValue = 40
     let offsetValueImage = 10
     var value: Binding<Int>
-                          
-//    var planetViews: [TDPlanetView]
     var numUsers : Int
     var users : [User]
     
@@ -29,40 +27,50 @@ struct ScrollSelectorView: View {
         ScrollView(.horizontal) {
             LazyHStack {
                 ForEach(0..<numUsers, id: \.self) { i in
-                    ZStack(alignment: .center){
-                        Circle()
-                            .frame(width: 120, height: 120)
-                            .border(.red)
-                            .scaleEffect(scaleCalc(index: i))
-                            .offset(y: -offsetCalc(index:i))
-                            .animation(.default, value: value.wrappedValue)
-                            .foregroundStyle(opacityCalc(index: i, gradient: users[i].planet.gradientName))
-                            .blur(radius: 20)
-                        
-                        TDPlanetView(users[i])
-                            .frame(width: 150, height: 180)
-                            .scaleEffect(scaleCalc(index: i))
-                            .offset(y: -offsetCalc(index:i))
-                            .animation(.default, value: value.wrappedValue)
-                        
-                        Image(uiImage: users[i].profilePicture)
-                            .resizable()
-                            .frame(width: 60, height: 60)
-                            .clipShape(Circle())
-                            .background {
+                    ZStack {
+                        VStack(spacing: 0) {
+                            ZStack {
                                 Circle()
-                                    .stroke(Color(.sp), lineWidth: 1)
+                                    .frame(width: 120, height: 120)
+                                    .border(.red)
+                                    .foregroundStyle(
+                                        opacityCalc(
+                                            index: i,
+                                            gradient: users[i].planet.gradientName
+                                        )
+                                    )
+                                    .blur(radius: 20)
+                                
+                                TDPlanetView(users[i])
+                                    .frame(width: 150, height: 180)
+                                
+                                Image(uiImage: users[i].profilePicture)
+                                    .resizable()
+                                    .frame(width: 60, height: 60)
+                                    .clipShape(Circle())
+                                    .background {
+                                        Circle()
+                                            .stroke(
+                                                LinearGradient(
+                                                    colors: [.btf1, .btf2],
+                                                    startPoint: .topLeading,
+                                                    endPoint: .bottomTrailing
+                                                ),
+                                                lineWidth: 4
+                                            )
+                                    }
+                                    .offset(x: 0, y: 50)
                             }
-                            .scaleEffect(scaleCalcImage(index: i))
-                            .offset(y: -offsetCalc(index:i) + 50)
-                            .animation(.default, value: value.wrappedValue)
+                        }
+                        .scaleEffect(scaleCalc(index: i))
+                        .offset(y: -offsetCalc(index: i))
+                        .animation(.default, value: value.wrappedValue)
                     }
                 }
             }
             .offset(y: -30)
             .frame(height: 230)
             .scrollTargetLayout()
-//            .border(.red, width: 10)
             .padding(.top, 24)
         }
         .offset(y: 0)
@@ -75,10 +83,6 @@ struct ScrollSelectorView: View {
         }))
         .scrollIndicators(.hidden)
         .safeAreaPadding(125)
-//        .overlay(alignment: .center, content: {
-//            Rectangle()
-//                .frame(width: 1, height: 100, alignment: .center)
-//        })
     }
     
     func scaleCalc(index: Int) -> Double {
@@ -87,7 +91,7 @@ struct ScrollSelectorView: View {
         if scaleFinal < 0.35 {
             scaleFinal = 0.35
         }
-        return scaleFinal // Ensures it gets smaller the further it is
+        return scaleFinal
     }
     func scaleCalcImage(index: Int) -> Double {
         let distance = abs(Double(index) - Double(value.wrappedValue))
@@ -95,21 +99,22 @@ struct ScrollSelectorView: View {
         if scaleFinal < 0.35 {
             scaleFinal = 0.35
         }
-        return scaleFinal // Ensures it gets smaller the further it is
+        return scaleFinal
     }
     
     func offsetCalc(index: Int) -> Double {
         let distance = abs(Double(index) - Double(value.wrappedValue))
-        return (0.8 - (distance * Double(offsetValue))) // Ensures it gets smaller the further it is
+        return (0.8 - (distance * Double(offsetValue)))
     }
     
     func offsetCalcImage(index: Int) -> Double {
         let distance = abs(Double(index) - Double(value.wrappedValue))
-        return (1.5 - (distance * Double(offsetValueImage))) // Ensures it gets smaller the further it is
+        return (1.5 - (distance * Double(offsetValueImage)))
     }
     
     func opacityCalc(index: Int, gradient: GradientName) -> Color {
-        return index == value.wrappedValue ? Color(uiColor: UIColor(named: gradient.rawValue)!) : Color(uiColor: UIColor(named: gradient.rawValue)!).opacity(0.4) // Ensures it gets smaller the further it is
+        Color(uiColor: UIColor(named: gradient.rawValue)!)
+            .opacity(index == value.wrappedValue ? 1 : 0.4)
     }
 }
 
