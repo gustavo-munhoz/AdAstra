@@ -25,7 +25,7 @@ class StorageImageService: ImageService {
         let storageRef = getStorageReference(for: docId)
         
         let metadata = StorageMetadata()
-        metadata.contentType = "image/jpeg"
+        metadata.contentType = "image/png"
         
         _ = try await storageRef.putDataAsync(
             imageData,
@@ -38,7 +38,7 @@ class StorageImageService: ImageService {
     func fetchImage(forDocId docId: String) async throws -> UIImage {
         let storageRef = getStorageReference(for: docId)
         
-        let maxDownloadSize: Int64 = 1024 * 1024 * 5
+        let maxDownloadSize: Int64 = 1024 * 1024 * 10
         let data = try await storageRef.data(maxSize: maxDownloadSize)
         
         guard let image = UIImage(data: data) else {
@@ -53,6 +53,6 @@ class StorageImageService: ImageService {
             .reference()
             .child("profile_pictures")
             .child(docId)
-            .child("profile.jpeg")
+            .child("profile.png")
     }
 }
