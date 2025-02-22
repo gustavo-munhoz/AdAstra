@@ -38,7 +38,7 @@ class StorageImageService: ImageService {
     func fetchImage(forDocId docId: String) async throws -> UIImage {
         let storageRef = getStorageReference(for: docId)
         
-        let maxDownloadSize: Int64 = 1024 * 1024 * 5
+        let maxDownloadSize: Int64 = 1024 * 1024 * 10
         let data = try await storageRef.data(maxSize: maxDownloadSize)
         
         guard let image = UIImage(data: data) else {
