@@ -25,7 +25,7 @@ class StorageImageService: ImageService {
         let storageRef = getStorageReference(for: docId)
         
         let metadata = StorageMetadata()
-        metadata.contentType = "image/jpeg"
+        metadata.contentType = "image/png"
         
         _ = try await storageRef.putDataAsync(
             imageData,
@@ -53,6 +53,6 @@ class StorageImageService: ImageService {
             .reference()
             .child("profile_pictures")
             .child(docId)
-            .child("profile.jpeg")
+            .child("profile.png")
     }
 }
