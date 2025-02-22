@@ -116,8 +116,8 @@ def save_image_locally(image_bytes: bytes, output_filename: str) -> None:
     print(f"Image saved at: {output_path}")
 
 
-def save_user_profile_picture(doc_id: str, url: str):
+def save_user_profile_picture(doc_id: str, url: str, user_name: str):
     image_bytes = download_profile_picture(url)
     cropped_image = crop_face_to_circle_from_bytes(image_bytes)
     # save_image_locally(cropped_image, f"{doc_id}.png")
-    upload_profile_picture(doc_id, cropped_image)
+    upload_profile_picture(doc_id, cropped_image, user_name)
