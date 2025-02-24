@@ -20,7 +20,7 @@ import Foundation
         }
     }
     
-    @Published var isLoadingCurrentUser: Bool = false
+    @Published var isLoadingCurrentUser: Bool = true
     
     var isSignedIn: Bool {
         currentUser != nil
@@ -29,7 +29,10 @@ import Foundation
     init() {
         guard let connectionPassword = UserDefaults.standard.string(
             forKey: "connectionPassword"
-        ) else { return }
+        ) else {
+            isLoadingCurrentUser = false
+            return
+        }
         
         Task {
             do {
