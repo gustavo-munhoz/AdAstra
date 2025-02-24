@@ -69,6 +69,13 @@ struct UserPlanetView: View {
                         .frame(width: 300, height: 450)
                     }
                 }
+                .onChange(of: viewModel.errorMessage) { _, newError in
+                    guard newError != nil else { return }
+                    
+                    let generator = UINotificationFeedbackGenerator()
+                    generator.prepare()
+                    generator.notificationOccurred(.error)
+                }
             }
             .frame(width: 350, height: 500)
             .rotation3DEffect(
@@ -87,6 +94,18 @@ struct UserPlanetView: View {
                     isCardFlipped = isUserConnected
                 }
             }
+            .alert(
+                "Error!",
+                isPresented: Binding(
+                    get: { viewModel.errorMessage != nil },
+                    set: { if !$0 { viewModel.errorMessage = nil }}
+                ),
+                presenting: viewModel.errorMessage
+            ) { errMsg in
+                Button("OK") { viewModel.errorMessage = nil }
+            } message: { errMsg in
+                Text(errMsg)
+            }
             
             Spacer()
         }
@@ -98,6 +117,8 @@ struct UserPlanetView: View {
             try viewModel.connectToUser(session: session)
             
         } catch {
+            viewModel.errorMessage = error.localizedDescription
+            
             print(error.localizedDescription)
         }
     }

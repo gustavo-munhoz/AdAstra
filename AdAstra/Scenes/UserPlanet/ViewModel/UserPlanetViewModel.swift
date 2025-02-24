@@ -7,14 +7,19 @@
 
 import Foundation
 
-enum UserConnectionError: Error {
+enum UserConnectionError: Error, LocalizedError {
     case incorrectKeyword
+    
+    var errorDescription: String? {
+        NSLocalizedString("Incorrect keyword!", comment: "")
+    }
 }
 
 class UserPlanetViewModel: ObservableObject {
     
     @Published var user: User
     @Published var keywordInput: String = ""
+    @Published var errorMessage: String? = nil
     
     init(user: User) {
         self.user = user
