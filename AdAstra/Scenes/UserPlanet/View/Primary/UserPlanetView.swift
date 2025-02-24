@@ -75,6 +75,7 @@ struct UserPlanetView: View {
                     generator.prepare()
                     generator.notificationOccurred(.error)
                 }
+                .clipped()
             }
             .frame(width: 350, height: 500)
             .rotation3DEffect(

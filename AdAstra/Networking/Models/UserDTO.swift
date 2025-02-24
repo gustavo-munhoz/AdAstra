@@ -33,7 +33,7 @@ struct UserDTO: Codable {
     let course: String
     let shift: String
     let role: String
-    let interests: Set<String>
+    let interests: String
     let pronouns: String
     let connectionPassword: String
     let connectionCount: Int

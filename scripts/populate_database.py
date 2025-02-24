@@ -33,11 +33,11 @@ def map_row_to_user(row, headers: list) -> (dict, str):
     gradient_en = map_gradient_name(gradient_pt)
     texture_en = map_texture_name(texture_pt)
 
-    profile_picture_url = data.get("Insira aqui uma foto que você usaria como foto de perfil").strip()
+    profile_picture_url = data.get("Insira aqui uma foto sua (com seu rosto) que você usaria como foto de perfil", "").strip()
 
     course = data.get("Qual sua formação?", "").strip()
-    interests_raw = data.get("Quais são seus interesses?", "")
-    interests = {i.strip() for i in interests_raw.split(',') if i.strip()}
+    interests = data.get("Quais são seus interesses?", "").strip()
+    
     secret_fact = data.get("Compartilhe um fato curioso seu.", "").strip()
     connection_password = data.get("Escolha uma palavra-chave", "").strip().lower()
     
@@ -56,7 +56,7 @@ def map_row_to_user(row, headers: list) -> (dict, str):
         "course": course,
         "shift": shift_en,
         "role": role,
-        "interests": list(interests),
+        "interests": interests,
         "pronouns": pronouns,
         "connectionPassword": connection_password,
         "connectionCount": connection_count,
