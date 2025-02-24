@@ -14,25 +14,16 @@ struct UsersListView: View {
     
     var body: some View {
         ZStack {
-            Image("bg")
-                .resizable()
-                .edgesIgnoringSafeArea(.all)
-                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-            
-            VStack {
-                ScrollView {
-                    LogoView()
-                        .scaleEffect(CGSize(width: 0.5, height: 0.5))
-                        .padding(.vertical)
-                    
-                    if viewModel.isFetchingUsers {
-                        Text("Loading...")
-                            .accentColor(.white)
-                            .fontWeight(.medium)
-                            .fontWidth(.expanded)
-                            .foregroundStyle(.white)
+            if viewModel.isFetchingUsers {
+                LoadingView(loadingText: "Loading users...")
+                    .transition(.opacity)
+            } else {
+                VStack {
+                    ScrollView {
+                        LogoView()
+                            .scaleEffect(0.5)
+                            .padding(.vertical)
                         
-                    } else {
                         DisclosureView(
                             title: "Manhã",
                             users: viewModel.morningStudents
@@ -52,21 +43,29 @@ struct UsersListView: View {
                         Spacer()
                     }
                 }
+                .transition(.opacity)
             }
         }
+        .animation(.easeInOut, value: viewModel.isFetchingUsers)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
         .toolbar {
-            Button("Sign out") {
-                viewModel.signOut(with: session)
+            if !viewModel.isFetchingUsers {
+                Button("Sign out") {
+                    viewModel.signOut(with: session)
+                }
+                .accentColor(.white)
+                .fontWeight(.medium)
+                .fontWidth(.expanded)
+                .foregroundStyle(.white)
             }
-            .accentColor(.white)
-            .fontWeight(.medium)
-            .fontWidth(.expanded)
-            .foregroundStyle(.white)
+            
         }
         .navigationBarBackButtonHidden()
+        .background {
+            Image("bg")
+                .resizable()
+                .edgesIgnoringSafeArea(.all)
+                .aspectRatio(contentMode: .fill)
+        }
     }
-}
-
-#Preview {
-    UsersListView()
 }

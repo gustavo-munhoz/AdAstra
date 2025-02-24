@@ -15,11 +15,6 @@ struct SignInView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                Image("bg")
-                    .resizable()
-                    .edgesIgnoringSafeArea(.all)
-                    .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
-                
                 VStack(alignment: .center) {
                     LogoView()
                     
@@ -123,11 +118,17 @@ struct SignInView: View {
                         },
                         onCancelled: {
                             viewModel.foundUser = nil
-                    })
+                        })
                     .transition(.scale.combined(with: .blurReplace))
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .background {
+                Image("bg")
+                    .resizable()
+                    .edgesIgnoringSafeArea(.all)
+                    .aspectRatio(contentMode: .fill)
+            }
         }
     }
 }
