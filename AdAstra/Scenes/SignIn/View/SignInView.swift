@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Pow
 
 struct SignInView: View {
     @StateObject var viewModel = SignInViewModel()
@@ -24,7 +25,7 @@ struct SignInView: View {
                     TextField(
                         "",
                         text: $viewModel.userConnectionPassword,
-                        prompt: Text("Insira sua palavra-chave aqui!")
+                        prompt: Text("Type your keyword here!")
                             .foregroundStyle(Color(red: 0.8, green: 0.72, blue: 0.88))
                     )
                     .focused($isLabelFocused)
@@ -48,51 +49,32 @@ struct SignInView: View {
                             )
                     }
                     .multilineTextAlignment(.center)
+                    .onSubmit {
+                        isLabelFocused = false
+                        viewModel.fetchUser()
+                    }
+                    .submitLabel(.search)
                     
                     Spacer()
                         .frame(maxHeight: 20)
                     
-                    Button {
-                        isLabelFocused = false
-                        viewModel.fetchUser()
-                    } label: {
-                        Group {
-                            if viewModel.isFetchingUser {
-                                HStack {
-                                    ProgressView()
-                                        .progressViewStyle(CircularProgressViewStyle())
-                                    
-                                    Text("Entrando...")
-                                        .foregroundStyle(.white)
-                                        .font(.system(size: 14))
-                                        .fontWeight(.medium)
-                                        .fontWidth(.expanded)
-                                }
-                            } else {
-                                Text("Entrar")
-                                    .foregroundStyle(.white)
-                                    .font(.system(size: 14))
-                                    .fontWeight(.medium)
-                                    .fontWidth(.expanded)
-                            }
-                        }
-                        .frame(width: 180, height: 50)
-                        .padding(.vertical, 4)
-                        .padding(.horizontal, 12)
-                    }
-                    .background {
-                        RoundedRectangle(cornerRadius: 128)
-                            .fill(
-                                LinearGradient(
-                                    colors: [.btf1, .btf2],
-                                    startPoint: .topLeading,
-                                    endPoint: .bottomTrailing
-                                )
-                            )
-                    }
-                    .disabled(
-                        viewModel.isFetchingUser || viewModel.foundUser != nil
+                    GradientButton(
+                        title: "Sign in",
+                        loadingTitle: "Signing in...",
+                        isLoading: viewModel.isFetchingUser,
+                        action: {
+                            isLabelFocused = false
+                            viewModel.fetchUser()
+                        },
+                        disabled: viewModel.userConnectionPassword.isEmpty || viewModel.isFetchingUser || viewModel.foundUser != nil
                     )
+                    .onChange(of: viewModel.errorMessage) { _, newError in
+                        guard newError != nil else { return }
+                        
+                        let generator = UINotificationFeedbackGenerator()
+                        generator.prepare()
+                        generator.notificationOccurred(.error)
+                    }
                 }
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
                 .blur(radius: viewModel.foundUser != nil ? 5 : 0)
@@ -119,7 +101,8 @@ struct SignInView: View {
                         onCancelled: {
                             viewModel.foundUser = nil
                         })
-                    .transition(.scale.combined(with: .blurReplace))
+                    .transition(.movingParts.blur.combined(with: .scale))
+                    .zIndex(5)
                 }
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
