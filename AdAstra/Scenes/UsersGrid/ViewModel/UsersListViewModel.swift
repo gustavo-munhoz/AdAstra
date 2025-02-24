@@ -11,7 +11,7 @@ import UIKit
 class UsersListViewModel: ObservableObject {
     
     @Published var users: [User] = []
-    @Published var isFetchingUsers: Bool = false
+    @Published var isFetchingUsers: Bool = true
     
     var morningStudents: [User] {
         users
