@@ -29,19 +29,19 @@ struct AdAstraApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Group {
-                ZStack{
-                    if session.isLoadingCurrentUser {
-                        ProgressView()
-                        
-                    } else if session.isSignedIn {
-                        NavigationStack {
-                            UsersListView()
-                        }
-                        
-                    } else {
-                        SignInView()
+            ZStack {
+                if session.isLoadingCurrentUser {
+                    LoadingView(loadingText: "Initializing...")
+                    
+                } else if session.isSignedIn {
+                    NavigationStack {
+                        UsersListView()
                     }
+                    .transition(.opacity)
+                    
+                } else {
+                    SignInView()
+                        .transition(.opacity)
                 }
             }
             .environmentObject(session)
