@@ -23,7 +23,7 @@ struct User: Identifiable, Equatable {
     let course: String
     let shift: Shift
     let role: Role
-    let interests: Set<String>
+    let interests: String
     let pronouns: String
     let connectionPassword: String
     let connectionCount: Int
@@ -94,7 +94,7 @@ extension User {
             course: "test",            
             shift: .afternoon,
             role: .mentor,
-            interests: ["test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test, test"],
+            interests: "test",
             pronouns: "test",
             connectionPassword: "test",
             connectionCount: Int.random(in: 0..<100),
