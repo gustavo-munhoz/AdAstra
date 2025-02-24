@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct UsersGridView: View {
-        
+    
     let users: [User]
     let title: String
     
@@ -20,7 +20,7 @@ struct UsersGridView: View {
     
     @State var angle = 0.0
     @Namespace private var userDetailsNamespace
-        
+    
     @EnvironmentObject var session: SessionStore
     
     @StateObject private var planetStore = PlanetViewModelStore()
@@ -65,8 +65,8 @@ struct UsersGridView: View {
                                         isPlanetRevealed: isPlanetRevealedBinding,
                                         viewModelStore: planetStore
                                     )
-                                        .frame(width: 80, height: 80)
-                                        .matchedTransitionSource(id: users[index].id, in: userDetailsNamespace)
+                                    .frame(width: 80, height: 80)
+                                    .matchedTransitionSource(id: users[index].id, in: userDetailsNamespace)
                                 } else {
                                     TDPlanetView(
                                         user: user,
@@ -92,7 +92,7 @@ struct UsersGridView: View {
                                             }
                                     }
                                     .offset(x: 20, y: 20)
-
+                                
                             }
                             
                             Text(user.name)

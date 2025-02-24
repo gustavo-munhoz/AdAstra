@@ -20,16 +20,24 @@ struct ScrollSelectorView: View {
     
     var users : [User]
     
+    var onPlanetLongPress: (User) -> Void
+    
     let planetStore: PlanetViewModelStore
     
     @EnvironmentObject var session: SessionStore
     
-    init(value: Binding<Int>, users: [User], planetStore: PlanetViewModelStore) {
+    init(
+        value: Binding<Int>,
+        users: [User],
+        planetStore: PlanetViewModelStore,
+        onPlanetLongPress: @escaping (User) -> Void
+    ) {
         self.value = value
         self.users = users
         self.planetStore = planetStore
+        self.onPlanetLongPress = onPlanetLongPress
     }
-
+    
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack {
@@ -57,7 +65,7 @@ struct ScrollSelectorView: View {
                                     isPlanetRevealed: isPlanetRevealedBinding,
                                     viewModelStore: planetStore
                                 )
-                                    .frame(width: 150, height: 180)
+                                .frame(width: 150, height: 180)
                                 
                                 Image(uiImage: users[i].profilePicture)
                                     .resizable()
@@ -80,6 +88,12 @@ struct ScrollSelectorView: View {
                         .scaleEffect(scaleCalc(index: i))
                         .offset(y: -offsetCalc(index: i))
                         .animation(.default, value: value.wrappedValue)
+                    }
+                    .onLongPressGesture {
+                        let generator = UIImpactFeedbackGenerator(style: .medium)
+                        generator.prepare()
+                        generator.impactOccurred()
+                        onPlanetLongPress(users[i])
                     }
                 }
             }
