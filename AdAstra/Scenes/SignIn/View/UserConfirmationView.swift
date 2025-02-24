@@ -13,9 +13,11 @@ struct UserConfirmationView: View {
     var onUserConfirmed: () -> Void
     var onCancelled: () -> Void
     
+    @EnvironmentObject var session: SessionStore
+    
     var body: some View {
         VStack{
-            Text("É você?")
+            Text("Is this you?")
                 .foregroundStyle(.white)
                 .font(.system(size: 24))
                 .fontWeight(.medium)
@@ -47,21 +49,14 @@ struct UserConfirmationView: View {
                 NavigationLink {
                     UsersListView()
                 } label: {
-                    Text("Sou eu")
+                    Text("That's me!")
                         .frame(width: 270, height: 60)
                         .foregroundStyle(.white)
                         .font(.system(size: 14))
                         .fontWeight(.medium)
                         .fontWidth(.expanded)
                         .background {
-                            RoundedRectangle(cornerRadius: 128)
-                                .fill(
-                                    LinearGradient(
-                                        colors: [.btf1, .btf2],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    )
-                                )
+                            GradientRectangle()
                         }
                         .simultaneousGesture(TapGesture().onEnded({
                             withAnimation {
@@ -69,31 +64,25 @@ struct UserConfirmationView: View {
                             }
                         }))
                 }
+                .buttonStyle(PushDownButtonStyle())
+                .sensoryFeedback(.success, trigger: session.currentUser)
                 
                 Button {
                     withAnimation {
                         onCancelled()
                     }
                 } label: {
-                    Text("Cancelar")
+                    Text("Cancel")
                         .frame(width: 270, height: 60)
                         .foregroundStyle(.white)
                         .font(.system(size: 14))
                         .fontWeight(.medium)
                         .fontWidth(.expanded)
                         .background {
-                            RoundedRectangle(cornerRadius: 128)
-                                .fill(.textfield.opacity(0.1))
-                                .stroke(
-                                    LinearGradient(
-                                        colors: [.btf1, .btf2],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    ),
-                                    lineWidth: 1
-                                )
+                            GradientRectangleStroke()
                         }
                 }
+                .buttonStyle(PushDownButtonStyle())
             }
         }
         .frame(width: 350, height: 550)
