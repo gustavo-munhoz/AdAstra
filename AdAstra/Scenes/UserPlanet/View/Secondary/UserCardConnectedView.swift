@@ -35,140 +35,132 @@ struct UserCardConnectedView: View {
 //                .shadow(radius: 10)
 //            
 //            if isFlipped{
-                VStack{
-                    HStack{
-                        Text(user.name)
-                            .foregroundStyle(.white)
-                            .font(.system(size: 24))
-                            .fontWeight(.semibold)
-                            .fontWidth(.expanded)
+        ScrollView(.vertical){
+                    VStack{
+                        HStack{
+                            Text(user.name)
+                                .foregroundStyle(.white)
+                                .font(.system(size: 24))
+                                .fontWeight(.semibold)
+                                .fontWidth(.expanded)
+                            Spacer()
+                        }
+                        .multilineTextAlignment(.leading)
+                        
                         Spacer()
-                    }
-                    .multilineTextAlignment(.leading)
-                    
-                    Spacer()
-                        .frame(maxHeight: 12)
-                    
-                    //Tags
-                    ScrollView(.horizontal){
-                        HStack(spacing: 8){
-                            ChipTextView(text: user.pronouns)
-                            ChipTextView(text: "\(user.age) anos") //user.age
-                            ChipTextView(text: user.role.localized) //user.role
-                            ChipTextView(text: user.shift.localized)
+                            .frame(maxHeight: 12)
+                        
+                        //Tags
+                        ScrollView(.horizontal){
+                            HStack(spacing: 8){
+                                ChipTextView(text: user.pronouns)
+                                ChipTextView(text: "\(user.age) anos") //user.age
+                                ChipTextView(text: user.role.localized) //user.role
+                                ChipTextView(text: user.shift.localized)
+                            }
                         }
-                    }
-                    .scrollIndicators(.hidden)
-                    
-                    Spacer()
-                        .frame(maxHeight: 18)
-                    
-                    VStack(spacing: 8){
-                        HStack(spacing: 4){
-                            Text("⭐")
-                                .font(.system(size: 12))
+                        .scrollIndicators(.hidden)
+                        
+                        Spacer()
+                            .frame(maxHeight: 18)
+                        
+                        VStack(spacing: 8){
+                            HStack(spacing: 4){
+                                Text("💛️")
+                                    .font(.system(size: 12))
+                                
+                                Text("Interesses")
+                                    .foregroundStyle(.logo)
+                                    .font(.system(size: 12))
+                                    .fontWeight(.medium)
+                                    .fontWidth(.expanded)
+                                
+                                Spacer()
+                            }
                             
-                            Text("Curiosidade")
-                                .foregroundStyle(.logo)
-                                .font(.system(size: 12))
-                                .fontWeight(.medium)
-                                .fontWidth(.expanded)
-                            
-                            Spacer()
+                            HStack{
+                                Text(interests())
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 14))
+                                    .fontWeight(.regular)
+                                Spacer()
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(12)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(.sp.opacity(0.1))
+                            )
                         }
                         
-                        HStack{
-                            Text(user.secretFact)
-                                .foregroundStyle(.white)
-                                .font(.system(size: 14))
-                                .fontWeight(.regular)
-                            Spacer()
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding(12)
-                        .background(
-                            RoundedRectangle(cornerRadius: 20)
-                                .fill(.dp.opacity(0.1))
-                                .stroke(
-                                    LinearGradient(
-                                        colors: [.btf1, .btf2],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    ),
-                                    lineWidth: 1
-                                )
-                        )
-                    }
-                    
-                    Spacer()
-                        .frame(maxHeight: 18)
-                    
-                    VStack(spacing: 8){
-                        HStack(spacing: 4){
-                            Text("📚")
-                                .font(.system(size: 12))
+                        Spacer()
+                            .frame(maxHeight: 18)
+                        
+                        VStack(spacing: 8){
+                            HStack(spacing: 4){
+                                Text("⭐")
+                                    .font(.system(size: 12))
+                                
+                                Text("Curiosidade")
+                                    .foregroundStyle(.logo)
+                                    .font(.system(size: 12))
+                                    .fontWeight(.medium)
+                                    .fontWidth(.expanded)
+                                
+                                Spacer()
+                            }
                             
-                            Text("Formação")
-                                .foregroundStyle(.logo)
-                                .font(.system(size: 12))
-                                .fontWeight(.medium)
-                                .fontWidth(.expanded)
-                            
-                            Spacer()
+                            HStack{
+                                Text(user.secretFact)
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 14))
+                                    .fontWeight(.regular)
+                                Spacer()
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(12)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(.sp.opacity(0.1))
+                            )
                         }
                         
-                        HStack{
-                            Text(user.course)
-                                .foregroundStyle(.white)
-                                .font(.system(size: 14))
-                                .fontWeight(.regular)
-                            Spacer()
-                        }
-                        .frame(maxWidth: .infinity)
-                        .padding(12)
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(.sp.opacity(0.1))
-                        )
-                    }
-                    
-                    Spacer()
-                        .frame(maxHeight: 18)
-                    
-                    VStack(spacing: 8){
-                        HStack(spacing: 4){
-                            Text("💛️")
-                                .font(.system(size: 12))
-                            
-                            Text("Interesses")
-                                .foregroundStyle(.logo)
-                                .font(.system(size: 12))
-                                .fontWeight(.medium)
-                                .fontWidth(.expanded)
-                            
-                            Spacer()
-                        }
+                        Spacer()
+                            .frame(maxHeight: 18)
                         
-                        HStack{
-                            Text(interests())
-                                .foregroundStyle(.white)
-                                .font(.system(size: 14))
-                                .fontWeight(.regular)
-                            Spacer()
+                        VStack(spacing: 8){
+                            HStack(spacing: 4){
+                                Text("📚")
+                                    .font(.system(size: 12))
+                                
+                                Text("Formação")
+                                    .foregroundStyle(.logo)
+                                    .font(.system(size: 12))
+                                    .fontWeight(.medium)
+                                    .fontWidth(.expanded)
+                                
+                                Spacer()
+                            }
+                            
+                            HStack{
+                                Text(user.course)
+                                    .foregroundStyle(.white)
+                                    .font(.system(size: 14))
+                                    .fontWeight(.regular)
+                                Spacer()
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(12)
+                            .background(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .fill(.sp.opacity(0.1))
+                            )
                         }
-                        .frame(maxWidth: .infinity)
-                        .padding(12)
-                        .background(
-                            RoundedRectangle(cornerRadius: 12)
-                                .fill(.sp.opacity(0.1))
-                        )
                     }
-                    
-                    Spacer()
+                    .frame(width: 300)
+                    .scaleEffect(x: -1.0)
                 }
-                .frame(width: 300, height: 450)
-                .scaleEffect(x: -1.0)
-//                
+//
 //            } else {
 //                UserCardNotConnectedView(user: user)
 //                    .frame(width: 300, height: 450)
