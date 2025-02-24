@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Pow
 
 struct UserPlanetContainerView: View {
     let users: [User]
@@ -14,6 +15,8 @@ struct UserPlanetContainerView: View {
     @Environment(\.dismiss) private var dismiss
     
     let planetStore: PlanetViewModelStore
+    
+    @State private var zoomedUser: User?
     
     init(users: [User], title: String, initialIndex: Int = 0, planetStore: PlanetViewModelStore) {
         self.users = users
@@ -44,12 +47,22 @@ struct UserPlanetContainerView: View {
                         .id(users[selectedIndex].id)
                     
                     ScrollSelectorView(
-                        value: $selectedIndex,                        
+                        value: $selectedIndex,
                         users: users,
-                        planetStore: planetStore
+                        planetStore: planetStore,
+                        onPlanetLongPress: presentZoomedUser(_:)
                     )
                     .padding(.top, -150)
                 }
+            }
+            
+            if let zoomedUser {
+                ZoomedUserView(
+                    user: zoomedUser,
+                    onClosePressed: dismissZoomedUser
+                )
+                .transition(.movingParts.blur.combined(with: .scale))
+                .zIndex(3)
             }
         }
         .navigationBarBackButtonHidden(true)
@@ -59,18 +72,18 @@ struct UserPlanetContainerView: View {
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.black)
         .toolbar {
-
+            
             // 2
             ToolbarItem(placement: .navigationBarLeading) {
-
+                
                 Button {
                     // 3
                     dismiss()
-
+                    
                 } label: {
                     // 4
                     HStack {
-
+                        
                         Image(systemName: "chevron.backward")
                             .foregroundStyle(.white)
                         Text("Voltar")
@@ -79,5 +92,13 @@ struct UserPlanetContainerView: View {
                 }
             }
         }
+    }
+    
+    private func presentZoomedUser(_ user: User) {
+        withAnimation { zoomedUser = user }
+    }
+    
+    private func dismissZoomedUser() {
+        withAnimation { zoomedUser = nil }
     }
 }

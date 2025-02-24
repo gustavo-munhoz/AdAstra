@@ -45,25 +45,19 @@
     "astra" : {
 
     },
-    "Cancelar" : {
+    "Cancel" : {
 
     },
-    "Conectando..." : {
+    "Close" : {
 
     },
-    "Conectar-se" : {
+    "Connect" : {
 
     },
     "Curiosidade" : {
 
     },
-    "É você?" : {
-
-    },
-    "Entrando..." : {
-
-    },
-    "Entrar" : {
+    "Enter the user's keyword here" : {
 
     },
     "Error!" : {
@@ -75,13 +69,13 @@
     "Formação" : {
 
     },
-    "Insira a palavra-chave aqui" : {
-
-    },
-    "Insira sua palavra-chave aqui!" : {
+    "Incorrect keyword!" : {
 
     },
     "Interesses" : {
+
+    },
+    "Is this you?" : {
 
     },
     "mentor" : {
@@ -123,9 +117,6 @@
     "Sign out" : {
 
     },
-    "Sou eu" : {
-
-    },
     "student" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -136,6 +127,12 @@
           }
         }
       }
+    },
+    "That's me!" : {
+
+    },
+    "Type your keyword here!" : {
+
     },
     "Voltar" : {
 

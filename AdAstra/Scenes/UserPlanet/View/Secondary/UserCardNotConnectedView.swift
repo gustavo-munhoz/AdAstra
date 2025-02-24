@@ -22,6 +22,8 @@ struct UserCardNotConnectedView: View {
     
     @FocusState private var isLabelFocused: Bool
     
+    @EnvironmentObject var session: SessionStore
+    
     var body: some View {
         ZStack {
             VStack{
@@ -55,7 +57,7 @@ struct UserCardNotConnectedView: View {
                 TextField(
                     "",
                     text: $keywordInput,
-                    prompt: Text("Insira a palavra-chave aqui")
+                    prompt: Text("Enter the user's keyword here")
                         .foregroundStyle(Color(red: 0.8, green: 0.72, blue: 0.88))
                 )
                     .focused($isLabelFocused)
@@ -79,46 +81,34 @@ struct UserCardNotConnectedView: View {
                             )
                     }
                     .multilineTextAlignment(.center)
+                    .onSubmit {
+                        isLabelFocused = false
+                        onConnectPressed()
+                    }
+                    .submitLabel(.send)
                 
                 Spacer()
                     .frame(maxHeight: 20)
                 
                 Button {
                     isLabelFocused = false
-                    //viewModel.makeconnection()
                     onConnectPressed()
                 } label: {
                     Group {
-                        if false { //isConnectingUser
-                            HStack {
-                                ProgressView()
-                                    .progressViewStyle(CircularProgressViewStyle())
-                                
-                                Text("Conectando...")
-                                    .foregroundStyle(.white)
-                                    .font(.system(size: 14))
-                                    .fontWeight(.medium)
-                                    .fontWidth(.expanded)
-                            }
-                        } else {
-                            Text("Conectar-se")
-                                .foregroundStyle(.white)
-                                .font(.system(size: 14))
-                                .fontWeight(.medium)
-                                .fontWidth(.expanded)
-                        }
+                        Text("Connect")
+                            .foregroundStyle(.white)
+                            .font(.system(size: 14))
+                            .fontWeight(.medium)
+                            .fontWidth(.expanded)
                     }
                     .frame(width: 180, height: 50)
                     .padding(.vertical, 4)
                     .padding(.horizontal, 12)
+                    .background { GradientRectangle() }
                 }
-                .background {
-                    RoundedRectangle(cornerRadius: 128)
-                        .fill(LinearGradient(colors: [.btf1, .btf2], startPoint: .topLeading, endPoint: .bottomTrailing))
-                }
-                .disabled(
-                    keywordInput.isEmpty
-                )
+                .disabled(keywordInput.isEmpty)
+                .buttonStyle(PushDownButtonStyle())
+                .sensoryFeedback(.success, trigger: session.currentUser?.connectionCount)
                 
                 Spacer()
             }
@@ -129,7 +119,3 @@ struct UserCardNotConnectedView: View {
         .cornerRadius(20)
     }
 }
-//
-//#Preview {
-//    UserCardConnectedView(user: .mock)
-//}

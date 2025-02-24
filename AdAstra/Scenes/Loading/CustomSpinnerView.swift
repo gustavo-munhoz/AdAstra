@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CustomSpinnerView: View {
     var loadingText: String? = nil
+    var size: CGFloat = 28
 
     @State private var startTrim: CGFloat = 0.0
     @State private var endTrim: CGFloat = 0.1
@@ -19,7 +20,7 @@ struct CustomSpinnerView: View {
             Circle()
                 .trim(from: startTrim, to: endTrim)
                 .stroke(.gradientWhite1, style: StrokeStyle(lineWidth: 4, lineCap: .round))
-                .frame(width: 28, height: 28)
+                .frame(width: size, height: size)
                 .rotationEffect(.degrees(rotation))
                 .onAppear {
                     withAnimation(Animation.linear(duration: 1.5).repeatForever(autoreverses: false)) {
