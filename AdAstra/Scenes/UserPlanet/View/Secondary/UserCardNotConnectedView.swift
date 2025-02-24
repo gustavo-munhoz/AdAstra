@@ -58,10 +58,11 @@ struct UserCardNotConnectedView: View {
                     "",
                     text: $keywordInput,
                     prompt: Text("Enter the user's keyword here")
+                        .font(.system(size: 12))
                         .foregroundStyle(Color(red: 0.8, green: 0.72, blue: 0.88))
                 )
                     .focused($isLabelFocused)
-                    .frame(width: 300, height: 50)
+                    .frame(width: 250, height: 50)
                     .foregroundStyle(Color(red: 0.8, green: 0.72, blue: 0.88))
                     .font(.system(size: 14))
                     .fontWeight(.medium)
@@ -118,4 +119,11 @@ struct UserCardNotConnectedView: View {
         .padding(20)
         .cornerRadius(20)
     }
+}
+
+#Preview {
+    UserPlanetView(user: .mock)
+        .environmentObject(
+            SessionStore()
+        )
 }

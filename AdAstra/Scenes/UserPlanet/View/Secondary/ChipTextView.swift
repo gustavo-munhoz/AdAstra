@@ -20,8 +20,9 @@ struct ChipTextView: View {
         .padding(.horizontal, 8)
         .padding(.vertical, 4)
         .overlay {
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: 12)
                 .stroke(.sp, lineWidth: 1)
+                .fill(.sp.opacity(0.1))
         }
     }
 }
