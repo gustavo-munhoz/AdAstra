@@ -40,6 +40,12 @@ struct User: Identifiable, Equatable {
         && lhs.connectionPassword == rhs.connectionPassword
     }
     
+    func getFormattedAge() -> String {
+        if age == 0 { return "??" }
+        
+        return age.formatted()
+    }
+    
     func summary() -> UserSummary {
         UserSummary(
             name: name,

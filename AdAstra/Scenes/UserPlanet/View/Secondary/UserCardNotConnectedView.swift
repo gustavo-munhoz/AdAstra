@@ -48,7 +48,7 @@ struct UserCardNotConnectedView: View {
                 
                 HStack{
                     ChipTextView(text: user.pronouns)
-                    ChipTextView(text: user.age.formatted())
+                    ChipTextView(text: user.getFormattedAge())
                 }
                 
                 Spacer()

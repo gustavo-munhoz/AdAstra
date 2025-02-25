@@ -24,12 +24,12 @@
         }
       }
     },
-    "%lld years old" : {
+    "%@ years old" : {
       "localizations" : {
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "%lld anos"
+            "value" : "%@ anos"
           }
         }
       }
