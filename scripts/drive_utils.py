@@ -3,6 +3,7 @@
 import io
 import os
 import face_recognition
+import pillow_heif
 from urllib.parse import urlparse, parse_qs
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
@@ -18,6 +19,7 @@ creds = service_account.Credentials.from_service_account_file(
 )
 drive_service = build('drive', 'v3', credentials=creds)
 
+pillow_heif.register_heif_opener()
 
 def extract_file_id(url: str) -> str:
     parsed = urlparse(url)
