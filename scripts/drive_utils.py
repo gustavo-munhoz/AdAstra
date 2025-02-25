@@ -1,13 +1,15 @@
 # drive_utils.py
 
+import numpy as np
 import io
 import os
 import face_recognition
+import pillow_heif
 from urllib.parse import urlparse, parse_qs
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageOps
 from firebase_client import upload_profile_picture
 
 SERVICE_ACCOUNT_FILE = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
@@ -18,6 +20,7 @@ creds = service_account.Credentials.from_service_account_file(
 )
 drive_service = build('drive', 'v3', credentials=creds)
 
+pillow_heif.register_heif_opener()
 
 def extract_file_id(url: str) -> str:
     parsed = urlparse(url)
@@ -58,10 +61,10 @@ def crop_face_to_circle_from_bytes(image_bytes: bytes, marginFactor: float = 0.5
     :param marginFactor: Fração para expandir o retângulo detectado em cada direção (ex: 0.2 aumenta 20%).
     :return: Imagem recortada em bytes (PNG).
     """
-    pil_image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+    pil_image = ImageOps.exif_transpose(Image.open(io.BytesIO(image_bytes))).convert("RGB")
     width, height = pil_image.size
 
-    image_np = face_recognition.load_image_file(io.BytesIO(image_bytes))
+    image_np = np.array(pil_image)
     face_locations = face_recognition.face_locations(image_np)
 
     if not face_locations:
@@ -69,7 +72,8 @@ def crop_face_to_circle_from_bytes(image_bytes: bytes, marginFactor: float = 0.5
             pil_image.save(output, format="PNG")
             return output.getvalue()
 
-    top, right, bottom, left = face_locations[0]
+    best_face = select_prominent_face(face_locations)
+    top, right, bottom, left = best_face
 
     face_width = right - left
     face_height = bottom - top
@@ -94,6 +98,27 @@ def crop_face_to_circle_from_bytes(image_bytes: bytes, marginFactor: float = 0.5
     with io.BytesIO() as output:
         circular_face.save(output, format="PNG")
         return output.getvalue()
+
+
+def select_prominent_face(face_locations):
+    """
+    Dada uma lista de face_locations (tuplas: top, right, bottom, left),
+    retorna a tupla correspondente ao rosto com a maior área.
+    """
+    if not face_locations:
+        return None
+    
+    # Inicializa com o primeiro rosto e calcula sua área
+    best_face = face_locations[0]
+    best_area = (best_face[1] - best_face[3]) * (best_face[2] - best_face[0])
+    
+    for face in face_locations[1:]:
+        top, right, bottom, left = face
+        area = (right - left) * (bottom - top)
+        if area > best_area:
+            best_area = area
+            best_face = face
+    return best_face
 
 
 def save_image_locally(image_bytes: bytes, output_filename: str) -> None:

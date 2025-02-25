@@ -2,7 +2,7 @@
 import argparse
 
 from firebase_client import fetch_sheet_data, add_user_to_firestore, user_already_exists
-from mapping import map_gradient_name, map_texture_name, map_shift_name
+from mapping import *
 from drive_utils import save_user_profile_picture
 from time import sleep
 
@@ -29,10 +29,6 @@ def map_row_to_user(row, headers: list) -> (dict, str):
     texture_pt = data.get("Se você fosse uma forma geométrica, qual seria?", "").strip()
     gradient_pt = data.get("Qual dessas cores você prefere?", "").strip()
 
-    shift_en = map_shift_name(shift_pt)
-    gradient_en = map_gradient_name(gradient_pt)
-    texture_en = map_texture_name(texture_pt)
-
     profile_picture_url = data.get("Insira aqui uma foto sua (com seu rosto) que você usaria como foto de perfil", "").strip()
 
     course = data.get("Qual sua formação?", "").strip()
@@ -41,7 +37,13 @@ def map_row_to_user(row, headers: list) -> (dict, str):
     secret_fact = data.get("Compartilhe um fato curioso seu.", "").strip()
     connection_password = data.get("Escolha uma palavra-chave", "").strip().lower()
     
-    role = "jrMentor"
+    verified_shift_pt = verify_and_map_user_shift(shift_pt, connection_password)
+    shift_en = map_shift_name(verified_shift_pt)
+    gradient_en = map_gradient_name(gradient_pt)
+    texture_en = map_texture_name(texture_pt)
+    
+    role = map_user_role(connection_password)
+    
     connection_count = 0
 
     planet = {

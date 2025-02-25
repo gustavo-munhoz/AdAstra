@@ -1,5 +1,29 @@
 # mapping.py
 
+def map_user_role(keyword: str) -> str:
+    keyword = keyword.lower()
+    
+    jrMentorKeywords = ["besouro", "kuma", "mayhem", "chuvinha", "chocomenta", "infinito-1", "minas gerais", "gatos e sopas", "matcha gelado"]
+    mentorKeywords = ["vermelho", "banana", "cthulhu"]
+    
+    if keyword in mentorKeywords:
+        return "mentor"
+    if keyword in jrMentorKeywords:
+        return "jrMentor"
+        
+    return "student"
+
+def verify_and_map_user_shift(currentShift: str, keyword: str) -> str:
+    keyword = keyword.lower()
+    
+    integralKeywords = ["cthulhu", "banana", "vermelho", "infinito-1"]
+    
+    if keyword in integralKeywords:
+        return "integral"
+        
+    return currentShift
+    
+
 def map_gradient_name(gradient_pt: str) -> str:
     """
     Mapeia o nome do gradiente em português para inglês.

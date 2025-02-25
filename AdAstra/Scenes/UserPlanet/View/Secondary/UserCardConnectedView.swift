@@ -33,7 +33,7 @@ struct UserCardConnectedView: View {
                     HStack(spacing: 8){
                         ChipTextView(text: user.pronouns)
                         ChipTextView(
-                            text: String(localized: "\(user.age) years old")
+                            text: String(localized: "\(user.getFormattedAge()) years old")
                         )
                         ChipTextView(text: user.role.localized)
                         ChipTextView(text: user.shift.localized)
