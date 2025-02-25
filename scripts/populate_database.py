@@ -16,7 +16,7 @@ def map_row_to_user(row, headers: list) -> (dict, str):
     """
     data = dict(zip(headers, row))
     
-    name = data.get("Como você gostaria de ser chamado na Academy?", "").strip()
+    name = data.get("Como você gostaria de ser chamado na Academy?", "").strip().capitalize()
     pronouns = data.get("Quais são seus pronomes?", "").strip()
 
     age_str = data.get("Qual sua idade?", "0").strip()
