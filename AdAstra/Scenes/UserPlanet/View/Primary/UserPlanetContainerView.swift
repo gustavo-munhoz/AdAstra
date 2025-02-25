@@ -30,14 +30,6 @@ struct UserPlanetContainerView: View {
     
     var body: some View {
         ZStack {
-            Image("bg")
-                .resizable()
-                .edgesIgnoringSafeArea(.all)
-                .frame(
-                    width: UIScreen.main.bounds.width,
-                    height: UIScreen.main.bounds.height
-                )
-            
             VStack {
                 if users.isEmpty {
                     ProgressView()
@@ -70,7 +62,9 @@ struct UserPlanetContainerView: View {
         .navigationBarTitleDisplayMode(.inline)
         .sensoryFeedback(.impact, trigger: selectedIndex)
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(.black)
+        .background {
+            ParallaxBackground()
+        }
         .toolbar {
             
             // 2

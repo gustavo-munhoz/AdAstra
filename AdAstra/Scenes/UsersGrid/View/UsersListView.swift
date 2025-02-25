@@ -62,10 +62,11 @@ struct UsersListView: View {
         }
         .navigationBarBackButtonHidden()
         .background {
-            Image("bg")
-                .resizable()
-                .edgesIgnoringSafeArea(.all)
-                .aspectRatio(contentMode: .fill)
+            ParallaxBackground()
+//            Image("bg")
+//                .resizable()
+//                .edgesIgnoringSafeArea(.all)
+//                .aspectRatio(contentMode: .fill)
         }
     }
 }

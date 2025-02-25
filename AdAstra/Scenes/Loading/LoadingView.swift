@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreMotion
 
 struct LoadingView: View {
     var loadingText: String?
@@ -23,13 +24,9 @@ struct LoadingView: View {
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background {
-            Image("bg")
-                .resizable()
-                .edgesIgnoringSafeArea(.all)
-                .aspectRatio(contentMode: .fill)
+            ParallaxBackground()
         }
         .transition(.opacity)
         .animation(.easeInOut, value: UUID())
     }
 }
-
