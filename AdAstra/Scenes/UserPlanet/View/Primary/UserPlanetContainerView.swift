@@ -86,7 +86,7 @@ struct UserPlanetContainerView: View {
                         
                         Image(systemName: "chevron.backward")
                             .foregroundStyle(.white)
-                        Text("Voltar")
+                        Text("Back")
                             .foregroundStyle(.white)
                     }
                 }

@@ -15,7 +15,7 @@ struct UsersListView: View {
     var body: some View {
         ZStack {
             if viewModel.isFetchingUsers {
-                LoadingView(loadingText: "Loading users...")
+                LoadingView(loadingText: String(localized: "Loading users..."))
                     .transition(.opacity)
             } else {
                 VStack {
@@ -25,17 +25,17 @@ struct UsersListView: View {
                             .padding(.vertical)
                         
                         DisclosureView(
-                            title: "Manhã",
+                            title: String(localized: "morning"),
                             users: viewModel.morningStudents
                         )
                         
                         DisclosureView(
-                            title: "Tarde",
+                            title: String(localized: "afternoon"),
                             users: viewModel.afternoonStudents
                         )
                         
                         DisclosureView(
-                            title: "Mentoria",
+                            title: String(localized: "mentors"),
                             users: viewModel.mentors
                         )
                         .padding(.bottom, 50)

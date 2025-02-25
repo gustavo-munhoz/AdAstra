@@ -15,7 +15,7 @@ struct UserCardConnectedView: View {
     
     var body: some View {
         ScrollView(.vertical) {
-            VStack{
+            VStack(spacing: 6) {
                 HStack{
                     Text(user.name)
                         .foregroundStyle(.white)
@@ -32,10 +32,13 @@ struct UserCardConnectedView: View {
                 ScrollView(.horizontal){
                     HStack(spacing: 8){
                         ChipTextView(text: user.pronouns)
-                        ChipTextView(text: "\(user.age) years old")
+                        ChipTextView(
+                            text: String(localized: "\(user.age) years old")
+                        )
                         ChipTextView(text: user.role.localized)
                         ChipTextView(text: user.shift.localized)
                     }
+                    .padding(2)
                 }
                 .scrollIndicators(.hidden)
                 
@@ -44,10 +47,7 @@ struct UserCardConnectedView: View {
                 
                 VStack(spacing: 8){
                     HStack(spacing: 4){
-                        Text("💛️")
-                            .font(.system(size: 12))
-                        
-                        Text("Interesses")
+                        Text("💛️ Interests")
                             .foregroundStyle(.logo)
                             .font(.system(size: 12))
                             .fontWeight(.medium)
@@ -76,10 +76,7 @@ struct UserCardConnectedView: View {
                 
                 VStack(spacing: 8){
                     HStack(spacing: 4){
-                        Text("⭐")
-                            .font(.system(size: 12))
-                        
-                        Text("Curiosidade")
+                        Text("⭐ Curiosity")
                             .foregroundStyle(.logo)
                             .font(.system(size: 12))
                             .fontWeight(.medium)
@@ -108,10 +105,7 @@ struct UserCardConnectedView: View {
                 
                 VStack(spacing: 8){
                     HStack(spacing: 4){
-                        Text("📚")
-                            .font(.system(size: 12))
-                        
-                        Text("Formação")
+                        Text("📚 Education")
                             .foregroundStyle(.logo)
                             .font(.system(size: 12))
                             .fontWeight(.medium)
@@ -139,6 +133,8 @@ struct UserCardConnectedView: View {
             .scaleEffect(x: -1.0)
             .clipped()
         }
+        .scrollIndicators(.hidden)
+        .padding(.bottom, 32)
     }
 }
 

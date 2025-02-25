@@ -31,7 +31,7 @@ struct AdAstraApp: App {
         WindowGroup {
             ZStack {
                 if session.isLoadingCurrentUser {
-                    LoadingView(loadingText: "Initializing...")
+                    LoadingView(loadingText: String(localized: "Initializing..."))
                     
                 } else if session.isSignedIn {
                     NavigationStack {
