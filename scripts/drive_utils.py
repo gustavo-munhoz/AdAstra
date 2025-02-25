@@ -72,7 +72,8 @@ def crop_face_to_circle_from_bytes(image_bytes: bytes, marginFactor: float = 0.5
             pil_image.save(output, format="PNG")
             return output.getvalue()
 
-    top, right, bottom, left = face_locations[0]
+    best_face = select_prominent_face(face_locations)
+    top, right, bottom, left = best_face
 
     face_width = right - left
     face_height = bottom - top
@@ -97,6 +98,27 @@ def crop_face_to_circle_from_bytes(image_bytes: bytes, marginFactor: float = 0.5
     with io.BytesIO() as output:
         circular_face.save(output, format="PNG")
         return output.getvalue()
+
+
+def select_prominent_face(face_locations):
+    """
+    Dada uma lista de face_locations (tuplas: top, right, bottom, left),
+    retorna a tupla correspondente ao rosto com a maior área.
+    """
+    if not face_locations:
+        return None
+    
+    # Inicializa com o primeiro rosto e calcula sua área
+    best_face = face_locations[0]
+    best_area = (best_face[1] - best_face[3]) * (best_face[2] - best_face[0])
+    
+    for face in face_locations[1:]:
+        top, right, bottom, left = face
+        area = (right - left) * (bottom - top)
+        if area > best_area:
+            best_area = area
+            best_face = face
+    return best_face
 
 
 def save_image_locally(image_bytes: bytes, output_filename: str) -> None:
