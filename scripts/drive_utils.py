@@ -1,5 +1,6 @@
 # drive_utils.py
 
+import numpy as np
 import io
 import os
 import face_recognition
@@ -8,7 +9,7 @@ from urllib.parse import urlparse, parse_qs
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaIoBaseDownload
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageOps
 from firebase_client import upload_profile_picture
 
 SERVICE_ACCOUNT_FILE = os.path.join(os.path.dirname(__file__), 'serviceAccountKey.json')
@@ -60,10 +61,10 @@ def crop_face_to_circle_from_bytes(image_bytes: bytes, marginFactor: float = 0.5
     :param marginFactor: Fração para expandir o retângulo detectado em cada direção (ex: 0.2 aumenta 20%).
     :return: Imagem recortada em bytes (PNG).
     """
-    pil_image = Image.open(io.BytesIO(image_bytes)).convert("RGB")
+    pil_image = ImageOps.exif_transpose(Image.open(io.BytesIO(image_bytes))).convert("RGB")
     width, height = pil_image.size
 
-    image_np = face_recognition.load_image_file(io.BytesIO(image_bytes))
+    image_np = np.array(pil_image)
     face_locations = face_recognition.face_locations(image_np)
 
     if not face_locations:
