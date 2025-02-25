@@ -30,7 +30,7 @@ struct EasterEggView: View {
                 Text("Ad Astra")
                     .font(.system(size: 24, weight: .bold, design: .default))
                     .foregroundColor(.white)
-                Text("Feito com ❤️ por Gustavinhos e Cia.")
+                Text("Made with ❤️ by Gustavinhos and Cia.")
                     .font(.system(size: 12, weight: .light, design: .default))
                     .foregroundColor(.white)
                 Text("(Afonso, Munhoz, Isoo, Mari e Naomi)")

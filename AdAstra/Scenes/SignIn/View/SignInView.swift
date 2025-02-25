@@ -59,8 +59,8 @@ struct SignInView: View {
                         .frame(maxHeight: 20)
                     
                     GradientButton(
-                        title: "Sign in",
-                        loadingTitle: "Signing in...",
+                        title: NSLocalizedString("Sign in", comment: ""),
+                        loadingTitle: NSLocalizedString("Signing in...", comment: ""),
                         isLoading: viewModel.isFetchingUser,
                         action: {
                             isLabelFocused = false

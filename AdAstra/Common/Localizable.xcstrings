@@ -5,31 +5,94 @@
 
     },
     "(Afonso, Munhoz, Isoo, Mari e Naomi)" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "(Afonso, Munhoz, Isoo, Mari e Naomi)"
+          }
+        }
+      }
     },
     "*" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "*"
+          }
+        }
+      }
     },
-    "%@" : {
-
+    "%lld years old" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%lld anos"
+          }
+        }
+      }
     },
-    "⭐" : {
-
+    "⭐ Curiosity" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "⭐ Curiosidade"
+          }
+        }
+      }
     },
     "👍" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "👍"
+          }
+        }
+      }
     },
-    "💛️" : {
-
+    "💛️ Interests" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "💛️ Interesses"
+          }
+        }
+      }
     },
-    "📚" : {
-
+    "📚 Education" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "📚 Formações"
+          }
+        }
+      }
     },
     "ad" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ad"
+          }
+        }
+      }
     },
     "Ad Astra" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ad Astra"
+          }
+        }
+      }
     },
     "afternoon" : {
       "extractionState" : "manual",
@@ -39,44 +102,178 @@
             "state" : "translated",
             "value" : "Afternoon"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tarde"
+          }
         }
       }
     },
     "astra" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "astra"
+          }
+        }
+      }
+    },
+    "Back" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voltar"
+          }
+        }
+      }
     },
     "Cancel" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cancelar"
+          }
+        }
+      }
     },
     "Close" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fechar"
+          }
+        }
+      }
     },
     "Connect" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conectar"
+          }
+        }
+      }
     },
-    "Curiosidade" : {
-
+    "DocumentID was not initialized." : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DocumentID não inicializado"
+          }
+        }
+      }
     },
     "Enter the user's keyword here" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digite a palavra-chave aqui"
+          }
+        }
+      }
     },
     "Error!" : {
-
-    },
-    "Feito com ❤️ por Gustavinhos e Cia." : {
-
-    },
-    "Formação" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Erro!"
+          }
+        }
+      }
     },
     "Incorrect keyword!" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Palavra-chave incorreta!"
+          }
+        }
+      }
     },
-    "Interesses" : {
-
+    "Initializing..." : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Iniciando…"
+          }
+        }
+      }
+    },
+    "integral" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Integral"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Integral"
+          }
+        }
+      }
     },
     "Is this you?" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Esse é você?"
+          }
+        }
+      }
+    },
+    "jrMentor" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jr. Mentor"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentor Jr."
+          }
+        }
+      }
+    },
+    "Loading users..." : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Carregando usuários…"
+          }
+        }
+      }
+    },
+    "Made with ❤️ by Gustavinhos and Cia." : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Feito com ❤️ por Gustavinhos e Cia."
+          }
+        }
+      }
     },
     "mentor" : {
       "extractionState" : "manual",
@@ -86,16 +283,27 @@
             "state" : "translated",
             "value" : "Mentor"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentor"
+          }
         }
       }
     },
-    "mentorJr" : {
-      "extractionState" : "manual",
+    "mentors" : {
       "localizations" : {
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jr. Mentor"
+            "value" : "Mentors"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mentoria"
           }
         }
       }
@@ -108,14 +316,54 @@
             "state" : "translated",
             "value" : "Morning"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Manhã"
+          }
         }
       }
     },
     "OK" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
+          }
+        }
+      }
+    },
+    "Sign in" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conectar"
+          }
+        }
+      }
     },
     "Sign out" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sair"
+          }
+        }
+      }
+    },
+    "Signing in..." : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Conectando…"
+          }
+        }
+      }
     },
     "student" : {
       "extractionState" : "manual",
@@ -125,17 +373,44 @@
             "state" : "translated",
             "value" : "Student"
           }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aluno"
+          }
         }
       }
     },
     "That's me!" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sou eu!"
+          }
+        }
+      }
     },
     "Type your keyword here!" : {
-
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digite sua palavra chave aqui!"
+          }
+        }
+      }
     },
-    "Voltar" : {
-
+    "User not found... try another code!" : {
+      "localizations" : {
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usuário não encontrado… tente outro código!"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

@@ -19,10 +19,10 @@ enum FirestoreError: Error, LocalizedError {
     var errorDescription: String? {
         switch self {
         case .userNotFound:
-            return "User not found... try another code!"
+            return NSLocalizedString("User not found... try another code!", comment: "")
             
         case .missingDocumentId:
-            return "DocumentID was not initialized."
+            return NSLocalizedString("DocumentID was not initialized.", comment: "")
         }
     }
 }

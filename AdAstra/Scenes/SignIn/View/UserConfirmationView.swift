@@ -36,7 +36,7 @@ struct UserConfirmationView: View {
                         .stroke(Color(.sp), lineWidth: 4)
                 }
             
-            Text("\(user.name)")
+            Text(user.name)
                 .foregroundStyle(.white)
                 .font(.system(size: 24))
                 .fontWeight(.medium)

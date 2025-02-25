@@ -24,7 +24,7 @@ struct ZoomedUserView: View {
                 }
                 .padding()
             
-            Text("\(user.name)")
+            Text(user.name)
                 .foregroundStyle(.white)
                 .font(.largeTitle)
                 .fontWeight(.medium)
