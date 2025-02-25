@@ -107,10 +107,11 @@ struct SignInView: View {
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background {
-                Image("bg")
-                    .resizable()
-                    .edgesIgnoringSafeArea(.all)
-                    .aspectRatio(contentMode: .fill)
+                ParallaxBackground()
+//                Image("bg")
+//                    .resizable()
+//                    .edgesIgnoringSafeArea(.all)
+//                    .aspectRatio(contentMode: .fill)
             }
         }
     }
