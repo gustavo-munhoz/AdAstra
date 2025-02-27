@@ -38,6 +38,7 @@ struct User: Identifiable, Equatable {
         lhs.id == rhs.id
         && lhs.name == rhs.name
         && lhs.connectionPassword == rhs.connectionPassword
+        && lhs.profilePicture == rhs.profilePicture
     }
     
     func getFormattedAge() -> String {
@@ -86,6 +87,25 @@ struct User: Identifiable, Equatable {
             connectedUsers: newConnectedUsers,
             secretFact: secretFact,
             profilePicture: profilePicture,
+            planet: planet
+        )
+    }
+    
+    func settingProfilePicture(to image: UIImage) -> User {
+        User(
+            id: id,
+            name: name,
+            age: age,
+            course: course,
+            shift: shift,
+            role: role,
+            interests: interests,
+            pronouns: pronouns,
+            connectionPassword: connectionPassword,
+            connectionCount: connectionCount,
+            connectedUsers: connectedUsers,
+            secretFact: secretFact,
+            profilePicture: image,
             planet: planet
         )
     }
