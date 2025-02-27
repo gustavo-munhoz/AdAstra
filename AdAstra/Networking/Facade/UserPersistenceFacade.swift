@@ -29,6 +29,10 @@ class UserPersistenceFacade {
         try await dataService.updateUser(dtoToWrite)
     }
     
+    func getUserProfilePicture(docId: String) async -> UIImage {
+        await fetchUserImageFromImageService(docId: docId)
+    }
+    
     func getUserFromConnectionPassword(_ password: String) async throws -> User {
         let sanitizedInput = password.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
         
@@ -48,12 +52,8 @@ class UserPersistenceFacade {
         
         return await withTaskGroup(of: User?.self) { group in
             for userDTO in fetchedUsers {
-                group.addTask { [weak self] in
-                    guard let self, let docId = userDTO.docId else { return nil }
-                    
-                    let profileImage = await self.fetchUserImageFromImageService(docId: docId)
-                    
-                    return try! userDTO.mappedToUser(withImage: profileImage)
+                group.addTask {
+                    return try! userDTO.mappedToUser()
                 }
             }
             
