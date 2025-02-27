@@ -3,8 +3,8 @@
 def map_user_role(keyword: str) -> str:
     keyword = keyword.lower()
     
-    jrMentorKeywords = ["besouro", "kuma", "mayhem", "chuvinha", "chocomenta", "infinito-1", "minas gerais", "gatos e sopas", "matcha gelado"]
-    mentorKeywords = ["vermelho", "banana", "cthulhu"]
+    jrMentorKeywords = ["besouro", "kuma", "gibraltar", "mayhem", "chuvinha", "chocomenta", "infinito-1", "minas gerais", "gatos e sopas", "matcha gelado", "embraer 195"]
+    mentorKeywords = ["vermelho", "banana", "cthulhu", "urubu", "artesão"]
     
     if keyword in mentorKeywords:
         return "mentor"
@@ -16,7 +16,7 @@ def map_user_role(keyword: str) -> str:
 def verify_and_map_user_shift(currentShift: str, keyword: str) -> str:
     keyword = keyword.lower()
     
-    integralKeywords = ["cthulhu", "banana", "vermelho", "infinito-1"]
+    integralKeywords = ["cthulhu", "banana", "vermelho", "infinito-1", "urubu", "artesão"]
     
     if keyword in integralKeywords:
         return "integral"
