@@ -68,7 +68,6 @@ class UsersListViewModel: ObservableObject {
                     
                     await MainActor.run {
                         self.users[index] = updatedUser
-                        print("Updated picture of \(updatedUser.name)")
                     }
                                         
                     await semaphore.signal()
