@@ -38,6 +38,11 @@ struct User: Identifiable, Equatable {
         lhs.id == rhs.id
         && lhs.name == rhs.name
         && lhs.connectionPassword == rhs.connectionPassword
+        && lhs.profilePicture == rhs.profilePicture
+    }
+    
+    func hasSamePassword(as user: User) -> Bool {
+        connectionPassword == user.connectionPassword
     }
     
     func getFormattedAge() -> String {
@@ -60,7 +65,7 @@ struct User: Identifiable, Equatable {
     }
     
     func canConnect(to user: User) -> Bool {
-        guard user != self else { return false }
+        guard !user.hasSamePassword(as: self) else { return false }
         
         return !connectedUsers.contains {
             $0.name == user.name
@@ -86,6 +91,25 @@ struct User: Identifiable, Equatable {
             connectedUsers: newConnectedUsers,
             secretFact: secretFact,
             profilePicture: profilePicture,
+            planet: planet
+        )
+    }
+    
+    func settingProfilePicture(to image: UIImage) -> User {
+        User(
+            id: id,
+            name: name,
+            age: age,
+            course: course,
+            shift: shift,
+            role: role,
+            interests: interests,
+            pronouns: pronouns,
+            connectionPassword: connectionPassword,
+            connectionCount: connectionCount,
+            connectedUsers: connectedUsers,
+            secretFact: secretFact,
+            profilePicture: image,
             planet: planet
         )
     }

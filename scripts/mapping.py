@@ -3,7 +3,7 @@
 def map_user_role(keyword: str) -> str:
     keyword = keyword.lower()
     
-    jrMentorKeywords = ["besouro", "kuma", "gibraltar", "mayhem", "chuvinha", "chocomenta", "infinito-1", "minas gerais", "gatos e sopas", "matcha gelado", "embraer 195"]
+    jrMentorKeywords = ["the cake is a lie", "kuma", "gibraltar", "mayhem", "chuvinha", "chocomenta", "infinito-1", "minas gerais", "gatos e sopas", "matcha gelado", "embraer 195"]
     mentorKeywords = ["vermelho", "banana", "cthulhu", "urubu", "artesão"]
     
     if keyword in mentorKeywords:

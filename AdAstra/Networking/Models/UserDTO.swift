@@ -49,7 +49,7 @@ struct UserDTO: Codable {
     
     // MARK: - Mapping Methods
     
-    func mappedToUser(withImage image: UIImage) throws -> User {
+    func mappedToUser(withImage image: UIImage = .defaultUserImage()) throws -> User {
         guard let docId else {
             throw FirestoreError.missingDocumentId
         }
