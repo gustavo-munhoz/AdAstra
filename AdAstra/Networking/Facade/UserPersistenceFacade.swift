@@ -17,12 +17,13 @@ class UserPersistenceFacade {
     }
     
     func updateUser(_ userToWrite: User) async throws {
-        if userToWrite.profilePicture != .defaultUserImage() {
-            try await imageService.uploadImage(
-                userToWrite.profilePicture,
-                forDocId: userToWrite.id
-            )
-        }
+        // MARK: - We currently don't support chaging profile pictures.
+//        if userToWrite.profilePicture != .defaultUserImage() {
+//            try await imageService.uploadImage(
+//                userToWrite.profilePicture,
+//                forDocId: userToWrite.id
+//            )
+//        }
         
         let dtoToWrite = UserDTO.mappedFrom(user: userToWrite)
         
@@ -42,9 +43,9 @@ class UserPersistenceFacade {
             throw FirestoreError.missingDocumentId
         }
         
-        let image = await fetchUserImageFromImageService(docId: docId)
+        let pictureURL = await fetchUserProfilePictureURL(docId: docId)
         
-        return try dto.mappedToUser(withImage: image)
+        return try dto.mappedToUser(profilePictureURL: pictureURL)
     }
     
     func getAllUsers(sortedBy sortingFunction: ((User, User) throws -> Bool)? = nil) async -> [User] {
@@ -52,8 +53,12 @@ class UserPersistenceFacade {
         
         return await withTaskGroup(of: User?.self) { group in
             for userDTO in fetchedUsers {
-                group.addTask {
-                    return try! userDTO.mappedToUser()
+                group.addTask { [weak self] in
+                    guard let self, let docId = userDTO.docId else { return nil }
+                    
+                    let profilePictureURL = await self.fetchUserProfilePictureURL(docId: docId)
+                    
+                    return try! userDTO.mappedToUser(profilePictureURL: profilePictureURL)
                 }
             }
             
@@ -79,6 +84,15 @@ class UserPersistenceFacade {
         } catch {
             print(error.localizedDescription)
             return []
+        }
+    }
+    
+    private func fetchUserProfilePictureURL(docId: String) async -> URL? {
+        do {
+            return try await imageService.getStorageURL(for: docId)
+        } catch {
+            print(error.localizedDescription)
+            return nil
         }
     }
     

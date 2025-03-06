@@ -10,4 +10,5 @@ import UIKit
 protocol ImageService {
     @discardableResult func uploadImage(_ image: UIImage, forDocId docId: String) async throws -> URL
     func fetchImage(forDocId docId: String) async throws -> UIImage
+    func getStorageURL(for docId: String) async throws -> URL
 }
