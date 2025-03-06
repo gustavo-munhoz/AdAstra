@@ -49,32 +49,32 @@ class UsersListViewModel: ObservableObject {
             
             await MainActor.run { isFetchingUsers = false }
             
-            await loadUserImages()
+//            await loadUserImages()
         }
     }
     
-    private func loadUserImages() async {
-        let semaphore = AsyncSemaphore(permits: 20)
-        
-        await withTaskGroup(of: Void.self) { group in
-            for (index, user) in users.enumerated() where user.profilePicture == UIImage.defaultUserImage() {
-                group.addTask { [weak self] in
-                    guard let self = self else { return }
-                                        
-                    await semaphore.wait()
-                    
-                    let newImage = await self.facade.getUserProfilePicture(docId: user.id)
-                    let updatedUser = user.settingProfilePicture(to: newImage)
-                    
-                    await MainActor.run {
-                        self.users[index] = updatedUser
-                    }
-                                        
-                    await semaphore.signal()
-                }
-            }
-        }
-    }
+//    private func loadUserImages() async {
+//        let semaphore = AsyncSemaphore(permits: 20)
+//        
+//        await withTaskGroup(of: Void.self) { group in
+//            for (index, user) in users.enumerated() where user.profilePicture == UIImage.defaultUserImage() {
+//                group.addTask { [weak self] in
+//                    guard let self = self else { return }
+//                                        
+//                    await semaphore.wait()
+//                    
+//                    let newImage = await self.facade.getUserProfilePicture(docId: user.id)
+//                    let updatedUser = user.settingProfilePicture(to: newImage)
+//                    
+//                    await MainActor.run {
+//                        self.users[index] = updatedUser
+//                    }
+//                                        
+//                    await semaphore.signal()
+//                }
+//            }
+//        }
+//    }
     
     @MainActor func signOut(with session: SessionStore) {
         session.signOut()

@@ -48,6 +48,12 @@ class StorageImageService: ImageService {
         return image
     }
     
+    func getStorageURL(for docId: String) async throws -> URL {
+        let storageRef = getStorageReference(for: docId)
+        
+        return try await storageRef.downloadURL()
+    }
+    
     private func getStorageReference(for docId: String) -> StorageReference {
         storage
             .reference()

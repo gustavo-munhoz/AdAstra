@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct ZoomedUserView: View {
     var user: User
@@ -14,15 +15,42 @@ struct ZoomedUserView: View {
     
     var body: some View {
         VStack {
-            Image(uiImage: user.profilePicture)
-                .resizable()
-                .frame(width: 180, height: 180)
-                .clipShape(Circle())
-                .background {
-                    Circle()
-                        .stroke(Color(.sp), lineWidth: 4)
-                }
-                .padding()
+            if let imageURL = user.profilePictureURL {
+                KFImage(imageURL)
+                    .placeholder {
+                        CustomSpinnerView()
+                            .scaleEffect(0.5)
+                    }
+                    .resizable()
+                    .frame(width: 180, height: 180)
+                    .clipShape(Circle())
+                    .background {
+                        Circle()
+                            .stroke(Color(.sp), lineWidth: 4)
+                    }
+                    .padding()
+                
+            } else {
+                Image(uiImage: .defaultUserImage())
+                    .resizable()
+                    .frame(width: 180, height: 180)
+                    .clipShape(Circle())
+                    .background {
+                        Circle()
+                            .stroke(Color(.sp), lineWidth: 4)
+                    }
+                    .padding()
+            }
+            
+//            Image(uiImage: user.profilePicture)
+//                .resizable()
+//                .frame(width: 180, height: 180)
+//                .clipShape(Circle())
+//                .background {
+//                    Circle()
+//                        .stroke(Color(.sp), lineWidth: 4)
+//                }
+//                .padding()
             
             Text(user.name)
                 .foregroundStyle(.white)

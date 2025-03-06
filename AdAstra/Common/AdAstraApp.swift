@@ -7,12 +7,20 @@
 
 import SwiftUI
 import FirebaseCore
+import Kingfisher
 
 class AppDelegate: NSObject, UIApplicationDelegate {
+    private func configureKingfisherCache() {
+        Kingfisher.ImageCache.default.diskStorage.config.expiration = .days(3)
+        Kingfisher.ImageCache.default.memoryStorage.config.expiration = .days(3)
+    }
+    
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil
     ) -> Bool {
+        
+        configureKingfisherCache()
         
         FirebaseApp.configure()
         return true

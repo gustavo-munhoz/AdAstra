@@ -49,7 +49,8 @@ struct UserDTO: Codable {
     
     // MARK: - Mapping Methods
     
-    func mappedToUser(withImage image: UIImage = .defaultUserImage()) throws -> User {
+//    func mappedToUser(withImage image: UIImage = .defaultUserImage()) throws -> User {
+    func mappedToUser(profilePictureURL url: URL? = nil) throws -> User {
         guard let docId else {
             throw FirestoreError.missingDocumentId
         }
@@ -79,7 +80,8 @@ struct UserDTO: Codable {
             connectionCount: connectionCount,
             connectedUsers: connectedUsers,
             secretFact: secretFact,
-            profilePicture: image,
+//            profilePicture: image,
+            profilePictureURL: url,
             planet: planet
         )
     }

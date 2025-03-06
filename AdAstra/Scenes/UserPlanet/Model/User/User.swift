@@ -30,7 +30,8 @@ struct User: Identifiable, Equatable {
     let connectedUsers: [UserSummary]
     let secretFact: String
     
-    let profilePicture: UIImage
+//    var profilePicture: UIImage!
+    let profilePictureURL: URL?
     let planet: Planet
     
     // MARK: - Methods
@@ -38,7 +39,7 @@ struct User: Identifiable, Equatable {
         lhs.id == rhs.id
         && lhs.name == rhs.name
         && lhs.connectionPassword == rhs.connectionPassword
-        && lhs.profilePicture == rhs.profilePicture
+//        && lhs.profilePicture == rhs.profilePicture
     }
     
     func hasSamePassword(as user: User) -> Bool {
@@ -90,29 +91,29 @@ struct User: Identifiable, Equatable {
             connectionCount: newConnectionCount,
             connectedUsers: newConnectedUsers,
             secretFact: secretFact,
-            profilePicture: profilePicture,
+            profilePictureURL: profilePictureURL,
             planet: planet
         )
     }
     
-    func settingProfilePicture(to image: UIImage) -> User {
-        User(
-            id: id,
-            name: name,
-            age: age,
-            course: course,
-            shift: shift,
-            role: role,
-            interests: interests,
-            pronouns: pronouns,
-            connectionPassword: connectionPassword,
-            connectionCount: connectionCount,
-            connectedUsers: connectedUsers,
-            secretFact: secretFact,
-            profilePicture: image,
-            planet: planet
-        )
-    }
+//    func settingProfilePicture(to image: UIImage) -> User {
+//        User(
+//            id: id,
+//            name: name,
+//            age: age,
+//            course: course,
+//            shift: shift,
+//            role: role,
+//            interests: interests,
+//            pronouns: pronouns,
+//            connectionPassword: connectionPassword,
+//            connectionCount: connectionCount,
+//            connectedUsers: connectedUsers,
+//            secretFact: secretFact,
+//            profilePicture: image,
+//            planet: planet
+//        )
+//    }
 }
 
 extension User {
@@ -130,7 +131,8 @@ extension User {
             connectionCount: Int.random(in: 0..<100),
             connectedUsers: [],
             secretFact: "test",
-            profilePicture: .defaultUserImage(),
+//            profilePicture: .defaultUserImage(),
+            profilePictureURL: URL(string: "")!,
             planet: .mock
         )
     }

@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SceneKit
+import Kingfisher
 
 struct ScrollSelectorView: View {
     let scaleFactor = 0.25
@@ -67,22 +68,46 @@ struct ScrollSelectorView: View {
                                 )
                                 .frame(width: 150, height: 180)
                                 
-                                Image(uiImage: users[i].profilePicture)
-                                    .resizable()
-                                    .frame(width: 60, height: 60)
-                                    .clipShape(Circle())
-                                    .background {
-                                        Circle()
-                                            .stroke(
-                                                LinearGradient(
-                                                    colors: [.btf1, .btf2],
-                                                    startPoint: .topLeading,
-                                                    endPoint: .bottomTrailing
-                                                ),
-                                                lineWidth: 4
-                                            )
-                                    }
-                                    .offset(x: 0, y: 50)
+                                if let imageURL = users[i].profilePictureURL {
+                                    KFImage(imageURL)
+                                        .placeholder {
+                                            CustomSpinnerView()
+                                                .scaleEffect(0.5)
+                                        }
+                                        .resizable()
+                                        .frame(width: 60, height: 60)
+                                        .clipShape(Circle())
+                                        .background {
+                                            Circle()
+                                                .stroke(
+                                                    LinearGradient(
+                                                        colors: [.btf1, .btf2],
+                                                        startPoint: .topLeading,
+                                                        endPoint: .bottomTrailing
+                                                    ),
+                                                    lineWidth: 4
+                                                )
+                                        }
+                                        .offset(x: 0, y: 50)
+                                } else {
+                                    
+                                    Image(uiImage: .defaultUserImage())
+                                        .resizable()
+                                        .frame(width: 60, height: 60)
+                                        .clipShape(Circle())
+                                        .background {
+                                            Circle()
+                                                .stroke(
+                                                    LinearGradient(
+                                                        colors: [.btf1, .btf2],
+                                                        startPoint: .topLeading,
+                                                        endPoint: .bottomTrailing
+                                                    ),
+                                                    lineWidth: 4
+                                                )
+                                        }
+                                        .offset(x: 0, y: 50)
+                                }
                             }
                         }
                         .scaleEffect(scaleCalc(index: i))

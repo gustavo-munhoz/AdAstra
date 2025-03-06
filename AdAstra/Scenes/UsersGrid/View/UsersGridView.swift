@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct UsersGridView: View {
     
@@ -76,22 +77,60 @@ struct UsersGridView: View {
                                     .frame(width: 80, height: 80)
                                 }
                                 
-                                Image(uiImage: user.profilePicture)
-                                    .resizable()
-                                    .frame(width: 30, height: 30)
-                                    .clipShape(Circle())
-                                    .background {
-                                        Circle()
-                                            .stroke(LinearGradient(colors: [.btf1, .btf2], startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 4)
-                                            .rotationEffect(Angle(degrees: angle))
-                                            .onAppear{
-                                                withAnimation(.linear(duration: 10).repeatForever(autoreverses: true)){
-                                                    angle = 360
+                                if let imageURL = user.profilePictureURL {
+                                    KFImage(imageURL)
+                                        .placeholder {
+                                            CustomSpinnerView()
+                                                .scaleEffect(0.5)
+                                        }
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                        .clipShape(Circle())
+                                        .background {
+                                            Circle()
+                                                .stroke(
+                                                    LinearGradient(
+                                                        colors: [.btf1, .btf2],
+                                                        startPoint: .topLeading,
+                                                        endPoint: .bottomTrailing
+                                                    ),
+                                                    lineWidth: 4
+                                                )
+                                                .rotationEffect(Angle(degrees: angle))
+                                                .onAppear{
+                                                    withAnimation(.linear(duration: 10).repeatForever(autoreverses: true)){
+                                                        angle = 360
+                                                    }
+                                                    
                                                 }
-                                                
-                                            }
-                                    }
-                                    .offset(x: 20, y: 20)
+                                        }
+                                        .offset(x: 20, y: 20)
+                                    
+                                } else {
+                                    Image(uiImage: .defaultUserImage())
+                                        .resizable()
+                                        .frame(width: 30, height: 30)
+                                        .clipShape(Circle())
+                                        .background {
+                                            Circle()
+                                                .stroke(
+                                                    LinearGradient(
+                                                        colors: [.btf1, .btf2],
+                                                        startPoint: .topLeading,
+                                                        endPoint: .bottomTrailing
+                                                    ),
+                                                    lineWidth: 4
+                                                )
+                                                .rotationEffect(Angle(degrees: angle))
+                                                .onAppear{
+                                                    withAnimation(.linear(duration: 10).repeatForever(autoreverses: true)){
+                                                        angle = 360
+                                                    }
+                                                    
+                                                }
+                                        }
+                                        .offset(x: 20, y: 20)
+                                }
                                 
                             }
                             
